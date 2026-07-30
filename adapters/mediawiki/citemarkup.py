@@ -27,13 +27,25 @@ def parse_cites(raw):
     return _CITE.findall(raw)
 
 
-def strip_refs(text):
-    """Prose with citation markup removed, so callers can analyse sentences."""
+def remove_refs(text):
+    """Prose with <ref> markup removed and nothing else touched.
+
+    Whitespace is deliberately NOT collapsed: callers that run further
+    line-oriented passes (heading and markup stripping) need the original line
+    structure intact. Collapsing here silently breaks a heading whose ==
+    fence straddles a multi-line <ref>.
+    """
     out = _REF_PAIRED.sub(" ", text)
-    out = _REF_SELF_CLOSING.sub(" ", out)
-    # No .strip() — matches crosscheck.py's prose() exactly. Callers that want
-    # trimmed output must strip it themselves.
-    return re.sub(r"\s+", " ", out)
+    return _REF_SELF_CLOSING.sub(" ", out)
+
+
+def strip_refs(text):
+    """remove_refs plus whitespace collapse — matches crosscheck.py's prose().
+
+    Deliberately no .strip(): crosscheck.py:55 does not strip, and callers that
+    want trimmed output do it themselves.
+    """
+    return re.sub(r"\s+", " ", remove_refs(text))
 
 
 def format_cite(source, quote):

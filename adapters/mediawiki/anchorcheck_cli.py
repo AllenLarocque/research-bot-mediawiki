@@ -23,24 +23,25 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 import wiki
 import retro
 
-from adapters.mediawiki.citemarkup import parse_cites, strip_refs
+from adapters.mediawiki.citemarkup import parse_cites, remove_refs
 from core.scripts.anchorcheck import missing_anchors
 
 
 def sentence_text(raw):
     """The prose of a sentence: refs, templates and heading marks removed.
 
-    Order matters: templates/headings/wikilinks/bold are stripped BEFORE
-    strip_refs runs, because strip_refs collapses whitespace (including the
-    newlines the heading pattern depends on) as part of removing <ref> tags.
-    Stripping refs last, right before the final collapse, keeps this
-    byte-identical to the original anchorcheck.py:sentence_text.
+    Order matters, and matches the original anchorcheck.py:sentence_text
+    exactly: refs are removed FIRST via remove_refs, which does NOT collapse
+    whitespace, so the heading pattern (which relies on ^...$ per-line
+    matching) still sees intact line structure even when a <ref> spans
+    multiple lines or a heading's == fence straddles one.
     """
-    s = re.sub(r"\{\{[^{}]*\}\}", " ", raw)
+    s = remove_refs(raw)
+    s = re.sub(r"\{\{[^{}]*\}\}", " ", s)
     s = re.sub(r"^\s*=+.*?=+\s*$", " ", s, flags=re.M)
     s = re.sub(r"\[\[([^\]|]*\|)?([^\]]*)\]\]", r"\2", s)
     s = s.replace("'''", "").replace("''", "")
-    return strip_refs(s).strip()
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def main():
