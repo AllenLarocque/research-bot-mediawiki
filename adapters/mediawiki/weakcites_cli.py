@@ -15,15 +15,15 @@ import re
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-# wiki.py and retro.py have not been migrated into adapters/ yet (out of scope
-# for this task -- it only splits weakcites.py). Until they are, this CLI
-# depends on them being importable the way the original script did: located
-# next to it on sys.path. A future task should give them a proper home under
+# wiki.py has not been migrated into adapters/ yet (out of scope for this
+# task -- it only resolves retro.py, per Task 8). Until it is, this CLI
+# depends on it being importable the way the original script did: located
+# next to it on sys.path. A future task should give it a proper home under
 # adapters/mediawiki/ and update this import accordingly.
 import wiki
-import retro
 
 from adapters.mediawiki.citemarkup import parse_cites
+from adapters.mediawiki.retro import page_sentences, plain
 from core.scripts.weakcites import anchors, overlap, words, DEFAULT_THRESH
 
 
@@ -45,11 +45,11 @@ def main():
         wt = wiki.get(t) or ""
         if "<ref>" not in wt:
             continue
-        for n, a, b, raw in retro.page_sentences(wt):
+        for n, a, b, raw in page_sentences(wt):
             cites = parse_cites(raw)
             if not cites:
                 continue
-            sent = retro.plain(raw)
+            sent = plain(raw)
             sw = set(words(sent))
             sa = anchors(sent)
             if not sw:

@@ -18,32 +18,34 @@ import re
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-# wiki.py, retro.py, paths.py and verify.py have not been migrated into
-# adapters/ yet (out of scope for this task -- it only splits addcite.py).
+# wiki.py, paths.py and verify.py have not been migrated into adapters/ yet
+# (out of scope for this task, which only resolves retro.py per Task 8).
 # Until they are, this CLI depends on them being importable the way the
 # original script did: located next to it on sys.path. A future task should
 # give them a proper home under adapters/mediawiki/ and update this import
-# accordingly.
+# accordingly. (paths.py itself already has a core/ home as
+# core.scripts.paths -- this bare shim import predates that move and is
+# left alone here as out of scope; Task 8 only resolves the retro.py half.)
 import wiki
-import retro
 import paths
 import verify
 
 from adapters.mediawiki.citemarkup import format_cite
 from core.scripts.addcite import insert_after
+from core.scripts.srccache import load_manifest, verify_quote
 
 
 def main():
     specs = json.load(open(sys.argv[1]))
     wiki.ensure_login()
     all_src = set(wiki.list_category("Category:Sources"))
-    man = retro.load_manifest()
+    man = load_manifest()
 
     bad = []
     for s in specs:
         if s["source"] not in all_src:
             bad.append("%s: no such Source page: %s" % (s["page"], s["source"]))
-        elif not retro.verify_quote(s["quote"], s["source"]):
+        elif not verify_quote(s["quote"], s["source"]):
             bad.append("%s: quote NOT verbatim in %s: %.60s..."
                        % (s["page"], s["source"], s["quote"]))
     if bad:
