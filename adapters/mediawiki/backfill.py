@@ -15,8 +15,6 @@ the actual bytes this script puts on the wire unchanged from before the split.
 
 usage: backfill.py
 """
-import os
-import sys
 import re
 import time
 

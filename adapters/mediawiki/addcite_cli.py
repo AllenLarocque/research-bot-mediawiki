@@ -12,7 +12,6 @@ spec: [{page, after, source, quote, claim, tier}, ...]
       `after` is the exact page text the <ref> should follow.
 """
 import sys
-import os
 import json
 import re
 
@@ -61,7 +60,7 @@ def main():
         res = wiki.edit(page, wt, "Cite claims the anchor audit found uncited (AI-drafted)")
         print("%-38s %s" % (page, res.get("edit", {}).get("result")))
 
-        led = paths.ledger(page)
+        led = paths.ledger_path(page)
         md = open(led).read()
         last = max(int(m) for m in re.findall(r"^\|\s*(\d+)\s*\|", md, re.M))
         out = []

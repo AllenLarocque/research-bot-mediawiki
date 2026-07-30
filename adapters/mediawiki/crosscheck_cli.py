@@ -13,7 +13,6 @@ parameter, the same way core.scripts.crosscheck receives it.
 usage: crosscheck_cli.py [--window N]
 """
 import sys
-import os
 import re
 
 from adapters.mediawiki import wiki

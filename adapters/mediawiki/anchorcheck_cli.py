@@ -10,7 +10,6 @@ core.scripts.anchorcheck and knows nothing about wikis.
 usage: anchorcheck_cli.py [--figures]   (--figures also reports bare numbers)
 """
 import sys
-import os
 import re
 
 from adapters.mediawiki import wiki

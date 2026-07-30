@@ -10,13 +10,13 @@ usage: weakcites_cli.py [threshold]   (threshold overrides the default 0.20,
                                         e.g. `weakcites_cli.py 0.15`)
 """
 import sys
-import os
 import re
 
 from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import parse_cites
 from adapters.mediawiki.retro import page_sentences, plain
-from core.scripts.weakcites import anchors, overlap, words, DEFAULT_THRESH
+from core.scripts.weakcites import overlap, is_weak, DEFAULT_THRESH
+from core.scripts.textutil import words
 
 
 def main():
@@ -43,14 +43,12 @@ def main():
                 continue
             sent = plain(raw)
             sw = set(words(sent))
-            sa = anchors(sent)
             if not sw:
                 continue
             for src, q in cites:
                 total += 1
                 ov = overlap(sent, q)
-                shared = sa & anchors(q)
-                if ov < thresh and not shared:
+                if is_weak(sent, q, thresh):
                     flagged += 1
                     print("\n[%s] overlap=%.2f" % (t, ov))
                     print("   CLAIM: %s" % sent[:180])
