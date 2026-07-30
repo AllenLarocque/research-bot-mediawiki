@@ -27,24 +27,28 @@ def parse_cites(raw):
     return _CITE.findall(raw)
 
 
-def remove_refs(text):
-    """Prose with <ref> markup removed and nothing else touched.
+def remove_paired_refs(text):
+    """Remove <ref>...</ref> only, leaving self-closing tags alone.
 
-    Whitespace is deliberately NOT collapsed: callers that run further
-    line-oriented passes (heading and markup stripping) need the original line
-    structure intact. Collapsing here silently breaks a heading whose ==
-    fence straddles a multi-line <ref>.
+    crosscheck.py's prose() did exactly this. Note the self-closing pattern
+    used elsewhere also matches <references/>, so callers that must preserve
+    that tag have to stop here.
     """
-    out = _REF_PAIRED.sub(" ", text)
-    return _REF_SELF_CLOSING.sub(" ", out)
+    return _REF_PAIRED.sub(" ", text)
+
+
+def remove_refs(text):
+    """Paired and self-closing refs removed, whitespace untouched.
+
+    anchorcheck.py's sentence_text() removed both. Whitespace is deliberately
+    NOT collapsed — collapsing before a line-oriented pass silently broke
+    heading detection once already.
+    """
+    return _REF_SELF_CLOSING.sub(" ", remove_paired_refs(text))
 
 
 def strip_refs(text):
-    """remove_refs plus whitespace collapse — matches crosscheck.py's prose().
-
-    Deliberately no .strip(): crosscheck.py:55 does not strip, and callers that
-    want trimmed output do it themselves.
-    """
+    """remove_refs plus whitespace collapse — no .strip(), matching crosscheck.py:55."""
     return re.sub(r"\s+", " ", remove_refs(text))
 
 

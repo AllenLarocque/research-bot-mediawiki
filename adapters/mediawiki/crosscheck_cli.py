@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 # update this import accordingly.
 import wiki
 
-from adapters.mediawiki.citemarkup import strip_refs
+from adapters.mediawiki.citemarkup import remove_paired_refs
 from core.scripts.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
 from profiles.bc_forestry.vocabulary import OWNED_THINGS
 
@@ -41,8 +41,14 @@ def infobox_years(wt):
 
 
 def prose(wt):
-    """Page text with refs, templates and link syntax stripped."""
-    s = strip_refs(wt)
+    """Page text with refs, templates and link syntax stripped.
+
+    Matches the original crosscheck.py:50-55 exactly: only PAIRED <ref>...</ref>
+    tags are removed here, not self-closing ones. That distinction matters
+    because the self-closing pattern also matches <references/>, which real
+    wiki pages carry -- removing it would strip text the original preserved.
+    """
+    s = remove_paired_refs(wt)
     s = re.sub(r"\{\{[^{}]*\}\}", " ", s)
     s = re.sub(r"\[\[([^\]|]*\|)?([^\]]*)\]\]", r"\2", s)
     return re.sub(r"\s+", " ", s)
