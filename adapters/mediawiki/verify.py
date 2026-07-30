@@ -169,14 +169,10 @@ def check_render(title, wiki):
 def main():
     import sys
 
-    # wiki.py has not been migrated into adapters/ yet (out of scope for this
-    # task -- see the same note in adapters/mediawiki/addcite_cli.py etc). Until
-    # it is, this depends on it being importable the way the original script
-    # did: located next to it on sys.path in the deployed dossier scripts
-    # directory. Deferred to inside main() (matching the original) so that
-    # importing this module for its pure/injectable functions never requires
-    # wiki.py to be present.
-    import wiki
+    # Deferred to inside main() (matching the original) so that importing
+    # this module for its pure/injectable functions never requires wiki.py
+    # (and a live wiki) to be present.
+    from adapters.mediawiki import wiki
     from core.scripts.paths import ledger as ledger_path
 
     if len(sys.argv) < 2:

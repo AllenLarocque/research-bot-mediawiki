@@ -16,20 +16,8 @@ import os
 import json
 import re
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-# wiki.py, paths.py and verify.py have not been migrated into adapters/ yet
-# (out of scope for this task, which only resolves retro.py per Task 8).
-# Until they are, this CLI depends on them being importable the way the
-# original script did: located next to it on sys.path. A future task should
-# give them a proper home under adapters/mediawiki/ and update this import
-# accordingly. (paths.py itself already has a core/ home as
-# core.scripts.paths -- this bare shim import predates that move and is
-# left alone here as out of scope; Task 8 only resolves the retro.py half.)
-import wiki
-import paths
-import verify
-
+from adapters.mediawiki import wiki, verify
+from core.scripts import paths
 from adapters.mediawiki.citemarkup import format_cite
 from core.scripts.addcite import insert_after
 from core.scripts.srccache import load_manifest, verify_quote

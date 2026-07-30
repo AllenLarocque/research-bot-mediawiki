@@ -13,15 +13,7 @@ import sys
 import os
 import re
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-# wiki.py has not been migrated into adapters/ yet (out of scope for this
-# task -- it only resolves retro.py, per Task 8). Until it is, this CLI
-# depends on it being importable the way the original script did: located
-# next to it on sys.path. A future task should give it a proper home under
-# adapters/mediawiki/ and update this import accordingly.
-import wiki
-
+from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import parse_cites, remove_refs
 from adapters.mediawiki.retro import page_sentences
 from core.scripts.anchorcheck import missing_anchors

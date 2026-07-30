@@ -31,15 +31,7 @@ import sys
 import os
 import json
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-# wiki.py has not been migrated into adapters/ yet (out of scope for this
-# task -- see the same note in adapters/mediawiki/addcite_cli.py etc). Until
-# it is, this depends on it being importable the way the original script
-# did: located next to it on sys.path in the deployed dossier scripts
-# directory.
-import wiki
-
+from adapters.mediawiki import wiki
 from core.scripts.webarchive import fetch, clean
 from core.scripts.paths import CACHE, DOSSIERS
 from core.scripts.textutil import slug

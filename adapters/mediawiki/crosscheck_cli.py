@@ -16,15 +16,7 @@ import sys
 import os
 import re
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-# wiki.py has not been migrated into adapters/ yet (out of scope for this task
-# -- it only splits crosscheck.py). Until it is, this CLI depends on it being
-# importable the way the original script did: located next to it on sys.path.
-# A future task should give it a proper home under adapters/mediawiki/ and
-# update this import accordingly.
-import wiki
-
+from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import remove_paired_refs
 from core.scripts.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
 from profiles.bc_forestry.vocabulary import OWNED_THINGS

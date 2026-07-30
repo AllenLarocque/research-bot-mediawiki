@@ -20,15 +20,7 @@ import sys
 import re
 import time
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-# wiki.py has not been migrated into adapters/ yet (out of scope for this
-# task -- see the same note in adapters/mediawiki/mksource.py and
-# adapters/mediawiki/addcite_cli.py). Until it is, this depends on it being
-# importable the way the original script did: located next to it on
-# sys.path in the deployed dossier scripts directory.
-import wiki
-
+from adapters.mediawiki import wiki
 from core.scripts.webarchive import wayback as _wayback
 
 # The exact UA the original backfill.py sent; kept local so the request the
