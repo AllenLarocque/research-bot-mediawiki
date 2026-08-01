@@ -18,10 +18,7 @@ import re
 from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import remove_paired_refs
 from core.scripts.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
-from core.scripts.profile import DEFAULT
-
-# PROFILE is defined in Task 6; until then use DEFAULT.
-PROFILE = DEFAULT
+from adapters.mediawiki.profileload import PROFILE
 
 
 def infobox_years(wt):

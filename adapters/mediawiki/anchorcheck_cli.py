@@ -16,10 +16,7 @@ from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import parse_cites, remove_refs
 from adapters.mediawiki.retro import page_sentences
 from core.scripts.anchorcheck import missing_anchors
-from core.scripts.profile import DEFAULT
-
-# PROFILE is defined in Task 6; until then use DEFAULT.
-PROFILE = DEFAULT
+from adapters.mediawiki.profileload import PROFILE
 
 
 def sentence_text(raw):
