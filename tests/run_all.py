@@ -78,7 +78,27 @@ def run_differential_harnesses():
     return all_ok
 
 
+def _check_template_submodule():
+    """The adapter imports research_core from the template/ submodule. A plain
+    `git clone` (without --recurse-submodules) leaves template/ present but
+    empty, which surfaces later as a bare `ModuleNotFoundError: research_core`
+    that gives no hint where to look. Catch that state up front and say so.
+    """
+    template_dir = os.path.join(ROOT, "template")
+    if not os.path.isdir(template_dir) or not os.listdir(template_dir):
+        print(
+            "\nERROR: %s is empty.\n"
+            "This repo depends on the research-bot-template submodule for "
+            "research_core. Clone with --recurse-submodules, or run:\n"
+            "    git submodule update --init --recursive\n" % template_dir,
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+
 def main():
+    _check_template_submodule()
+
     loader = unittest.TestLoader()
     suite = loader.discover(HERE, pattern="test_*.py")
     result = unittest.TextTestRunner(verbosity=2).run(suite)
