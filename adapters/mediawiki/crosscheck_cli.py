@@ -6,9 +6,9 @@ This is the wiki-facing half of crosscheck.py. It knows how to fetch pages,
 read structured founding/closing dates out of an entity's template call, and
 turn wikitext into plain prose; the actual conflict logic (which year, which
 suppression rule) lives in core.scripts.crosscheck and knows nothing about
-wikis. The BC-forestry "owned things" vocabulary is domain knowledge, not
-wiki knowledge -- it comes from profiles.bc_forestry and is passed down as a
-parameter, the same way core.scripts.crosscheck receives it.
+wikis. The "owned things" vocabulary is domain knowledge, not wiki knowledge
+-- it comes from a `Profile` and is passed down as a parameter, the same way
+core.scripts.crosscheck receives it.
 
 usage: crosscheck_cli.py [--window N]
 """
@@ -18,7 +18,10 @@ import re
 from adapters.mediawiki import wiki
 from adapters.mediawiki.citemarkup import remove_paired_refs
 from core.scripts.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
-from profiles.bc_forestry.vocabulary import OWNED_THINGS
+from core.scripts.profile import DEFAULT
+
+# PROFILE is defined in Task 6; until then use DEFAULT.
+PROFILE = DEFAULT
 
 
 def infobox_years(wt):
@@ -64,7 +67,7 @@ def main():
         for subject in ents:
             if subject == host or not years[subject]:
                 continue
-            for c in date_conflicts(subject, body, years[subject], OWNED_THINGS, window):
+            for c in date_conflicts(subject, body, years[subject], PROFILE, window):
                 flagged += 1
                 print("\n[%s] says %s %s in %s" % (host, subject, c["kind"], c["year"]))
                 print("   but [%s]'s own infobox says %s" % (subject, ", ".join(c["own"])))
