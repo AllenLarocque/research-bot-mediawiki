@@ -21,6 +21,7 @@ uses rather than duplicates.
 import re
 
 from research_core.textutil import split_sentences
+from research_core.profile import DEFAULT
 
 
 def plain(s):
@@ -65,12 +66,12 @@ def narrative_span(wt):
     return start, end
 
 
-def page_sentences(wt):
+def page_sentences(wt, profile=DEFAULT):
     """[(idx, abs_start, abs_end, raw_text)] for the narrative region."""
     s, e = narrative_span(wt)
     region = wt[s:e]
     out = []
-    for n, (a, b) in enumerate(split_sentences(region), 1):
+    for n, (a, b) in enumerate(split_sentences(region, profile), 1):
         raw = region[a:b]
         if raw.strip():
             out.append((n, s + a, s + b, raw))

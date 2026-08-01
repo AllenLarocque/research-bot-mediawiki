@@ -17,6 +17,7 @@ from research_mediawiki.citemarkup import parse_cites
 from research_mediawiki.retro import page_sentences, plain
 from research_core.weakcites import overlap, is_weak, DEFAULT_THRESH
 from research_core.textutil import words
+from research_mediawiki.profileload import PROFILE
 
 
 def main():
@@ -37,7 +38,7 @@ def main():
         wt = wiki.get(t) or ""
         if "<ref>" not in wt:
             continue
-        for n, a, b, raw in page_sentences(wt):
+        for n, a, b, raw in page_sentences(wt, PROFILE):
             cites = parse_cites(raw)
             if not cites:
                 continue

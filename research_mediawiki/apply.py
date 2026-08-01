@@ -26,6 +26,7 @@ from research_mediawiki import wiki, verify
 from research_mediawiki.retro import page_sentences, plain
 from research_core import paths
 from research_core.srccache import load_manifest, verify_quote
+from research_mediawiki.profileload import PROFILE
 
 DRY = "--dry" in sys.argv
 
@@ -67,7 +68,7 @@ def main():
         wt = wt.replace(rep["find"], rep["replace"], 1)
 
     # ---- 2. insert refs (right-to-left so offsets stay valid)
-    sents = {n: (a, b, raw) for n, a, b, raw in page_sentences(wt)}
+    sents = {n: (a, b, raw) for n, a, b, raw in page_sentences(wt, PROFILE)}
     inserts = []
     for r in spec.get("refs", []):
         n = r["sent"]
