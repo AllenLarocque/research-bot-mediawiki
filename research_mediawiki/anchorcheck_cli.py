@@ -47,7 +47,7 @@ def main():
         wt = wiki.get(t) or ""
         if "<ref>" not in wt:
             continue
-        for n, a, b, raw in page_sentences(wt):
+        for n, a, b, raw in page_sentences(wt, PROFILE):
             cites = parse_cites(raw)
             if not cites:
                 continue
