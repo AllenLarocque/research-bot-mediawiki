@@ -3,12 +3,12 @@
 
 This is the wiki-facing half of the original backfill.py. `wayback` (query
 archive.org's lookup API for the closest existing capture of a URL) moved to
-core.scripts.webarchive unchanged apart from its User-Agent default; the
+research_core.webarchive unchanged apart from its User-Agent default; the
 `|archive_url=` rewriting below is wikitext structure and stays here.
 
 The original hardcoded User-Agent: ForestWiki-Researcher/1.0 for its wayback
 lookups (backfill.py:27) -- a different string from mksource.py's UA, but
-still project-identifying, not personal. core.scripts.webarchive.wayback's
+still project-identifying, not personal. research_core.webarchive.wayback's
 own default is now the neutral DEFAULT_UA ("Research bot"), so this script
 passes "ForestWiki-Researcher/1.0" explicitly on every call below, keeping
 the actual bytes this script puts on the wire unchanged from before the split.
@@ -18,8 +18,8 @@ usage: backfill.py
 import re
 import time
 
-from adapters.mediawiki import wiki
-from core.scripts.webarchive import wayback as _wayback
+from research_mediawiki import wiki
+from research_core.webarchive import wayback as _wayback
 
 # The exact UA the original backfill.py sent; kept local so the request the
 # adapter makes over the wire is unchanged from before the split.

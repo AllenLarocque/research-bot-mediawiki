@@ -5,20 +5,20 @@ fully-attributed, hallucination-resistant entity pages.
 
 This is the MediaWiki-facing half of the `forestwiki-research-bot` repo. The
 wiki-agnostic logic (text utilities, ledger schema, source cache, path
-resolution) lives in `core/`; this directory holds everything that actually
-knows what a wiki is (the API client, wikitext parsing, `{{Cite}}`/`{{Inference}}`
-handling, CLI entry points) plus the BC-forestry-agnostic-but-project-specific
-docs below.
+resolution) lives in `research_core/`; this directory holds everything that
+actually knows what a wiki is (the API client, wikitext parsing,
+`{{Cite}}`/`{{Inference}}` handling, CLI entry points) plus the
+BC-forestry-agnostic-but-project-specific docs below.
 
 ```
-core/                        wiki-agnostic: text utils, ledger, source cache, paths
+research_core/               wiki-agnostic: text utils, ledger, source cache, paths
   SKILL.md                   router: pipeline, self-critique gate, definition of done
   source-vetting/SKILL.md    credibility tiers (T1–T4) + the independence test
   claim-ledger/SKILL.md      8-column ledger schema + gate C
   references/apa.md          APA formats per source type
-  scripts/                   textutil, srccache, paths, ledger, addcite, ... (stdlib only)
+  textutil.py, srccache.py, paths.py, ledger.py, addcite.py, ...  (stdlib only)
 
-adapters/mediawiki/          this directory: wiki-facing code + docs
+research_mediawiki/          this directory: wiki-facing code + docs
   README.md                  this file
   attribution/SKILL.md       APA + {{Cite}} + {{Inference}} + Sources section
   verification/SKILL.md      the verifier, its limits, post-publish checks
@@ -47,12 +47,13 @@ docs/                        design docs, historical plans
 
 ## Install
 
-Copy the whole `forestwiki-research-bot` checkout's `core/`, `adapters/mediawiki/`
-and `profiles/bc_forestry/` into the skills directory so the router and
-sub-skills are invocable, or point your harness at this repo directly:
+Copy the whole `forestwiki-research-bot` checkout's `research_core/`,
+`research_mediawiki/` and `profiles/bc_forestry/` into the skills directory so
+the router and sub-skills are invocable, or point your harness at this repo
+directly:
 
 ```bash
-cp -r core adapters profiles ~/.claude/skills/forestwiki-research/
+cp -r research_core research_mediawiki profiles ~/.claude/skills/forestwiki-research/
 ```
 
 The router triggers on "research / draft / publish a ForestWiki entity"; it then
@@ -64,7 +65,8 @@ skills directory is not preloaded.
 
 They target the ForestWiki research container and use **Python 3 stdlib only**
 (no `requests` — the container has none, and PEP 668 blocks pip installs).
-Run them from the repo root so `core.*` / `adapters.*` imports resolve.
+Run them from the repo root so `research_core.*` / `research_mediawiki.*`
+imports resolve.
 
 Environment:
 
@@ -76,9 +78,9 @@ Environment:
 | `MW_COOKIE_JAR` | optional; session cookie path (default `~/.forestwiki_cookies.txt`) |
 
 ```bash
-python3 -m adapters.mediawiki.verify "Kamloops pulp mill"   # pre-publish gate; exit 0 = PASS
-python3 adapters/mediawiki/backfill.py                      # fill empty archive_url from Wayback
-python3 adapters/mediawiki/wiki.py render "MacMillan Bloedel"
+python3 -m research_mediawiki.verify "Kamloops pulp mill"   # pre-publish gate; exit 0 = PASS
+python3 research_mediawiki/backfill.py                      # fill empty archive_url from Wayback
+python3 research_mediawiki/wiki.py render "MacMillan Bloedel"
 ```
 
 Tests (no network, no credentials needed):
@@ -109,7 +111,7 @@ kept in `/dossiers/_skillset/wiki-side/`):
 
 The ~89 entity pages drafted before this skill set have no inline citations and
 no 8-column ledger, so they **fail verification by design**. Retrofitting them is
-separate, tracked work (see `core/SKILL.md`'s retrofit-backlog note).
+separate, tracked work (see `research_core/SKILL.md`'s retrofit-backlog note).
 
 ## Configuration
 
@@ -131,9 +133,9 @@ The `FORESTWIKI_*` names (`FORESTWIKI_DOSSIERS`, `FORESTWIKI_SCRATCH`,
 keeps working, but `RESEARCH_*` is the current name and `/tmp/research` is the
 current default — not `/tmp/forestwiki`.
 
-`core/scripts/paths.py` is the single place these are resolved. It deliberately
+`research_core/paths.py` is the single place these are resolved. It deliberately
 does not create the cache directory: a missing cache should fail loudly, because
-`core.scripts.srccache.verify_quote` silently returns "not verbatim" for every
+`research_core.srccache.verify_quote` silently returns "not verbatim" for every
 quote when the cache is empty, and that failure mode is indistinguishable from
 a genuine bad quote.
 

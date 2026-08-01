@@ -4,14 +4,14 @@
 This is the wiki-facing half of the original verify.py. It knows how to read
 {{Cite}}/<ref> citations, {{Relationship}} blocks, malformed <ref> markup and
 rendered HTML for missing templates; the claim-ledger logic (a MARKDOWN table,
-not wikitext) moved to core.scripts.ledger, which knows nothing about wikis.
+not wikitext) moved to research_core.ledger, which knows nothing about wikis.
 
 Exit status: 0 = PASS, 1 = FAIL.
 """
 import re
 import urllib.parse
 
-from core.scripts.ledger import parse_ledger, check_ledger_coverage, check_ai_verified
+from research_core.ledger import parse_ledger, check_ledger_coverage, check_ai_verified
 
 # --------------------------------------------------------------------------
 # Wikitext / HTML parsing
@@ -172,8 +172,8 @@ def main():
     # Deferred to inside main() (matching the original) so that importing
     # this module for its pure/injectable functions never requires wiki.py
     # (and a live wiki) to be present.
-    from adapters.mediawiki import wiki
-    from core.scripts.paths import ledger as ledger_path
+    from research_mediawiki import wiki
+    from research_core.paths import ledger as ledger_path
 
     if len(sys.argv) < 2:
         print("usage: verify.py \"<Entity page title>\"", file=sys.stderr)

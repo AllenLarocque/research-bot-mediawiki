@@ -7,9 +7,9 @@ plausible wrong answers instead of an error.
 """
 import os
 
-from core.scripts.profile import load
+from research_core.profile import load
 
-_HERE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PROFILE = load(os.environ.get("RESEARCH_PROFILE",
                               os.path.join(_HERE, "profile.toml")))

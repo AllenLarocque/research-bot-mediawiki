@@ -22,10 +22,10 @@ usage: apply.py spec.json [--dry]
 import sys
 import os, os, re, json
 
-from adapters.mediawiki import wiki, verify
-from adapters.mediawiki.retro import page_sentences, plain
-from core.scripts import paths
-from core.scripts.srccache import load_manifest, verify_quote
+from research_mediawiki import wiki, verify
+from research_mediawiki.retro import page_sentences, plain
+from research_core import paths
+from research_core.srccache import load_manifest, verify_quote
 
 DRY = "--dry" in sys.argv
 

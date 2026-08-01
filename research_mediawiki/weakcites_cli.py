@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""MediaWiki CLI for core.scripts.weakcites: flag citations whose quote looks
+"""MediaWiki CLI for research_core.weakcites: flag citations whose quote looks
 unlikely to support its sentence.
 
 This is the wiki-facing half of weakcites.py. It knows how to fetch pages, find
 cited sentences, and turn wikitext into plain prose; the actual overlap/anchor
-scoring lives in core.scripts.weakcites and knows nothing about wikis.
+scoring lives in research_core.weakcites and knows nothing about wikis.
 
 usage: weakcites_cli.py [threshold]   (threshold overrides the default 0.20,
                                         e.g. `weakcites_cli.py 0.15`)
@@ -12,11 +12,11 @@ usage: weakcites_cli.py [threshold]   (threshold overrides the default 0.20,
 import sys
 import re
 
-from adapters.mediawiki import wiki
-from adapters.mediawiki.citemarkup import parse_cites
-from adapters.mediawiki.retro import page_sentences, plain
-from core.scripts.weakcites import overlap, is_weak, DEFAULT_THRESH
-from core.scripts.textutil import words
+from research_mediawiki import wiki
+from research_mediawiki.citemarkup import parse_cites
+from research_mediawiki.retro import page_sentences, plain
+from research_core.weakcites import overlap, is_weak, DEFAULT_THRESH
+from research_core.textutil import words
 
 
 def main():

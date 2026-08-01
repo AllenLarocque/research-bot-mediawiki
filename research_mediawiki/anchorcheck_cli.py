@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""MediaWiki CLI for core.scripts.anchorcheck: flag sentences that assert an
+"""MediaWiki CLI for research_core.anchorcheck: flag sentences that assert an
 anchor none of their citations contains.
 
 This is the wiki-facing half of anchorcheck.py. It knows how to fetch pages,
 find cited sentences, and strip wikitext markup down to prose; the actual
 anchor analysis (which name/year/figure is missing) lives in
-core.scripts.anchorcheck and knows nothing about wikis.
+research_core.anchorcheck and knows nothing about wikis.
 
 usage: anchorcheck_cli.py [--figures]   (--figures also reports bare numbers)
 """
 import sys
 import re
 
-from adapters.mediawiki import wiki
-from adapters.mediawiki.citemarkup import parse_cites, remove_refs
-from adapters.mediawiki.retro import page_sentences
-from core.scripts.anchorcheck import missing_anchors
-from adapters.mediawiki.profileload import PROFILE
+from research_mediawiki import wiki
+from research_mediawiki.citemarkup import parse_cites, remove_refs
+from research_mediawiki.retro import page_sentences
+from research_core.anchorcheck import missing_anchors
+from research_mediawiki.profileload import PROFILE
 
 
 def sentence_text(raw):

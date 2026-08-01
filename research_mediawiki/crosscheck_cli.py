@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-"""MediaWiki CLI for core.scripts.crosscheck: flag pages that date another
+"""MediaWiki CLI for research_core.crosscheck: flag pages that date another
 entity's founding or closing differently from that entity's own page.
 
 This is the wiki-facing half of crosscheck.py. It knows how to fetch pages,
 read structured founding/closing dates out of an entity's template call, and
 turn wikitext into plain prose; the actual conflict logic (which year, which
-suppression rule) lives in core.scripts.crosscheck and knows nothing about
+suppression rule) lives in research_core.crosscheck and knows nothing about
 wikis. The "owned things" vocabulary is domain knowledge, not wiki knowledge
 -- it comes from a `Profile` and is passed down as a parameter, the same way
-core.scripts.crosscheck receives it.
+research_core.crosscheck receives it.
 
 usage: crosscheck_cli.py [--window N]
 """
 import sys
 import re
 
-from adapters.mediawiki import wiki
-from adapters.mediawiki.citemarkup import remove_paired_refs
-from core.scripts.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
-from adapters.mediawiki.profileload import PROFILE
+from research_mediawiki import wiki
+from research_mediawiki.citemarkup import remove_paired_refs
+from research_core.crosscheck import date_conflicts, OPEN_FIELDS, CLOSE_FIELDS
+from research_mediawiki.profileload import PROFILE
 
 
 def infobox_years(wt):

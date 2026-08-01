@@ -5,22 +5,22 @@ is, how it splits into sentences, and which sources a page actually uses.
 This is the wiki-facing remainder of retro.py. `narrative_span`,
 `page_sentences` and `sources_used` all parse `{{Relationship}}` /
 `{{Entity footer}}` template syntax and `|sources=` infobox fields -- real
-wikitext structure -- so they stay here rather than moving to core/.
+wikitext structure -- so they stay here rather than moving to research_core/.
 
 `plain()` (wikitext -> readable text) stays here too, alongside them, even
-though the Task 8 brief's interface sketch put it in core.scripts.textutil:
+though the Task 8 brief's interface sketch put it in research_core.textutil:
 its own implementation strips `[[links]]`, `<ref>` tags and `{{templates}}`
 by recognising that syntax directly, which is exactly the wikitext-structure
-knowledge core/ is not allowed to carry (tests/test_layering.py scans core/
+knowledge research_core/ is not allowed to carry (tests/test_layering.py scans research_core/
 source text for that syntax literally). The rest of the original text
 utilities (`split_sentences`, `words`, `norm`, `slug`) and the source-cache
 readers (`load_manifest`, `source_text`, `src_sentences`, `verify_quote`)
-moved to core.scripts.textutil and core.scripts.srccache, which this module
+moved to research_core.textutil and research_core.srccache, which this module
 uses rather than duplicates.
 """
 import re
 
-from core.scripts.textutil import split_sentences
+from research_core.textutil import split_sentences
 
 
 def plain(s):

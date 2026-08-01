@@ -4,7 +4,7 @@
 Before this module, the same regex was duplicated verbatim in anchorcheck.py and
 weakcites.py, <ref>-stripping was reimplemented in anchorcheck.py and
 crosscheck.py, and addcite.py built the markup by hand. Four modules could not
-move to core/ because of markup none of them actually cared about — they wanted
+move to research_core/ because of markup none of them actually cared about — they wanted
 (source, quote) pairs and prose.
 """
 import re

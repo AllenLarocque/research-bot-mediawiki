@@ -9,19 +9,19 @@ Steps, in order, refusing rather than guessing:
   4. add the cleaned text to the local source cache so verify_quote works
 
 This is the wiki-facing half of the original mksource.py. `fetch` and
-`clean` (generic HTTP GET + HTML-to-text) moved to core.scripts.webarchive
+`clean` (generic HTTP GET + HTML-to-text) moved to research_core.webarchive
 unchanged; `{{Source}}` page construction below is wikitext structure and
 stays here, alongside the ForestWiki identity string that goes out over the
-wire (core.scripts.webarchive.DEFAULT_UA is a neutral fallback for callers
+wire (research_core.webarchive.DEFAULT_UA is a neutral fallback for callers
 that don't care -- this script always passes its own UA explicitly, so the
 bytes it actually sends are unchanged from before the split).
 
 The original imported `retro` for its source-text cache path (`retro.CACHE`,
 `retro.slug`, `retro.load_manifest`); retro.py has since been split (Task 8)
-into core.scripts.paths (CACHE), core.scripts.textutil (slug),
-core.scripts.srccache (load_manifest) and the wiki-facing remainder at
-adapters/mediawiki/retro.py (which no longer carries any of the three), so
-those references are repointed to their new core/ homes below.
+into research_core.paths (CACHE), research_core.textutil (slug),
+research_core.srccache (load_manifest) and the wiki-facing remainder at
+research_mediawiki/retro.py (which no longer carries any of the three), so
+those references are repointed to their new research_core/ homes below.
 
 usage: mksource.py spec.json
 spec: {title, url, citation, publication_date, publication_date_precision,
@@ -31,15 +31,15 @@ import sys
 import os
 import json
 
-from adapters.mediawiki import wiki
-from core.scripts.webarchive import fetch, clean
-from core.scripts.paths import CACHE, DOSSIERS
-from core.scripts.textutil import slug
-from core.scripts.srccache import load_manifest
+from research_mediawiki import wiki
+from research_core.webarchive import fetch, clean
+from research_core.paths import CACHE, DOSSIERS
+from research_core.textutil import slug
+from research_core.srccache import load_manifest
 import urllib.request
 
 # Sent with every outbound request this script makes. Deliberately NOT
-# core.scripts.webarchive.DEFAULT_UA: this is the ForestWiki-identifying UA
+# research_core.webarchive.DEFAULT_UA: this is the ForestWiki-identifying UA
 # the original mksource.py used, and every fetch()/urlopen() call below
 # passes it explicitly so the wire behaviour is unchanged by the split.
 UA = "ForestWiki Research allen.larocque@gmail.com"
@@ -52,7 +52,7 @@ def main():
 
     print("fetching", url)
     # NOTE: the original relied on mksource.py's own fetch(ua=None) defaulting
-    # to its module-level UA. core.scripts.webarchive.fetch(ua=None) now
+    # to its module-level UA. research_core.webarchive.fetch(ua=None) now
     # defaults to the neutral DEFAULT_UA instead, so the fallback to UA must
     # be explicit here to keep this script's outbound requests unchanged.
     raw = fetch(s.get("fetch_url", url), ua=s.get("user_agent") or UA)

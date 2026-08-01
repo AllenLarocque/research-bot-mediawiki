@@ -10,7 +10,7 @@ How a sourced ledger row becomes a cited sentence on the page.
 ## APA lives in one place
 
 The full **APA** citation text goes in the Source page's `citation` field, once.
-See `core/references/apa.md` for the format per source type (format-neutral —
+See `research_core/references/apa.md` for the format per source type (format-neutral —
 it does not assume wikitext). Do not repeat the APA string in the narrative —
 `{{Cite}}` links to the Source page.
 

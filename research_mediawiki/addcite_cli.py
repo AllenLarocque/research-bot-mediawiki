@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""MediaWiki CLI for core.scripts.addcite: attach an already-cached verbatim
+"""MediaWiki CLI for research_core.addcite: attach an already-cached verbatim
 quote to a phrase on a page, and log it.
 
 This is the wiki-facing half of addcite.py. It knows how to log in, fetch and
 edit pages, verify quotes against cached sources, and append ledger rows; the
-actual anchor-insertion surgery lives in core.scripts.addcite and knows
+actual anchor-insertion surgery lives in research_core.addcite and knows
 nothing about wikis.
 
 usage: addcite_cli.py spec.json
@@ -15,11 +15,11 @@ import sys
 import json
 import re
 
-from adapters.mediawiki import wiki, verify
-from core.scripts import paths
-from adapters.mediawiki.citemarkup import format_cite
-from core.scripts.addcite import insert_after
-from core.scripts.srccache import load_manifest, verify_quote
+from research_mediawiki import wiki, verify
+from research_core import paths
+from research_mediawiki.citemarkup import format_cite
+from research_core.addcite import insert_after
+from research_core.srccache import load_manifest, verify_quote
 
 
 def main():
