@@ -173,7 +173,7 @@ def main():
     # this module for its pure/injectable functions never requires wiki.py
     # (and a live wiki) to be present.
     from research_mediawiki import wiki
-    from research_core.paths import ledger as ledger_path
+    from research_core.paths import ledger_path
 
     if len(sys.argv) < 2:
         print("usage: verify.py \"<Entity page title>\"", file=sys.stderr)
