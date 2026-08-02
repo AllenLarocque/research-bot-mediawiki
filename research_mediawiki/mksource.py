@@ -30,6 +30,8 @@ spec: {title, url, citation, publication_date, publication_date_precision,
 import sys
 import os
 import json
+import hashlib
+from datetime import datetime, timezone
 
 from research_mediawiki import wiki
 from research_core.webarchive import fetch, clean
@@ -43,6 +45,32 @@ import urllib.request
 # the original mksource.py used, and every fetch()/urlopen() call below
 # passes it explicitly so the wire behaviour is unchanged by the split.
 UA = "ForestWiki Research allen.larocque@gmail.com"
+
+
+def write_sidecar(snapshot_path, url, title, fetched_at=None):
+    """Record what produced a snapshot, beside the snapshot.
+
+    The only durable link between a cited URL and the file that captured it.
+    Without it, attribution checking falls back to comparing domains, which
+    cannot distinguish two pages on the same host.
+
+    `sha256` is over the snapshot as written, so a capture edited afterwards no
+    longer matches its own record. Nothing verifies that yet; recording it now
+    costs nothing and cannot be retrofitted later.
+    """
+    with open(snapshot_path, "rb") as fh:
+        digest = hashlib.sha256(fh.read()).hexdigest()
+    meta = {
+        "url": url,
+        "title": title,
+        "fetched_at": fetched_at or datetime.now(timezone.utc).strftime(
+            "%Y-%m-%dT%H:%M:%SZ"),
+        "sha256": digest,
+    }
+    path = snapshot_path + ".meta.json"
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(meta, fh, indent=1)
+    return path
 
 
 def main():
@@ -67,6 +95,8 @@ def main():
     snap = os.path.join(snapdir, s["snapshot_name"])
     open(snap, "w").write(raw)
     print("  snapshot ->", snap)
+    write_sidecar(snap, url, s.get("title") or s["snapshot_name"])
+    print("  sidecar  ->", snap + ".meta.json")
 
     # Wayback capture, then verify it is the real page
     arc = s.get("archive_url", "")
