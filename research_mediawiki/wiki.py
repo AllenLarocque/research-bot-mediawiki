@@ -114,15 +114,28 @@ def exists(page):
 
 
 def edit(page, text, summary):
-    """Edit a page. Always tagged ai-contributed; never sets the bot flag."""
+    """Edit a page. Always tagged ai-contributed; never sets the bot flag.
+
+    Logs in first, and raises unless the API says the edit succeeded.
+
+    Both matter. Unauthenticated, csrf() returns MediaWiki's anonymous token —
+    well-formed, accepted, then rejected at edit time — so this used to return
+    an error object to callers that only print it. mksource and newpage would
+    print one line and carry on writing caches, manifests and null edits as
+    though the page had been saved. A lost edit looked exactly like a made one.
+    """
+    ensure_login()
     tok = csrf()
-    return _req({"action": "edit"}, {
+    res = _req({"action": "edit"}, {
         "title": page,
         "text": text,
         "summary": summary,
         "tags": "ai-contributed",
         "token": tok,
     })
+    if res.get("edit", {}).get("result") != "Success":
+        raise RuntimeError("EDIT FAILED for %r: %s" % (page, json.dumps(res)))
+    return res
 
 
 def purge(page):

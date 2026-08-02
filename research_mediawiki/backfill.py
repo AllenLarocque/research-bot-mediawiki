@@ -67,8 +67,18 @@ def main():
             new = wt[:m_arc.start()] + "|archive_url=" + snap + wt[m_arc.end():]
         else:      # insert archive_url after the url line
             new = wt[:m_url.end()] + "\n|archive_url=" + snap + wt[m_url.end():]
-        res = wiki.edit(title, new, "Backfill archive_url from Wayback Machine (AI-drafted)")
-        (filled if res.get("edit", {}).get("result") == "Success" else ratelimited).append(title)
+        # wiki.edit raises on a failed save. Keep going for a single page's
+        # failure — this batch is long and Wayback rate-limits legitimately —
+        # but an auth failure is not per-page: ensure_login() inside edit()
+        # raises before the first save, which aborts the run as it should.
+        # Previously an unauthenticated run bucketed every page as
+        # "ratelimited" and reported a tidy summary of nothing happening.
+        try:
+            wiki.edit(title, new, "Backfill archive_url from Wayback Machine (AI-drafted)")
+            filled.append(title)
+        except RuntimeError as e:
+            print("EDIT FAILED %s: %s" % (title, e))
+            ratelimited.append(title)
         time.sleep(1)
 
     print("FILLED (%d):" % len(filled))
