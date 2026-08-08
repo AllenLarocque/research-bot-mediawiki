@@ -40,8 +40,21 @@ _LITERAL = re.compile(r"<(nowiki|pre|syntaxhighlight)\b[^>]*>.*?</\1>", re.S | r
 # can close, exactly as a red link does. The word "unsourced" in it is the
 # template's name, so flagging it asks an agent to edit the data model.
 _MARKER = re.compile(r"\{\{\s*Unsourced\b[^}]*\}\}", re.I)
+# A stored field value: `|predicate=owned_by`, `|date_precision=year`. The data
+# model, not the agent writing about it. Without this, every predicate the
+# corpus stores reports as narration -- 247 of them against 9 real findings.
+#
+# The field NAME is always skipped -- `org_type`, `date_precision` and
+# `event_type` are schema keys whatever follows them. The VALUE is skipped only
+# when it is a bare token ending at a delimiter, which is what keeps this off a
+# note: a note's value is prose, and blanking even its first word would hide a
+# finding starting there, since "note=The page rests on one publisher" opens
+# with the words page-self exists to catch.
+_ASSIGNMENT = re.compile(
+    r"\|\s*\w+\s*=(?:\s*[\w.\-/:]*(?=\s*(?:\||\}\}|$)))?")
 
-_UNREADABLE = (_REF, _REF_SELF_CLOSING, _RETRACTED, _COMMENT, _LITERAL, _MARKER)
+_UNREADABLE = (_REF, _REF_SELF_CLOSING, _RETRACTED, _COMMENT, _LITERAL, _MARKER,
+               _ASSIGNMENT)
 
 _HEADING = re.compile(r"^(={2,})\s*(.+?)\s*\1\s*$", re.M)
 # A note= parameter renders on the page. It is page surface, and the page-voice

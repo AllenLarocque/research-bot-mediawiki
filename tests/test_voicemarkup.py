@@ -85,6 +85,33 @@ class TestUnreadable(unittest.TestCase):
         wt = "where before it was an unsourced arithmetic claim"
         self.assertIn("meta-unsourced", names(scan_page(wt)))
 
+    def test_a_stored_field_value_is_not_narration(self):
+        # Every relationship row stores its predicate as a machine name. Those
+        # are the data model, not the agent writing about it -- 247 of them in
+        # the corpus against 9 real findings.
+        wt = "{{Relationship|predicate=owned_by|object=Canfor|verification=ai-verified}}"
+        self.assertEqual([f for f in scan_page(wt) if f.name == "names-identifier"], [])
+
+    def test_the_same_name_in_a_note_IS_narration(self):
+        wt = "{{Relationship|predicate=owned_by|note=the owned_by row above says more}}"
+        found = [f for f in scan_page(wt) if f.name == "names-identifier"]
+        self.assertEqual(len(found), 1)
+        self.assertEqual(found[0].where, NOTE)
+
+    def test_a_field_name_is_skipped_even_when_its_value_has_spaces(self):
+        # org_type and event_type are schema keys whatever follows them, and
+        # their values are ordinary prose that must stay scannable.
+        wt = "{{Organization|name=Canfor|org_type=Forest products company}}"
+        self.assertEqual([f for f in scan_page(wt) if f.name == "names-identifier"], [])
+
+    def test_the_skip_does_not_eat_note_prose(self):
+        # The assignment skip must stop at a BARE value. A note's value is
+        # prose, and blanking even its first word would hide a finding that
+        # starts there -- "note=The page rests on one publisher" begins with
+        # the very words page-self exists to catch.
+        wt = "{{Relationship|predicate=owns|note=The page rests on one publisher}}"
+        self.assertIn("page-self", names(scan_page(wt)))
+
     def test_self_closing_ref_is_covered(self):
         self.assertEqual(unreadable_spans('a<ref name="x" />b'), [(1, 17)])
 
