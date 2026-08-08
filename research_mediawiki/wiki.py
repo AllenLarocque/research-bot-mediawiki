@@ -171,6 +171,35 @@ def parse_text(wikitext, title="Sandbox"):
     }
 
 
+def existing(titles):
+    """The subset of `titles` that exist, asked in batches.
+
+    exists() above fetches a whole page to answer a yes/no question, which is
+    fine for one title and hopeless for the hundreds a corpus-wide check
+    produces. The query API answers up to 50 at a time and marks each result
+    "missing" or not.
+
+    Normalisation matters here: the API answers under its own spelling of a
+    title ("Foo bar" for "Foo_bar"), so both the returned title and the one
+    that was asked for are recorded -- otherwise a caller matching on its own
+    string sees a page that exists as absent.
+    """
+    out, pending = set(), sorted(t for t in titles if t and t.strip())
+    for i in range(0, len(pending), 50):
+        batch = pending[i:i + 50]
+        r = _req({"action": "query", "titles": "|".join(batch)})
+        query = r.get("query", {})
+        back = {n["to"]: n["from"] for n in query.get("normalized", [])}
+        for page in query.get("pages", {}).values():
+            if "missing" in page:
+                continue
+            title = page.get("title", "")
+            out.add(title)
+            if title in back:
+                out.add(back[title])
+    return out
+
+
 def list_category(cat):
     """All page titles in a category, following continuation."""
     out, cont = [], None

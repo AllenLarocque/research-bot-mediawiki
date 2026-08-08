@@ -34,6 +34,25 @@ def plain(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
+def wikilinks(wt):
+    """Link targets in document order, without duplicates.
+
+    The TARGET, not the label: `[[Port Alberni|the town]]` is a claim about
+    Port Alberni existing, and the label is only what a reader sees. A section
+    anchor is dropped for the same reason -- `[[Crofton mill#History]]` exists
+    or not according to the page, not the section.
+
+    plain() above already knows this markup; this is the other half of the same
+    knowledge, kept beside it rather than copied into a caller.
+    """
+    out = []
+    for m in re.finditer(r"\[\[([^\]|]+)(?:\|[^\]]*)?\]\]", wt):
+        target = m.group(1).split("#", 1)[0].strip()
+        if target and target not in out:
+            out.append(target)
+    return out
+
+
 def narrative_span(wt):
     """(start, end) offsets of the prose region in the wikitext."""
     end = len(wt)
