@@ -104,6 +104,25 @@ class TestUnreadable(unittest.TestCase):
         wt = "{{Organization|name=Canfor|org_type=Forest products company}}"
         self.assertEqual([f for f in scan_page(wt) if f.name == "names-identifier"], [])
 
+    def test_a_parser_function_call_is_not_prose(self):
+        # A Cargo query is machinery the page MUST contain to work, and it
+        # cannot be reworded -- `cargo_query` and `date_precision` are the
+        # function's own name and a column it must select. Flagging them asks
+        # an agent to break the page.
+        wt = ("{{#cargo_query:tables=relationships\n"
+              "|fields=date_precision=Date precision,COUNT(*)=Edges\n"
+              "|group by=date_precision\n|format=table\n}}")
+        self.assertEqual([f for f in scan_page(wt) if f.name == "names-identifier"], [])
+
+    def test_prose_around_a_parser_function_is_still_checked(self):
+        wt = ("The corpus knows more.\n"
+              "{{#cargo_query:tables=relationships|fields=date_precision}}\n"
+              "This page rests on one publisher.")
+        found = names(scan_page(wt))
+        self.assertIn("names-corpus", found)
+        self.assertIn("rests-on", found)
+        self.assertNotIn("names-identifier", found)
+
     def test_the_skip_does_not_eat_note_prose(self):
         # The assignment skip must stop at a BARE value. A note's value is
         # prose, and blanking even its first word would hide a finding that

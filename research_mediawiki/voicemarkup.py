@@ -52,8 +52,17 @@ _MARKER = re.compile(r"\{\{\s*Unsourced\b[^}]*\}\}", re.I)
 # with the words page-self exists to catch.
 _ASSIGNMENT = re.compile(
     r"\|\s*\w+\s*=(?:\s*[\w.\-/:]*(?=\s*(?:\||\}\}|$)))?")
+# A parser-function call -- `{{#cargo_query:tables=…|group by=…}}`. Query syntax
+# is machinery the page must contain in order to work, and unlike a note it
+# cannot be reworded: `cargo_query` is the function's name and `date_precision`
+# is a column it selects. _ASSIGNMENT does not reach inside one, because a
+# parser function's first argument follows a colon rather than a pipe and its
+# parameters carry spaces (`group by=`) and inner `=` (`fields=a=b,COUNT(*)=c`).
+# Non-greedy to the first `}}`: these calls do not nest.
+_PARSER_FUNCTION = re.compile(r"\{\{\s*#.*?\}\}", re.S)
 
 _UNREADABLE = (_REF, _REF_SELF_CLOSING, _RETRACTED, _COMMENT, _LITERAL, _MARKER,
+               _PARSER_FUNCTION,
                _ASSIGNMENT)
 
 _HEADING = re.compile(r"^(={2,})\s*(.+?)\s*\1\s*$", re.M)
