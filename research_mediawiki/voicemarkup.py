@@ -16,7 +16,12 @@ both are blanked before matching.
 """
 import re
 
-from research_core.voiceaudit import PROSE, scan
+# HEADING and NOTE are imported, never redefined. voiceaudit keys its
+# per-surface severities on these exact strings, so a local copy that drifted
+# would not raise -- every finding would quietly take the default severity
+# instead, and the surface-dependent rule would stop working with nothing to
+# show for it.
+from research_core.voiceaudit import HEADING, NOTE, PROSE, scan
 
 # A citation's quote= is a verbatim copy of a source. A source is free to say
 # "the wiki" or "corpus"; that is the publisher's word, not the agent's, and it
@@ -29,11 +34,14 @@ _RETRACTED = re.compile("‹.*?›", re.S)
 _COMMENT = re.compile(r"<!--.*?-->", re.S)
 # Shown as literal markup, usually to document syntax.
 _LITERAL = re.compile(r"<(nowiki|pre|syntaxhighlight)\b[^>]*>.*?</\1>", re.S | re.I)
+# An inline gap marker. A reader DOES see this one, which is why it is worth
+# saying what the list is really for: not "invisible", but "not the agent's
+# prose to reword". {{Unsourced}} beside a claim marks something a contributor
+# can close, exactly as a red link does. The word "unsourced" in it is the
+# template's name, so flagging it asks an agent to edit the data model.
+_MARKER = re.compile(r"\{\{\s*Unsourced\b[^}]*\}\}", re.I)
 
-_UNREADABLE = (_REF, _REF_SELF_CLOSING, _RETRACTED, _COMMENT, _LITERAL)
-
-HEADING = "heading"
-NOTE = "note"
+_UNREADABLE = (_REF, _REF_SELF_CLOSING, _RETRACTED, _COMMENT, _LITERAL, _MARKER)
 
 _HEADING = re.compile(r"^(={2,})\s*(.+?)\s*\1\s*$", re.M)
 # A note= parameter renders on the page. It is page surface, and the page-voice
@@ -42,7 +50,13 @@ _NOTE = re.compile(r"\|\s*note\s*=", re.I)
 
 
 def unreadable_spans(markup):
-    """(start, end) of every span no reader sees, in document order."""
+    """(start, end) of every span the voice rule does not govern.
+
+    Mostly text no reader sees -- citations, retractions, comments -- but the
+    test is authorship, not visibility: a span belongs here when its words are
+    somebody else's (a publisher's, a template's) and rewording them would be
+    fabrication, vandalism of provenance, or an edit to the data model.
+    """
     spans = []
     for pattern in _UNREADABLE:
         spans += [(m.start(), m.end()) for m in pattern.finditer(markup)]

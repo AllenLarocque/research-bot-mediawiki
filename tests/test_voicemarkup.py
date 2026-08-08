@@ -67,6 +67,24 @@ class TestUnreadable(unittest.TestCase):
     def test_nowiki_is_not_flagged(self):
         self.assertEqual(scan_page("<nowiki>{{Claim|the corpus}}</nowiki>"), [])
 
+    def test_an_inline_needs_a_citation_marker_is_not_flagged(self):
+        # {{Unsourced}} beside a claim is an inline gap marker doing the job
+        # CLAUDE.md gives a red link -- marking something a contributor can
+        # close. The word is the template's, not the agent's prose, so there is
+        # nothing here to reword.
+        wt = "The mill supplied Youbou and Honeymoon Bay.{{Unsourced}}"
+        self.assertEqual(scan_page(wt), [])
+
+    def test_an_unsourced_marker_with_parameters_is_also_masked(self):
+        wt = "A claim.{{Unsourced|reason=no capture names the town}}"
+        self.assertEqual(scan_page(wt), [])
+
+    def test_the_ordinary_word_unsourced_is_still_flagged(self):
+        # Masking the template must not blind the check to the page calling its
+        # own prose unsourced.
+        wt = "where before it was an unsourced arithmetic claim"
+        self.assertIn("meta-unsourced", names(scan_page(wt)))
+
     def test_self_closing_ref_is_covered(self):
         self.assertEqual(unreadable_spans('a<ref name="x" />b'), [(1, 17)])
 
@@ -80,10 +98,19 @@ class TestUnreadable(unittest.TestCase):
 
 @NEEDS_PIN_BUMP
 class TestSurfaces(unittest.TestCase):
-    def test_heading(self):
+    def test_a_bare_ordinal_heading_is_an_error_because_it_is_a_heading(self):
+        # In running prose these words are only a warning -- two writers may
+        # legitimately count something differently. A section heading organised
+        # by source-order is the page describing its own research, so the same
+        # words are an error here. This is the surface carrying the severity.
         wt = "== A second publisher, for the closure ==\n\nProse."
-        found = [f for f in scan_page(wt) if f.name == "progress-note"]
-        self.assertEqual([f.where for f in found], [HEADING])
+        found = [f for f in scan_page(wt) if f.name == "source-ordinal"]
+        self.assertEqual([(f.where, f.severity) for f in found], [(HEADING, ERROR)])
+
+    def test_the_same_heading_words_in_prose_are_only_a_warning(self):
+        found = [f for f in scan_page("counted by a second publisher elsewhere")
+                 if f.name == "source-ordinal"]
+        self.assertEqual([f.severity for f in found], ["warn"])
 
     def test_note_parameter_is_page_surface(self):
         wt = "{{Relationship|predicate=owns|object=Mill|note=the wiki has no page for it}}"
@@ -114,6 +141,13 @@ class TestSurfaces(unittest.TestCase):
         (a, b), = note_spans(wt)
         self.assertEqual(wt[a:b], "first")
 
+    def test_the_surface_labels_are_the_ones_voiceaudit_rates(self):
+        # Not a tautology: these are the keys voiceaudit's severity maps use.
+        # A local copy of either string would fall back to the default severity
+        # rather than raise, so the surface rule would fail silently.
+        from research_core.voiceaudit import HEADING as CORE_H, NOTE as CORE_N
+        self.assertEqual((HEADING, NOTE), (CORE_H, CORE_N))
+
     def test_surface_of_an_offset_outside_everything(self):
         label = surface("plain prose only")
         self.assertEqual(label(3), "prose")
@@ -132,7 +166,7 @@ class TestRealPageShape(unittest.TestCase):
             "\nThe closure year on this page still rests on a single publisher.\n"
         )
         found = scan_page(wt)
-        self.assertIn("progress-note", names(found))
+        self.assertIn("source-ordinal", names(found))
         self.assertEqual([f.where for f in found if f.severity == ERROR], [HEADING])
         self.assertIn("rests-on", names(found))
         # Nothing inside the citation.
