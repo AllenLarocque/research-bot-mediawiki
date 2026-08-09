@@ -142,18 +142,19 @@ def main(argv=None):
         print("\n%d absence claim(s) in %d pages" % (total, len(pages)))
         return 0
 
-    # expired() raises rather than returning [] when it finds no claims at all,
-    # because across a whole corpus that means the phrase list has stopped
-    # matching. Across ONE page it means the page makes no claim of absence,
-    # which is the ordinary case and not an error -- so the guard is skipped
-    # only for an explicitly named page, never for the sweep.
+    # A named page with no absence claim is the ordinary case, and saying so
+    # plainly beats reporting "clean" as if something had been checked.
     if args.page and not any(claims_on(t, m) for t, m in pages.items()):
         print("no absence claim on the %d page(s) checked" % len(pages))
         return 0
 
     present = wiki.existing(wanted_names(pages))
+    # require_claims only for the corpus sweep: across 200 pages a phrase list
+    # that matches nothing is worth shouting about, and expired() decides that
+    # by self-testing the patterns rather than by assuming the corpus must
+    # contain a claim. A single --page legitimately has none.
     stale = expired(pages, present, extra_names=names_in_sentence,
-                    sentences=regions)
+                    sentences=regions, require_claims=not args.page)
 
     if not stale:
         print("clean: %d pages, no expired absence claim" % len(pages))
