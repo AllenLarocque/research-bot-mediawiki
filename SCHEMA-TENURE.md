@@ -9,6 +9,8 @@ Infobox (`{{Tenure}}`): `tenure_id`, `tenure_type`, `status`, `holder`,
 `district`, `granted_date` (+precision), `ended_date` (+precision),
 `schema=tenure-2026`. Holder, area and cut are the dated tables below
 summarised: state each once in its table and copy the current value here.
+A number in the infobox is digits with thousands separators, `152,000`;
+an approximation is written `~152,000`; words like "nearly" stay in prose.
 
 Body, with these exact headings:
 
@@ -25,5 +27,12 @@ Body, with these exact headings:
 11. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
 A source cell holds `<ref>{{Cite|…|quote=…}}</ref>` like any sentence.
+A date in a table is written year first, `1961-05-18`, or `1961` when only
+the year is known; prose keeps "18 May 1961".
+
+The Holders table and the relationship rows agree: every holder in the
+table has a `holds_tenure` row, which lives on the holder's page with the
+tenure as its object. Adding or correcting that row on the holder's page
+is part of writing the tenure page.
 The wiki page `ForestWiki:Tenure page` carries this for human editors;
 when this file changes, that page changes in the same commit.
