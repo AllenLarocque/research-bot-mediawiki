@@ -30,6 +30,19 @@ A source cell holds `<ref>{{Cite|…|quote=…}}</ref>` like any sentence.
 A date in a table is written year first, `1961-05-18`, or `1961` when only
 the year is known; prose keeps "18 May 1961".
 
+Holders are the licensees the licence documents name. A change in who
+owns a licensee — a company bought by another — is told in History and
+carried by the `owned_by` rows, not by a Holders row, unless a licence
+document names the new owner as licensee. A licence that has ended sets
+`ended_date` in the infobox, `status` says how (cancelled, surrendered,
+amalgamated into …), and the last Holders row ends on that date.
+
+A row in the cut table is one determination with one effective date and
+one figure; a span of years or a range of figures is prose, not a row.
+The infobox's `aac_m3` is the latest row. The infobox's `area_date` is the
+date the figure was measured — the map or determination that states it —
+not the date of the document that reports it.
+
 The Holders table and the relationship rows agree: every holder in the
 table has a `holds_tenure` row, which lives on the holder's page with the
 tenure as its object. Adding or correcting that row on the holder's page
