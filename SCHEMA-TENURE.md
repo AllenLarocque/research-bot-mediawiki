@@ -7,17 +7,17 @@ for. Time order holds inside every section. The infobox sets
 Infobox (`{{Tenure}}`): `tenure_id`, `tenure_type`, `status`, `holder`,
 `holder_since` (+precision),
 `district`, `granted_date` (+precision), `ended_date` (+precision),
-`schema=tenure-2026`. Holder, area and cut are the dated tables below
-summarised: state each once in its table and copy the current value here.
-The infobox reads the area and the cut from the newest row; they are not typed.
+`schema=tenure-2026`. The holder is the Holders table's last row, typed
+into the infobox. The area and the cut are read from the newest row; they
+are not typed.
 
 Body, with these exact headings:
 
 1. (no heading) Lead: one paragraph — what the licence is, where, who holds it and since when, roughly how large, how it came to be.
 2. `== History ==` The narrative by era in time order: the grant, who held it and how it passed, what was taken out and added, the people, companies, events and disputes that shaped it, each linked. Subsections by era are allowed (`=== 1953 to 1961 ===`).
 3. `== Holders ==` `{| class="wikitable"` with `! From !! To !! Holder !! How !! Source`; one row per holding; at most one sentence of context per row below the table.
-4. `== Area and boundary ==` one `{{Area row|date=|precision=|hectares=|event=|source=}}` per dated value, then `{{Area chart}}`, then the changes in time order as prose. The template renders the table and the chart; the page carries only rows.
-5. `== Allowable annual cut ==` one `{{Cut row|effective=|precision=|m3=|event=|source=}}` per determination, then `{{Cut chart}}`, then why the cut moved. A figure is digits only (`150179`); the precision is on the date.
+4. `== Area and boundary ==` one `{{Area row|date=|precision=|hectares=|event=|source=}}` per dated value, then `{{Area chart}}`, then the changes in time order as prose. The template renders the table and the chart; the page carries only rows. A figure is digits only (`150179`); an approximate figure keeps the digits and sets `approx=yes`. `source` holds the citation with no `<ref>` tag — `{{Cite|…|quote=…}}` — because a `<ref>` inside a template parameter is stored as a strip marker; the template adds the footnote when it renders.
+5. `== Allowable annual cut ==` one `{{Cut row|effective=|precision=|m3=|event=|source=}}` per determination, then `{{Cut chart}}`, then why the cut moved. A figure is digits only (`150179`); an approximate or interim figure keeps the digits and sets `approx=yes`. The precision is on the date, and `source` carries no `<ref>` tag.
 6. `== Instruments ==` `! No. !! Date !! What it did !! Source`; one row per instrument; no prose.
 7. `== Overlapping territories ==` the First Nations named by the determinations, as a list, each linked.
 8. `== Controversies ==` disputes on the record, one sentence each, attributed, linking to where History tells it.
@@ -25,9 +25,14 @@ Body, with these exact headings:
 10. `== Open questions ==` one question per line, each naming what would answer it. This section replaces every "No source found gives X" sentence.
 11. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
-A source cell holds `<ref>{{Cite|…|quote=…}}</ref>` like any sentence.
-A date in a table is written year first, `1961-05-18`, or `1961` when only
-the year is known; prose keeps "18 May 1961".
+Rows and tables. Holders and Instruments are wikitables with the columns
+given above; area and cut are not tables at all but `{{Area row}}` and
+`{{Cut row}}` lines with `{{Area chart}}` or `{{Cut chart}}` after them,
+which renders the table and the chart. A source cell in one of those two
+wikitables holds `<ref>{{Cite|…|quote=…}}</ref>` like any sentence; a row's
+`source` holds the citation alone, with no `<ref>`. A date in a table is
+written year first, `1961-05-18`, or `1961` when only the year is known;
+prose keeps "18 May 1961".
 
 Holders are the licensees the licence documents name. A change in who
 owns a licensee — a company bought by another — is told in History and
@@ -38,9 +43,10 @@ amalgamated into …), and the last Holders row ends on that date.
 
 A row in the cut table is one determination with one effective date and
 one figure; a span of years or a range of figures is prose, not a row.
-The `event` of the newest Area row says what measured the figure, and its
-date is the measurement's date, not the date of the document that reports
-it.
+A row's `event` says what changed — what measured or moved the figure — in
+one phrase, and is left empty when the source does not say. A row's date is
+the date the figure took effect or was measured, not the date of the
+document that reports it.
 
 The Holders table and the relationship rows agree: every holder in the
 table has a `holds_tenure` row, which lives on the holder's page with the
