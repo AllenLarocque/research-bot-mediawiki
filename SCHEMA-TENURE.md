@@ -39,7 +39,8 @@ amalgamated into …), and the last Holders row ends on that date.
 A row in the cut table is one determination with one effective date and
 one figure; a span of years or a range of figures is prose, not a row.
 The `event` of the newest Area row says what measured the figure, and its
-date is the measurement's date.
+date is the measurement's date, not the date of the document that reports
+it.
 
 The Holders table and the relationship rows agree: every holder in the
 table has a `holds_tenure` row, which lives on the holder's page with the
