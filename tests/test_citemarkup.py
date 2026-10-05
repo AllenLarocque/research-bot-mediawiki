@@ -29,13 +29,14 @@ class TestParseCites(unittest.TestCase):
         raw = '<ref>{{Cite|Source X|quote=he said "A|B" happened}}</ref>'
         self.assertEqual(parse_cites(raw), [("Source X", 'he said "A|B" happened')])
 
-    def test_two_cites_in_one_ref_not_separated(self):
-        # Known limitation: two {{Cite}} blocks in one <ref> are not parsed as
-        # separate results; the first absorbs the second into its quote
+    def test_two_cites_in_one_ref_are_separated(self):
+        # The regex no longer anchors on a trailing </ref> (needed so a
+        # {{Cite}} inside a template parameter, with no </ref> at all, still
+        # matches), so each {{Cite}} now closes at its own nearest }} instead
+        # of the first cite absorbing everything up to the final </ref>.
         raw = '<ref>{{Cite|S1|quote=q1}}{{Cite|S2|quote=q2}}</ref>'
         result = parse_cites(raw)
-        # First cite absorbs second into its quote
-        self.assertEqual(result, [("S1", "q1}}{{Cite|S2|quote=q2")])
+        self.assertEqual(result, [("S1", "q1"), ("S2", "q2")])
 
     def test_no_cites_returns_empty(self):
         self.assertEqual(parse_cites("plain prose with no citation"), [])
@@ -120,11 +121,23 @@ class TestFormatCite(unittest.TestCase):
         out = format_cite("Daily Colonist 1959", "the strike began in September")
         self.assertEqual(parse_cites(out), [("Daily Colonist 1959", "the strike began in September")])
 
-    def test_roundtrips_quote_with_equals_and_braces(self):
-        # Quote can contain = and }} as long as they're not followed by </ref>
-        quote = 'She said "a=b" and wrote: var x = {key: value}}'
+    def test_quote_with_equals_sign_roundtrips(self):
+        # Quote can contain = as long as it doesn't contain a literal }}.
+        quote = 'She said "a=b" and wrote: var x = 1'
         out = format_cite("Source", quote)
         self.assertEqual(parse_cites(out), [("Source", quote)])
+
+    def test_quote_containing_literal_braces_truncates(self):
+        # New limitation, traded for matching a {{Cite}} with no trailing
+        # </ref> (the citemarkup.py docstring covers why): since the regex no
+        # longer anchors on </ref>, it can't tell a quote's own "}}" from the
+        # template's closing "}}" and stops at the first one it finds.
+        quote = 'She said "a=b" and wrote: var x = {key: value}}'
+        out = format_cite("Source", quote)
+        self.assertEqual(
+            parse_cites(out),
+            [("Source", 'She said "a=b" and wrote: var x = {key: value')],
+        )
 
 
 if __name__ == "__main__":

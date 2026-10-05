@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The one place that knows what <ref>{{Cite|Name|quote=...}}</ref> looks like.
+"""The one place that knows what {{Cite|Name|quote=...}} looks like.
 
 Before this module, the same regex was duplicated verbatim in anchorcheck.py and
 weakcites.py, <ref>-stripping was reimplemented in anchorcheck.py and
@@ -9,20 +9,24 @@ move to research_core/ because of markup none of them actually cared about — t
 """
 import re
 
-# Kept byte-identical to the original in anchorcheck.py:148 / weakcites.py:37 so
-# this is a pure move. Any behaviour change belongs in its own commit.
-_CITE = re.compile(r"\{\{Cite\|([^|}]+)\|quote=(.*?)\}\}</ref>", re.S)
+# Originally required a trailing </ref> (anchorcheck.py:148 / weakcites.py:37),
+# which missed a {{Cite}} stored bare inside a template parameter, such as
+# {{Area row|...|source={{Cite|...|quote=...}}}}. Dropping that anchor means
+# the lazy quote group now closes at the first "}}" it meets, so a quote
+# containing a literal "}}" truncates there (test_citemarkup.py covers it) and
+# two {{Cite}} blocks sharing one <ref> are now parsed as two results instead
+# of the first absorbing the second.
+_CITE = re.compile(r"\{\{Cite\|([^|}]+)\|(?:p=[^|]*\|)?quote=(.*?)\}\}", re.S)
 _REF_PAIRED = re.compile(r"<ref>.*?</ref>", re.S)
 _REF_SELF_CLOSING = re.compile(r"<ref[^>]*/>")
 
 
 def parse_cites(raw):
-    """[(source_title, quote)] for every {{Cite}} carried by a <ref> on the page.
+    """[(source_title, quote)] for every {{Cite}} on the page, <ref>-wrapped or not.
 
-    Known limitation: two {{Cite}} blocks inside a single <ref> are NOT parsed as
-    separate results. The first Cite block absorbs the second into its quote:
-    parse_cites('<ref>{{Cite|S1|quote=q1}}{{Cite|S2|quote=q2}}</ref>')
-    -> [('S1', 'q1}}{{Cite|S2|quote=q2')]
+    Known limitation: a quote containing a literal "}}" truncates there, since
+    the regex has no </ref> anchor to tell that "}}" from the template's own
+    closing one.
     """
     return _CITE.findall(raw)
 
