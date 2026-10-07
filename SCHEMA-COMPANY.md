@@ -84,10 +84,10 @@ edition's page, with `as_of` the year the edition reports, its reference
 year (1972 for the 1972 volume, even if it appeared in 1975), not the year
 it was published. Every edition read is its own Source page with its own
 rows, even when the controller has not changed. The analysis lets such a
-claim stand until the series' next edition (never more than five years) or
-until a later year's own evidence decides control, and it finds the
-editions by that name and those dates, so without them a claim covers only
-its own year.
+claim stand until the series' next edition (never more than five years past
+its as_of), unless a later year's own evidence decides otherwise, and it
+finds the editions by that name and those dates, so without them a claim
+covers only its own year.
 
 Holders and controllers. Every `holder=` and `controller=` names an entity
 page by its exact title: never a redirect or another spelling (a
