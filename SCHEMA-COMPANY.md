@@ -75,11 +75,18 @@ Serial sources. When a Source page is created for an edition of a serial
 publication (Statistics Canada's *Inter-corporate Ownership* above all;
 also annual directories such as the *Financial Post Survey*), its
 `{{Source}}` infobox carries `series=` the series' name, spelt the same way
-on every edition (`series=Inter-corporate Ownership`), and the edition's
-`publication_date`. A claim from one edition stands until the series' next
-edition, which would have reported a change; the analysis finds the
-editions by that name and those dates, so without them a claim covers only
-its own year.
+on every edition (`series=Inter-corporate Ownership`), and as
+`publication_date` the edition's original publication date: when the
+edition first appeared, not the date of a reprint, scan or archive copy.
+Each company the edition names gets a `{{Control claim}}` row whose
+`as_of` is the year the edition reports, its reference year (1972 for the
+1972 volume, even if it appeared in 1975), not the year it was published.
+The analysis carries such a claim past its own year: to the year before
+the next edition's claim for the same company, or, when the next edition
+leaves the company out, for the interval to that edition; never more than
+five years; and only in years where nothing else was observed for the
+company. It finds the editions by that name and those dates, so without
+them a claim covers only its own year.
 
 Holders and controllers. Every `holder=` and `controller=` names an entity
 page by its exact title: never a redirect or another spelling (a
