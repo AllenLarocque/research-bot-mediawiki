@@ -11,8 +11,10 @@ equity fund, pension fund, sovereign fund, state enterprise, co-operative,
 trading, other), `seat` and `incorporated_in` (`Country` or
 `Country / Province`, the country first: `Canada / British Columbia`,
 `Japan`; never `British Columbia, Canada` — the analysis reads the country
-before the slash), `listings` (an exchange code, a space and the years,
-`;` between listings: `TSX 1983-2006; NYSE 2021-`; the codes the analysis
+before the slash; the country is its common short name with no commas:
+`South Korea`, not `Korea, Republic of`), `listings` (an exchange code, a space and the years,
+`;` between listings; the range uses a hyphen, never an en dash:
+`TSX 1983-2006; NYSE 2021-`; the codes the analysis
 recognises are TSX, TSXV, VSE, ME, CSE, NYSE, NASDAQ, AMEX, TSE, LSE, SGX
 and HKEX; a widely held company listed only elsewhere is placed by its
 seat),
