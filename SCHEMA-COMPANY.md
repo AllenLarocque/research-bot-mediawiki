@@ -71,6 +71,16 @@ Body, with these exact headings:
    compilation that would settle them.
 10. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
+Serial sources. When a Source page is created for an edition of a serial
+publication (Statistics Canada's *Inter-corporate Ownership* above all;
+also annual directories such as the *Financial Post Survey*), its
+`{{Source}}` infobox carries `series=` the series' name, spelt the same way
+on every edition (`series=Inter-corporate Ownership`), and the edition's
+`publication_date`. A claim from one edition stands until the series' next
+edition, which would have reported a change; the analysis finds the
+editions by that name and those dates, so without them a claim covers only
+its own year.
+
 Holders and controllers. Every `holder=` and `controller=` names an entity
 page by its exact title: never a redirect or another spelling (a
 lower-case first letter, underscores, a short form), because the analysis
