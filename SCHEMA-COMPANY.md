@@ -12,7 +12,7 @@ trading, other), `seat` and `incorporated_in` (`Country` or
 `Country / Province`: `Canada / British Columbia`, `Japan`), `listings`
 (`TSX 1983-2006; NYSE 2021-`), `controller_type` (only when control ends at
 this entity: family, individual, private equity fund, pension fund,
-sovereign fund, state, co-operative, First Nation, other), `founded_date`
+sovereign fund, state, co-operative, First Nation, other; never `widely held`: the analysis decides whether a company is widely held year by year), `founded_date`
 and `dissolved_date` (+precision), `status`, `schema=company-2026`. Leave
 `jurisdiction` as it is; do not add one. Who controls the company is never
 typed into the infobox: the infobox reads it from the analysis.
@@ -31,12 +31,14 @@ Body, with these exact headings:
      three rows with its date. Never a span. `equity_pct` and `voting_pct`
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
-   - One `{{Control claim|controller=|basis=|as_of=|start_date=|end_date=|claimant=|source=}}`
+   - One `{{Control claim|controller=|basis=|as_of=|as_of_precision=|start_date=|start_date_precision=|end_date=|end_date_precision=|claimant=|source=}}`
      per source that says who controlled the company, then
      `{{Control claims}}`. `basis` is one of: voting majority, dual-class,
      largest block, joint, agreement, board, state, not stated. Give
      `as_of` when the source states control at a date, `start_date` (and
-     `end_date` if it gives one) when it states a span; never both. Joint
+     `end_date` if it gives one) when it states a span; never both. Each precision is day, month, year or circa, and a year-only
+     date is written as `YYYY-01-01` with precision year (as on `Stake` rows,
+     whose `precision` works the same way). Joint
      control is one row per controller, each `basis=joint`. A source that
      disagrees with another is written as its own row; never drop a claim
      because another source says otherwise.
@@ -60,9 +62,11 @@ Body, with these exact headings:
 
 Holders and controllers. Every `holder=` and `controller=` names an entity
 page. When it has none, create it in the same tick: a short page with the
-`{{Organization}}` or `{{Person}}` infobox carrying `seat` or `residence`
-and, when its sources say so, `controller_type`, one cited lead sentence,
-and nothing else. A family that controls a company as a group is an
+`{{Organization}}` or `{{Person}}` infobox, one cited lead sentence, and
+nothing else. An Organization page carries `seat` and, when its sources say
+so, `controller_type`; a Person page carries `residence` (and `nationality`
+when given). A person always ends a chain of control, so a Person page
+needs no controller type. A family that controls a company as a group is an
 organization page with `controller_type=family`, linked to its members.
 
 Relationship rows that are spans. An acquisition, a merger, a rename or a
