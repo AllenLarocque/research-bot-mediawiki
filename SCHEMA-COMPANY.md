@@ -9,8 +9,14 @@ Infobox (`{{Organization}}`): `name`, `org_type` (one of: integrated forest
 products, lumber, pulp and paper, panels, logging, holding company, private
 equity fund, pension fund, sovereign fund, state enterprise, co-operative,
 trading, other), `seat` and `incorporated_in` (`Country` or
-`Country / Province`: `Canada / British Columbia`, `Japan`), `listings`
-(`TSX 1983-2006; NYSE 2021-`), `controller_type` (only when control ends at
+`Country / Province`, the country first: `Canada / British Columbia`,
+`Japan`; never `British Columbia, Canada` — the analysis reads the country
+before the slash), `listings` (an exchange code, a space and the years,
+`;` between listings: `TSX 1983-2006; NYSE 2021-`; the codes the analysis
+recognises are TSX, TSXV, VSE, ME, CSE, NYSE, NASDAQ, AMEX, TSE, LSE, SGX
+and HKEX; a widely held company listed only elsewhere is placed by its
+seat),
+`controller_type` (only when control ends at
 this entity: family, individual, private equity fund, pension fund,
 sovereign fund, state, co-operative, First Nation, other; never `widely held`: the analysis decides whether a company is widely held year by year), `founded_date`
 and `dissolved_date` (+precision), `status`, `schema=company-2026`. Leave
@@ -28,7 +34,8 @@ Body, with these exact headings:
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
      per holder per source observation, then `{{Stake chart}}`. A stake is
      an observation at a date: a proxy circular listing three holders is
-     three rows with its date. Never a span. `equity_pct` and `voting_pct`
+     three rows with its date. Never a span. Every row has `as_of`.
+     `equity_pct` and `voting_pct`
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
    - One `{{Control claim|controller=|basis=|as_of=|as_of_precision=|start_date=|start_date_precision=|end_date=|end_date_precision=|claimant=|source=}}`
@@ -36,7 +43,9 @@ Body, with these exact headings:
      `{{Control claims}}`. `basis` is one of: voting majority, dual-class,
      largest block, joint, agreement, board, state, not stated. Give
      `as_of` when the source states control at a date, `start_date` (and
-     `end_date` if it gives one) when it states a span; never both. Each precision is day, month, year or circa, and a year-only
+     `end_date` if it gives one) when it states a span; never both, and
+     never `as_of` with `end_date`; an `end_date` is not before its
+     `start_date`. Every date is `YYYY-MM-DD` (or `YYYY`, `YYYY-MM`). Each precision is day, month, year or circa, and a year-only
      date is written as `YYYY-01-01` with precision year (as on `Stake` rows,
      whose `precision` works the same way). Joint
      control is one row per controller, each `basis=joint`. A source that
@@ -61,7 +70,14 @@ Body, with these exact headings:
 10. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
 Holders and controllers. Every `holder=` and `controller=` names an entity
-page. When it has none, create it in the same tick: a short page with the
+page by its exact title: never a redirect or another spelling (a
+lower-case first letter, underscores, a short form), because the analysis
+joins a row to its page by exact title and a near miss cuts the chain
+there; `stakecheck` reports one as `REDIRECT`. State control names
+`[[Government of British Columbia]]` (an existing organization page; give
+it `controller_type=state` when you edit it) or the relevant government's
+own page, never a place page such as `[[British Columbia]]`. When a holder
+or controller has no page, create it in the same tick: a short page with the
 `{{Organization}}` or `{{Person}}` infobox, one cited lead sentence, and
 nothing else. An Organization page carries `seat` and, when its sources say
 so, `controller_type`; a Person page carries `residence` (and `nationality`
