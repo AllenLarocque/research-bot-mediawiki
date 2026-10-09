@@ -22,8 +22,9 @@ Body, with these exact headings:
 7. `== Overlapping territories ==` the First Nations named by the determinations, as a list, each linked.
 8. `== Controversies ==` disputes on the record, one sentence each, attributed, linking to where History tells it.
 9. `== Recent developments ==` dated items only, newest first; an item older than a year moves into History.
-10. `== Open questions ==` one question per line, each naming what would answer it. This section replaces every "No source found gives X" sentence.
-11. `{{Relationship}}` rows, then `{{Entity footer}}`.
+10. `{{Relationship}}` rows, then `{{Entity footer}}`.
+
+No "Open questions" section and no "No source found gives X" sentence: what is not known goes in the dossier's `questions.md` (STYLE rule 8).
 
 Rows and tables. Holders and Instruments are wikitables with the columns
 given above; area and cut are not tables at all but `{{Area row}}` and

@@ -66,10 +66,11 @@ Body, with these exact headings:
    facilities' `owned_by` rows, then prose on what they made.
 7. `== Controversies ==` as on tenure pages.
 8. `== Recent developments ==` as on tenure pages.
-9. `== Open questions ==` one question per line, each naming what would
-   answer it. Questions about ownership and control name the filing or
-   compilation that would settle them.
-10. `{{Relationship}}` rows, then `{{Entity footer}}`.
+9. `{{Relationship}}` rows, then `{{Entity footer}}`.
+
+No "Open questions" section: what is not known goes in the dossier's
+`questions.md` (STYLE rule 8). A question about ownership or control there
+names the filing or compilation that would settle it.
 
 Serial sources. When a Source page is created for an edition of a serial
 publication (Statistics Canada's *Inter-corporate Ownership* above all;
