@@ -40,6 +40,12 @@ Body, with these exact headings:
      `equity_pct` and `voting_pct`
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
+   - A stake the source says is held for clients or managed funds takes
+     `for_clients=yes`; a holding on conversion or exercise of a security,
+     or an "effective interest" through one, takes `potential=yes`. A
+     source saying no holder held more than a stated per cent is one row
+     with no holder and no figure:
+     `{{Stake|none_above=10|as_of=|precision=|source=}}`.
    - One `{{Control claim|controller=|basis=|as_of=|as_of_precision=|start_date=|start_date_precision=|end_date=|end_date_precision=|claimant=|source=}}`
      per source that says who controlled the company, then
      `{{Control claims}}`. `basis` is one of: voting majority, dual-class,
@@ -53,6 +59,9 @@ Body, with these exact headings:
      control is one row per controller, each `basis=joint`. A source that
      disagrees with another is written as its own row; never drop a claim
      because another source says otherwise.
+   - A source that gives a country of control and names no controller is
+     `{{Control claim|country=Japan|basis=not stated|as_of=|source=}}`,
+     never joint.
    - `{{Resolved control}}` last. The analysis fills it; write nothing
      about it.
    - At most a short paragraph of prose, cited, on what the rows do not
