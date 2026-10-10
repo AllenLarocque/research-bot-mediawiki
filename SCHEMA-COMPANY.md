@@ -43,9 +43,13 @@ Body, with these exact headings:
    - A stake the source says is held for clients or managed funds takes
      `for_clients=yes`; a holding on conversion or exercise of a security,
      or an "effective interest" through one, takes `potential=yes`. A
-     source saying no holder held more than a stated per cent is one row
-     with no holder and no figure:
-     `{{Stake|none_above=10|as_of=|precision=|source=}}`.
+     source saying that no holder other than those it names at that date
+     held more than a stated per cent is one row with no holder and no
+     figure, written beside the named holders' own rows and citing the
+     same source: `{{Stake|none_above=10|as_of=|precision=|source=}}`. A
+     proxy circular's statement that, except as set out, no person holds
+     more than 10 per cent is such a row, written beside the holders it
+     names, citing the same circular.
    - One `{{Control claim|controller=|basis=|as_of=|as_of_precision=|start_date=|start_date_precision=|end_date=|end_date_precision=|claimant=|source=}}`
      per source that says who controlled the company, then
      `{{Control claims}}`. `basis` is one of: voting majority, dual-class,
