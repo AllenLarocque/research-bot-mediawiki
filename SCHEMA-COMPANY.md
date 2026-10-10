@@ -61,7 +61,7 @@ Body, with these exact headings:
      because another source says otherwise.
    - A source that gives a country of control and names no controller is
      `{{Control claim|country=Japan|basis=not stated|as_of=|source=}}`,
-     never joint.
+     never joint; give `controller` or `country`, not both.
    - `{{Resolved control}}` last. The analysis fills it; write nothing
      about it.
    - At most a short paragraph of prose, cited, on what the rows do not
