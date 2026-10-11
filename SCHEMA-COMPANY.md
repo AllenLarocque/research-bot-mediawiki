@@ -85,6 +85,19 @@ No "Open questions" section: what is not known goes in the dossier's
 `questions.md` (STYLE rule 8). A question about ownership or control there
 names the filing or compilation that would settle it.
 
+Tenure holdings. The cut attribution runs on the company's `holds_tenure`
+rows, so a wrong date gives a controller cut it never held. For every
+tenure the company held, check its row against the tenure page's Holders
+table and the licence documents and instruments already captured: correct
+the start and end dates, add a missing row, and move a row held by a
+predecessor or subsidiary to the page that held the licence. A licensee
+named by a document that has no page gets one only when it is a company
+the round will reach; otherwise the gap is a line in the company's
+`questions.md`. `python3 /tools/holdcheck.py --page "<company>"` must report
+no OVERLAP, OUTSIDE-LIFE, OPEN-AFTER-END or NO-START on the company's own
+rows before the company is finished; a finding the sources cannot settle
+is a line in `questions.md` and is named in the handover.
+
 Serial sources. When a Source page is created for an edition of a serial
 publication (Statistics Canada's *Inter-corporate Ownership* above all;
 also annual directories such as the *Financial Post Survey*), record three
