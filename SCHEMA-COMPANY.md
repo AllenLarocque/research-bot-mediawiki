@@ -86,7 +86,11 @@ No "Open questions" section: what is not known goes in the dossier's
 names the filing or compilation that would settle it.
 
 Tenure holdings. The cut attribution runs on the company's `holds_tenure`
-rows, so a wrong date gives a controller cut it never held. For every
+rows, so a wrong date gives a controller cut it never held. A row belongs to
+the licensee the licence documents name, never to its parent: the parent is
+reached through control rows, and a parent's row for a subsidiary's licence
+counts the cut twice. A row now on a parent's page for a subsidiary's licence
+moves to the subsidiary's page when the company is worked. For every
 tenure the company held, check its row against the tenure page's Holders
 table and the licence documents and instruments already captured: correct
 the start and end dates, add a missing row, and move a row held by a
