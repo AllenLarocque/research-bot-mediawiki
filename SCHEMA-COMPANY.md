@@ -116,7 +116,7 @@ with no board seat), `office` (an executive title, one of `ceo`, `president`,
 gives none), `independent` (`yes` only when the source calls the director
 independent; otherwise leave it out), `nominee_of` (the page title of the
 holder or company that nominated the director), `residence` (as printed in
-the source), `shares` (digits, the director's holding where the source gives
+the source, `Vancouver, B.C.`), `shares` (digits, the director's holding where the source gives
 it) and `source` (`{{Cite|…|quote=…}}` with no `<ref>`; the quote is the
 roster line or the heading that dates it).
 
@@ -134,13 +134,12 @@ reads the sightings together and does not infer a term from them.
 Other directorships. When a source gives a director's other boards, each is a
 row on the other company's own page, with that source and its date, not a
 list on this page. A company outside the round, which the bot
-will not research, gets a page with its name and its `seat` infobox field
-(where it is managed from) only (an `{{Organization}}` infobox and one cited
-lead sentence), and the row on it; its own roster is not collected.
+will not research, is not collected for its own roster. If the outside company has no page, create one with its name and its `seat` infobox field (where it is managed from) only, an `{{Organization}}` infobox and one cited lead sentence,; if it has one, add the rows and `{{Board chart}}` in a `== Board ==` section before its `{{Relationship}}` rows, and change nothing else on it.
 
 Director pages. A director, or a `nominee_of` company, with no page gets a
 Person page (an Organization page for a nominating company) made like a
-holder's: one cited lead sentence; `residence` where the roster prints it;
+holder's: one cited lead sentence; `residence` where the roster prints it, written in the infobox form
+`Country / Province` (`Canada / British Columbia`) from the printed place;
 `gender` only from a source's own words, cited; nothing else. The page title
 is exact, never a redirect, for both `person` and `nominee_of`. Directors
 are not part of the ownership chain rule.
