@@ -39,7 +39,7 @@ Body, with these exact headings:
    moments that changed the company — its founding, a takeover or merger, a
    reorganisation, becoming public or private — in a sentence or two, with
    no percentage the Ownership tables carry. Subsections by era are allowed;
-   headings name the era or the event, never the source. A conclusion is a
+   headings name the era or the event, never the source. Era subsection titles are not repeated between History and Financial history; each section opens with prose before its first subsection. A conclusion is a
    source's, attributed (STYLE rule 7).
 3. `== Financial history ==` The money behind the story, in prose, by era,
    every sentence cited: how the company was financed and capitalised, its
@@ -48,7 +48,9 @@ Body, with these exact headings:
    them, and what each meant for the company, as a source says. A figure
    belongs here when it explains an event; the Ownership tables hold every
    observation, so do not restate them one row to a sentence. Control is
-   told only as a source tells it, attributed.
+   told only as a source tells it, attributed. Era subsections follow the
+   same rule as History's.
+   History and Financial history are done when every era of the company's life (from its founding to its dissolution, or to 2025) is told by at least one cited source, or the company's `questions.md` has a line `History thin: <era>` naming the source that would fill it. Then move on.
 4. `== Ownership and control ==`
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
      per holder per source observation, then `{{Stake chart}}`. A stake is
@@ -113,10 +115,8 @@ Marchak, Drushka, Mackay, theses); the press (the BC newspapers the corpus
 already uses, trade press such as the *Truck Logger* and *BC Lumberman*);
 union and labour records; government reports and royal commissions; BC
 Archives and university special collections finding aids, where they can be
-reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). First Nations
-are written about only as the sources record them, attributed, following
-`ForestWiki:First Nations and Indigenous knowledge`; no characterisation of
-a Nation's position beyond what its own or a cited source says.
+reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). A Nation is named, and an event involving it told, only as a cited source records it, the sentence or citation making clear whose record it is (Crown, company, court, the Nation's own); no statement about title, territory or consent except quoted and attributed; link a Nation's existing page, and create or edit no First Nation page. Follow
+`ForestWiki:First Nations and Indigenous knowledge`.
 
 No "Open questions" section: what is not known goes in the dossier's
 `questions.md` (STYLE rule 8). A question about ownership or control there
