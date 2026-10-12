@@ -73,6 +73,8 @@ Body, with these exact headings:
      never joint; give `controller` or `country`, not both.
    - `{{Resolved control}}` last. The analysis fills it; write nothing
      about it.
+   - `{{Board seat}}` rows, then `{{Board chart}}`, after the stakes and
+     claims; see Boards below.
    - At most a short paragraph of prose, cited, on what the rows do not
      show.
 4. `== Corporate lineage ==` `{{Lineage}}` only. It is generated from the
@@ -89,6 +91,65 @@ Body, with these exact headings:
 No "Open questions" section: what is not known goes in the dossier's
 `questions.md` (STYLE rule 8). A question about ownership or control there
 names the filing or compilation that would settle it.
+
+Boards. A board is recorded as rosters: one `{{Board seat}}` row per
+director per source date, on the company's own page, in
+`== Ownership and control ==`, then `{{Board chart}}`. A roster listing seven
+directors is seven rows with the same `as_of`. The benchmark years are every
+fifth year from 1950 to 2025 (1950, 1955, … 2025). For each benchmark year a
+company was alive, look for a roster from a source dated within a year either
+side (Y-1 to Y+1); a source further off does not stand in for the benchmark.
+Rows are dated by what the source gives, never moved to the benchmark year,
+and a roster found outside the benchmark years is written too. A roster the
+captured sources already hold is collected without a new search. A benchmark
+year with no roster inside the window is a line in the company's
+`questions.md`, naming the filing or directory that would give it.
+
+The parameters, exactly: `person` (the director's page, an exact title),
+`as_of` (`YYYY-MM-DD` or the shorter forms, the date the source gives the
+roster at), `precision` (day, month, year or circa; day if left out), `seat`
+(`chair`, `vice-chair`, `director`, or `none` for an officer the source shows
+with no board seat), `office` (an executive title, one of `ceo`, `president`,
+`vice-president`, `executive-vice-president`, `treasurer`, `secretary`,
+`general-manager`, `chairman`, `vice-chairman`; leave it out when the source
+gives none), `independent` (`yes` only when the source calls the director
+independent; otherwise leave it out), `nominee_of` (the page title of the
+holder or company that nominated the director), `residence` (as printed in
+the source), `shares` (digits, the director's holding where the source gives
+it) and `source` (`{{Cite|…|quote=…}}` with no `<ref>`; the quote is the
+roster line or the heading that dates it).
+
+Chair and chairman. `chair`, as `seat`, is a board seat a source
+establishes; `chairman`, as `office`, is a title a source uses without
+establishing a seat. A roster that lists the board under its chairman
+establishes `seat=chair`. A source that calls someone chairman with no
+roster gives `office=chairman` and a `seat` only if it shows one.
+
+A row is a sighting, never a term. The source saw this person on this board
+at this date; it does not say when the seat began or ended. Write no start or
+end, and in prose say "seen", never "served" or "from … to". The analysis
+reads the sightings together and does not infer a term from them.
+
+Other directorships. When a source gives a director's other boards, each is a
+row on the other company's own page, with that source and its date, not a
+list on this page. A company outside the round, which the bot
+will not research, gets a page with its name and `seat` only (an
+`{{Organization}}` infobox and one cited lead sentence), and the row on it;
+its own roster is not collected.
+
+`nominee_of` only where the source says the director was nominated, named or
+appointed by that holder or company; sharing a surname or sitting for the
+same company is not enough. A `{{Control claim|basis=board}}` only where a
+source says nominees or representatives of a holder hold a majority of the
+board, written as the source says it. Control is never inferred from a
+board: no count of seats, no interlock and no chair makes a claim.
+
+Before a company is finished, `python3 /tools/seatcheck.py --page "<company>"`
+must report no finding on the company's own rows (it checks that the
+parameters are in their vocabularies, that every row has a date and a
+source, and the chair and chairman ruling); a finding the sources cannot
+settle is a line in `questions.md` and is named in the handover. Run it with
+the other page gates, `stakecheck` and `holdcheck`.
 
 Tenure holdings. The cut attribution runs on the company's `holds_tenure`
 rows, so a wrong date gives a controller cut it never held. A row belongs to
@@ -155,6 +216,9 @@ in a control claim; except that a sponsor's fund always carries the Control
 claim naming its sponsor (see `for_clients`). Any other holder's page gets
 `seat` only for an organization and `residence` only for a person, when its
 source gives it.
+A Person page may carry `gender`, recorded only from a source's own words (an
+honorific, a pronoun or a statement), never from a name: `woman`, `man`, or
+the source's own word. Where no source says, leave it out.
 
 Relationship rows that are spans. An acquisition, a merger, a rename or a
 sole owner over stated dates stays a relationship row (`acquired`,
