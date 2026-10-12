@@ -40,7 +40,7 @@ Body, with these exact headings:
      `equity_pct` and `voting_pct`
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
-   - A stake the source says is held for clients or managed funds takes
+   - A stake the source says is held for outside clients or their managed funds takes
      `for_clients=yes`. Not for a holding a company's manager holds for a
      fund that company sponsors and manages for itself (Brookfield's Tricap
      Management for the Tricap Restructuring Fund): that is the fund's own
@@ -148,10 +148,13 @@ so, `controller_type`; a Person page carries `residence` (and `nationality`
 when given). A person always ends a chain of control, so a Person page
 needs no controller type. A family that controls a company as a group is an
 organization page with `controller_type=family`, linked to its members.
-Fill `seat`, `incorporated_in`, `listings` and a stake or control row only
-for holders the analysis can name as controller: 20 per cent or more at
-some observation, or named in a control claim. Any other holder gets a page
-with `seat` only, when its source gives it.
+On that holder's own page, fill `seat`, `incorporated_in`, `listings`,
+`controller_type` and a stake or control row only for holders the analysis
+can name as controller: 20 per cent or more at some observation, or named
+in a control claim; except that a sponsor's fund always carries the Control
+claim naming its sponsor (see `for_clients`). Any other holder's page gets
+`seat` only for an organization and `residence` only for a person, when its
+source gives it.
 
 Relationship rows that are spans. An acquisition, a merger, a rename or a
 sole owner over stated dates stays a relationship row (`acquired`,
