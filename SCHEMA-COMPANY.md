@@ -41,7 +41,12 @@ Body, with these exact headings:
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
    - A stake the source says is held for clients or managed funds takes
-     `for_clients=yes`; a holding on conversion or exercise of a security,
+     `for_clients=yes`. Not for a holding a company's manager holds for a
+     fund that company sponsors and manages for itself (Brookfield's Tricap
+     Management for the Tricap Restructuring Fund): that is the fund's own
+     stake, written with the fund as holder, and the fund's page carries a
+     `{{Control claim}}` naming its sponsor from the source that says so.
+     A holding on conversion or exercise of a security,
      or an "effective interest" through one, takes `potential=yes`. A
      source saying that no holder other than those it names at that date
      held more than a stated per cent is one row with no holder and no
@@ -100,7 +105,10 @@ the round will reach; otherwise the gap is a line in the company's
 `questions.md`. `python3 /tools/holdcheck.py --page "<company>"` must report
 no OVERLAP, OUTSIDE-LIFE, OPEN-AFTER-END or NO-START on the company's own
 rows before the company is finished; a finding the sources cannot settle
-is a line in `questions.md` and is named in the handover.
+is a line in `questions.md` and is named in the handover. A company brief
+may also correct the Holders table of a tenure page whose `holds_tenure`
+rows it corrected, citing the same sources; nothing else on that tenure
+page.
 
 Serial sources. When a Source page is created for an edition of a serial
 publication (Statistics Canada's *Inter-corporate Ownership* above all;
@@ -118,7 +126,12 @@ rows, even when the controller has not changed. The analysis lets such a
 claim stand until the series' next edition (never more than five years past
 its as_of), unless a later year's own evidence decides otherwise, and it
 finds the editions by that name and those dates, so without them a claim
-covers only its own year.
+covers only its own year. A company whose line sits below a parent
+corporation in the edition's enterprise listing is controlled by that
+parent: the claim names the parent (the corporation at the level above),
+with `basis=not stated` unless the edition gives one. A `country=` claim is
+only for an edition that gives a country of control and places the company
+under no controlling corporation.
 
 Holders and controllers. Every `holder=` and `controller=` names an entity
 page by its exact title: never a redirect or another spelling (a
@@ -135,6 +148,10 @@ so, `controller_type`; a Person page carries `residence` (and `nationality`
 when given). A person always ends a chain of control, so a Person page
 needs no controller type. A family that controls a company as a group is an
 organization page with `controller_type=family`, linked to its members.
+Fill `seat`, `incorporated_in`, `listings` and a stake or control row only
+for holders the analysis can name as controller: 20 per cent or more at
+some observation, or named in a control claim. Any other holder gets a page
+with `seat` only, when its source gives it.
 
 Relationship rows that are spans. An acquisition, a merger, a rename or a
 sole owner over stated dates stays a relationship row (`acquired`,
