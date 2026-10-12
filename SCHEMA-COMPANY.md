@@ -29,10 +29,27 @@ Body, with these exact headings:
 
 1. (no heading) Lead: one paragraph — what the company is or was, where,
    who controlled it as the sources say, and its scale.
-2. `== History ==` The narrative by era, in time order, every sentence
-   cited. No inference: who controlled the company is told only as a
-   source tells it, attributed. Subsections by era are allowed.
-3. `== Ownership and control ==`
+2. `== History ==` The company's story for a general reader, by era, in
+   time order, every sentence cited: what it made and where it logged,
+   milled and sold; the licences it worked; the people who led it; its
+   workers, unions, strikes, accidents and closures; the communities and
+   First Nations its operations touched, as the sources record them;
+   environmental disputes and regulation; markets and the turning points of
+   its business, as the sources name them. Ownership appears only at the
+   moments that changed the company — its founding, a takeover or merger, a
+   reorganisation, becoming public or private — in a sentence or two, with
+   no percentage the Ownership tables carry. Subsections by era are allowed;
+   headings name the era or the event, never the source. A conclusion is a
+   source's, attributed (STYLE rule 7).
+3. `== Financial history ==` The money behind the story, in prose, by era,
+   every sentence cited: how the company was financed and capitalised, its
+   share issues, listings and delistings, debt, recapitalisations,
+   insolvencies and restructurings, takeovers and the stakes that decided
+   them, and what each meant for the company, as a source says. A figure
+   belongs here when it explains an event; the Ownership tables hold every
+   observation, so do not restate them one row to a sentence. Control is
+   told only as a source tells it, attributed.
+4. `== Ownership and control ==`
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
      per holder per source observation, then `{{Stake chart}}`. A stake is
      an observation at a date: a proxy circular listing three holders is
@@ -77,17 +94,29 @@ Body, with these exact headings:
      below. The order is: stakes, Stake chart, control claims,
      `{{Resolved control}}`, board seat rows, Board chart.
    - At most a short paragraph of prose, cited, on what the rows do not
-     show.
-4. `== Corporate lineage ==` `{{Lineage}}` only. It is generated from the
+     show. Longer financial narrative goes in Financial history.
+5. `== Corporate lineage ==` `{{Lineage}}` only. It is generated from the
    `renamed_to`, `merged_into`, `consolidated_into`, `acquired` and
    `subsidiary_of` rows; to change it, write or correct those rows.
-5. `== Tenures ==` `{{Tenures held}}`, generated from `holds_tenure` rows,
+6. `== Tenures ==` `{{Tenures held}}`, generated from `holds_tenure` rows,
    then at most a few sentences. To change the table, correct the rows.
-6. `== Mills and operations ==` `{{Facilities owned}}`, generated from the
+7. `== Mills and operations ==` `{{Facilities owned}}`, generated from the
    facilities' `owned_by` rows, then prose on what they made.
-7. `== Controversies ==` as on tenure pages.
-8. `== Recent developments ==` as on tenure pages.
-9. `{{Relationship}}` rows, then `{{Entity footer}}`.
+8. `== Controversies ==` as on tenure pages.
+9. `== Recent developments ==` as on tenure pages.
+10. `{{Relationship}}` rows, then `{{Entity footer}}`.
+
+Research for History. History is researched like ownership: fetching is
+allowed for it, under the research rules. Look, in this order: company
+histories and anniversary publications; scholarship (Hayter, Rajala,
+Marchak, Drushka, Mackay, theses); the press (the BC newspapers the corpus
+already uses, trade press such as the *Truck Logger* and *BC Lumberman*);
+union and labour records; government reports and royal commissions; BC
+Archives and university special collections finding aids, where they can be
+reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). First Nations
+are written about only as the sources record them, attributed, following
+`ForestWiki:First Nations and Indigenous knowledge`; no characterisation of
+a Nation's position beyond what its own or a cited source says.
 
 No "Open questions" section: what is not known goes in the dossier's
 `questions.md` (STYLE rule 8). A question about ownership or control there
