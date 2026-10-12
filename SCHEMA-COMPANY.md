@@ -71,10 +71,11 @@ Body, with these exact headings:
    - A source that gives a country of control and names no controller is
      `{{Control claim|country=Japan|basis=not stated|as_of=|source=}}`,
      never joint; give `controller` or `country`, not both.
-   - `{{Resolved control}}` last. The analysis fills it; write nothing
-     about it.
-   - `{{Board seat}}` rows, then `{{Board chart}}`, after the stakes and
-     claims; see Boards below.
+   - `{{Resolved control}}` after the control claims. The analysis fills
+     it; write nothing about it.
+   - Then the `{{Board seat}}` rows and `{{Board chart}}`; see Boards
+     below. The order is: stakes, Stake chart, control claims,
+     `{{Resolved control}}`, board seat rows, Board chart.
    - At most a short paragraph of prose, cited, on what the rows do not
      show.
 4. `== Corporate lineage ==` `{{Lineage}}` only. It is generated from the
@@ -133,15 +134,21 @@ reads the sightings together and does not infer a term from them.
 Other directorships. When a source gives a director's other boards, each is a
 row on the other company's own page, with that source and its date, not a
 list on this page. A company outside the round, which the bot
-will not research, gets a page with its name and `seat` only (an
-`{{Organization}}` infobox and one cited lead sentence), and the row on it;
-its own roster is not collected.
+will not research, gets a page with its name and its `seat` infobox field
+(where it is managed from) only (an `{{Organization}}` infobox and one cited
+lead sentence), and the row on it; its own roster is not collected.
 
-`nominee_of` only where the source says the director was nominated, named or
-appointed by that holder or company; sharing a surname or sitting for the
-same company is not enough. A `{{Control claim|basis=board}}` only where a
-source says nominees or representatives of a holder hold a majority of the
-board, written as the source says it. Control is never inferred from a
+Director pages. A director, or a `nominee_of` company, with no page gets a
+Person page (an Organization page for a nominating company) made like a
+holder's: one cited lead sentence; `residence` where the roster prints it;
+`gender` only from a source's own words, cited; nothing else. The page title
+is exact, never a redirect, for both `person` and `nominee_of`. Directors
+are not part of the ownership chain rule.
+
+`nominee_of` only where the source says the shareholder nominated the
+director; sharing a surname or sitting for the same company is not enough. A
+`{{Control claim|basis=board}}` only where a source says a shareholder's
+nominees hold a majority of the board, written as the source says it. Control is never inferred from a
 board: no count of seats, no interlock and no chair makes a claim.
 
 Before a company is finished, `python3 /tools/seatcheck.py --page "<company>"`
@@ -218,7 +225,8 @@ claim naming its sponsor (see `for_clients`). Any other holder's page gets
 source gives it.
 A Person page may carry `gender`, recorded only from a source's own words (an
 honorific, a pronoun or a statement), never from a name: `woman`, `man`, or
-the source's own word. Where no source says, leave it out.
+the source's own word, cited to the source whose words give it. Where no
+source says, leave it out.
 
 Relationship rows that are spans. An acquisition, a merger, a rename or a
 sole owner over stated dates stays a relationship row (`acquired`,
