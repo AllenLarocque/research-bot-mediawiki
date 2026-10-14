@@ -50,7 +50,7 @@ Body, with these exact headings:
    observation, so do not restate them one row to a sentence. Control is
    told only as a source tells it, attributed. Era subsections follow the
    same rule as History's.
-   History and Financial history are done when every era of the company's life (from its founding to its dissolution, or to 2025) is told by at least one cited source, or the company's `questions.md` has a line `History thin: <era>` naming the source that would fill it. Then move on.
+   History and Financial history are done when every era of the company's life (from its founding to its dissolution, or to 2025) is told by at least one cited source, or the company's `questions.md` has a line `History thin: <era>` saying what was tried. A `History thin` line is only for an era whose sources were tried and could not be reached or held nothing on it: a source you can name and reach is read and cited, not listed; the line names each source tried and why it failed. Then move on.
 4. `== Ownership and control ==`
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
      per holder per source observation, then `{{Stake chart}}`. A stake is
