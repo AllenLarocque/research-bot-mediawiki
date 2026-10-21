@@ -219,7 +219,7 @@ and a `quote`, the chair and chairman ruling, and that no board row is on the
 company page (rows there are a finding). A finding the sources cannot settle
 is a line in `questions.md` and is named in the handover. Run it with the
 other page gates, `stakecheck` and `holdcheck`, and with `expandsize`, which
-must not name the company page or the board page.
+must not name the company page or the board page. After rows change on a board page, purge (null-edit) the company page and the board page: Cargo does not invalidate the pages that query it, so the company page's `{{Board summary}}` keeps the old count, years and latest chair until purged.
 
 Tenure holdings. The cut attribution runs on the company's `holds_tenure`
 rows, so a wrong date gives a controller cut it never held. A row belongs to
