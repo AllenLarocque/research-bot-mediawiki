@@ -139,7 +139,7 @@ moved to the benchmark year. A roster on a document or page a tick reads
 anyway is written too, at its own date. Any other roster seen in a held
 source and not written is a line in the company's `questions.md`: `Held, not
 written: <document>, roster at <date>.` Do not search for rosters outside the
-benchmark windows. A benchmark year with no roster inside the window is a
+benchmark windows. A roster known to exist in a document the dossier does not hold, found while working a benchmark year, is a `Not held, on Wayback: <document>` (or other location) line. A benchmark year with no roster inside the window is a
 line in the company's `questions.md`, naming the filing or directory that
 would give it.
 
@@ -172,7 +172,7 @@ giving a holder seats, classes of directors, staggered terms, changes to any
 of these), every sentence cited and nothing inferred from the rows, and left
 out when no source describes it, with a line in `questions.md` naming what
 would (`Board structure: <document that would say>`); `== Composition ==` with
-`{{Board composition}}`; `== Rosters ==` with the rows and `{{Board chart}}`;
+`{{Board composition}}` (added before `== Rosters ==` if the board page lacks it, a company stamped after the move); `== Rosters ==` with the rows and `{{Board chart}}`;
 `{{Entity footer}}`. Nothing else goes on it.
 
 Chair and chairman. `chair`, as `seat`, is a board seat a source
@@ -193,7 +193,7 @@ will not research, is not collected for its own roster. An outside company's
 rows go on `<Outside company>/Board`, which has the lead line, `== Rosters ==`
 with the rows and `{{Board chart}}`, and `{{Entity footer}}` only; its own page
 gets `{{Board summary}}` in a `== Board ==` section before its
-`{{Relationship}}` rows (if it has none yet) and nothing else changes on it. A
+`{{Relationship}}` rows (adding a `== Board ==` section if it has none) and nothing else changes on it. A
 new outside company page is created as before (its name, its `seat` infobox
 field where it is managed from, an `{{Organization}}` infobox and one cited
 lead sentence), plus `{{Board summary}}` in `== Board ==`.
