@@ -96,9 +96,9 @@ Body, with these exact headings:
      never joint; give `controller` or `country`, not both.
    - `{{Resolved control}}` after the control claims. The analysis fills
      it; write nothing about it.
-   - Then the `{{Board seat}}` rows and `{{Board chart}}`; see Boards
-     below. The order is: stakes, Stake chart, control claims,
-     `{{Resolved control}}`, board seat rows, Board chart.
+   - Then `{{Board summary}}`; see Boards below. The order is: stakes,
+     Stake chart, control claims, `{{Resolved control}}`, `{{Board summary}}`.
+     Board rows and `{{Board chart}}` are not on the company page.
    - At most a short paragraph of prose, cited, on what the rows do not
      show. Longer financial narrative goes in Financial history.
 5. `== Corporate lineage ==` `{{Lineage}}` only. It is generated from the
@@ -127,17 +127,21 @@ No "Open questions" section: what is not known goes in the dossier's
 names the filing or compilation that would settle it.
 
 Boards. A board is recorded as rosters: one `{{Board seat}}` row per
-director per source date, on the company's own page, in
-`== Ownership and control ==`, then `{{Board chart}}`. A roster listing seven
-directors is seven rows with the same `as_of`. The benchmark years are every
-fifth year from 1950 to 2025 (1950, 1955, … 2025). For each benchmark year a
-company was alive, look for a roster from a source dated within a year either
-side (Y-1 to Y+1); a source further off does not stand in for the benchmark.
-Rows are dated by what the source gives, never moved to the benchmark year,
-and a roster found outside the benchmark years is written too. A roster the
-captured sources already hold is collected without a new search. A benchmark
-year with no roster inside the window is a line in the company's
-`questions.md`, naming the filing or directory that would give it.
+director per source date, on the company's board page, `<Company>/Board`
+(`Canfor/Board`), never on the company page, which carries
+`{{Board summary}}` in `== Ownership and control ==` where the chart was. A
+roster listing seven directors is seven rows with the same `as_of`. The
+benchmark years are every fifth year from 1950 to 2025 (1950, 1955, … 2025).
+For each benchmark year a company was alive, look for a roster from a source
+dated within a year either side (Y-1 to Y+1); a source further off does not
+stand in for the benchmark. Rows are dated by what the source gives, never
+moved to the benchmark year. A roster on a document or page a tick reads
+anyway is written too, at its own date. Any other roster seen in a held
+source and not written is a line in the company's `questions.md`: `Held, not
+written: <document>, roster at <date>.` Do not search for rosters outside the
+benchmark windows. A benchmark year with no roster inside the window is a
+line in the company's `questions.md`, naming the filing or directory that
+would give it.
 
 The parameters, exactly: `person` (the director's page, an exact title),
 `as_of` (`YYYY-MM-DD` or the shorter forms, the date the source gives the
@@ -149,9 +153,27 @@ with no board seat), `office` (an executive title, one of `ceo`, `president`,
 gives none), `independent` (`yes` only when the source calls the director
 independent; otherwise leave it out), `nominee_of` (the page title of the
 holder or company that nominated the director), `residence` (as printed in
-the source, `Vancouver, B.C.`), `shares` (digits, the director's holding where the source gives
-it) and `source` (`{{Cite|…|quote=…}}` with no `<ref>`; the quote is the
-roster line or the heading that dates it).
+the source, `Vancouver, B.C.`), `shares` (digits, the director's holding where
+the source gives it), `cite` (the exact title of the Source page; required),
+`p` (the pinpoint) and `quote` (the source's exact words for this director,
+the roster line or the heading that dates it; required). `cite`, `p` and
+`quote` are plain text, never a `{{Cite}}`: a stored citation is expanded, and
+550 of them took Canfor past the page's include limit. The chart cites each
+roster once; the quote is not printed. Several quotes from one document are
+joined with ` … ` in one `quote`, with their pinpoints joined `, ` in `p`. A
+second document giving the same roster at the same date is `cite2`, `p2` and
+`quote2`, rarely needed.
+
+The board page. In order: the lead line `The board of directors of
+[[<Company>]], as its sources saw it.`; `== Board structure ==`, cited prose
+on how the board is set up as the sources state it (committees, the number of
+seats the articles allow, nomination rights such as a shareholder agreement
+giving a holder seats, classes of directors, staggered terms, changes to any
+of these), every sentence cited and nothing inferred from the rows, and left
+out when no source describes it, with a line in `questions.md` naming what
+would (`Board structure: <document that would say>`); `== Composition ==` with
+`{{Board composition}}`; `== Rosters ==` with the rows and `{{Board chart}}`;
+`{{Entity footer}}`. Nothing else goes on it.
 
 Chair and chairman. `chair`, as `seat`, is a board seat a source
 establishes; `chairman`, as `office`, is a title a source uses without
@@ -165,9 +187,16 @@ end, and in prose say "seen", never "served" or "from … to". The analysis
 reads the sightings together and does not infer a term from them.
 
 Other directorships. When a source gives a director's other boards, each is a
-row on the other company's own page, with that source and its date, not a
+row on the other company's board page, with that source and its date, not a
 list on this page. A company outside the round, which the bot
-will not research, is not collected for its own roster. If the outside company has no page, create one with its name and its `seat` infobox field (where it is managed from) only, an `{{Organization}}` infobox and one cited lead sentence,; if it has one, add the rows and `{{Board chart}}` in a `== Board ==` section before its `{{Relationship}}` rows, and change nothing else on it.
+will not research, is not collected for its own roster. An outside company's
+rows go on `<Outside company>/Board`, which has the lead line, `== Rosters ==`
+with the rows and `{{Board chart}}`, and `{{Entity footer}}` only; its own page
+gets `{{Board summary}}` in a `== Board ==` section before its
+`{{Relationship}}` rows (if it has none yet) and nothing else changes on it. A
+new outside company page is created as before (its name, its `seat` infobox
+field where it is managed from, an `{{Organization}}` infobox and one cited
+lead sentence), plus `{{Board summary}}` in `== Board ==`.
 
 Director pages. A director, or a `nominee_of` company, with no page gets a
 Person page (an Organization page for a nominating company) made like a
@@ -184,11 +213,13 @@ nominees hold a majority of the board, written as the source says it. Control is
 board: no count of seats, no interlock and no chair makes a claim.
 
 Before a company is finished, `python3 /tools/seatcheck.py --page "<company>"`
-must report no finding on the company's own rows (it checks that the
-parameters are in their vocabularies, that every row has a date and a
-source, and the chair and chairman ruling); a finding the sources cannot
-settle is a line in `questions.md` and is named in the handover. Run it with
-the other page gates, `stakecheck` and `holdcheck`.
+must report no finding. It checks the company page and its board page: that
+the parameters are in their vocabularies, that every row has a date, a `cite`
+and a `quote`, the chair and chairman ruling, and that no board row is on the
+company page (rows there are a finding). A finding the sources cannot settle
+is a line in `questions.md` and is named in the handover. Run it with the
+other page gates, `stakecheck` and `holdcheck`, and with `expandsize`, which
+must not name the company page or the board page.
 
 Tenure holdings. The cut attribution runs on the company's `holds_tenure`
 rows, so a wrong date gives a controller cut it never held. A row belongs to
