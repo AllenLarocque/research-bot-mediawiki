@@ -187,8 +187,12 @@ end, and in prose say "seen", never "served" or "from … to". The analysis
 reads the sightings together and does not infer a term from them.
 
 Other directorships. When a source gives a director's other boards, each is
-recorded by the industry of the other company, with that source and its date,
-not as a list on this page. The industries the wiki covers are forestry, taken
+recorded by the other company's page and industry, with that source and its
+date, not as a list on this page. A company that already has a page, whatever
+its industry, takes `{{Board seat}}` rows on `<Company>/Board`; only a company
+with no page and outside the covered industries is an other board. The tests
+run in that order: has a page, board seat; covered industry, page (created if
+needed) and board seat; otherwise an `{{Other board}}`. The industries the wiki covers are forestry, taken
 broadly: timber, lumber, pulp, paper, panels and wood products; non-timber
 forest products; companies built on forest products or supplying the forest
 industry (pulp-mill chemicals, pulp-based products); and forestry industry
@@ -203,7 +207,7 @@ no page, one is created as before (its name, its `seat` infobox field where it
 is managed from, an `{{Organization}}` infobox and one cited lead sentence),
 plus `{{Board summary}}` in `== Board ==`.
 
-Any other company gets no page. The row is
+Any other company (no page, outside the covered industries) gets no page. The row is
 `{{Other board|company=<usual name without legal suffix>|...}}` on the
 director's own page, immediately before `{{Entity footer}}`, with no heading
 and no `person` parameter (the page is the person). It takes the board seat
@@ -212,11 +216,11 @@ fields (`as_of`, `precision`, `seat`, `office`, `independent`, `nominee_of`,
 a sighting like any other. Name the company exactly as `Analysis:Other boards`
 names it if it is listed there, so the same company is one entry. When unsure
 whether a company is in a covered industry, write the other board and a line in
-the director's dossier `questions.md`: `Other board or page? <company>: <why
+the `questions.md` of the company in hand: `Other board or page? <company>: <why
 unsure>`. Never create a page for a company outside the covered industries. The
 industries covered will grow (fisheries is expected); a promoted company's rows
 then move to its board page. A page that already exists stays. After writing
-other board rows, purge the person page and `Analysis:Other boards`, and run
+other board rows, purge the person page, `Analysis:Other boards` and `Analysis:Board interlocks`, and run
 `python3 /tools/seatcheck.py --page "<person>"`: it reports NO-COMPANY (no
 company named), OTHER-HAS-PAGE (the company has a page, so the row belongs on
 its board page) and OTHER-ON-WRONG-PAGE (the row is not on a person's page).
@@ -227,7 +231,11 @@ holder's: one cited lead sentence; `residence` where the roster prints it, writt
 `Country / Province` (`Canada / British Columbia`) from the printed place;
 `gender` only from a source's own words, cited; nothing else. The page title
 is exact, never a redirect, for both `person` and `nominee_of`. Directors
-are not part of the ownership chain rule.
+are not part of the ownership chain rule. A nominating shareholder is the one
+exception to the other boards rule: `nominee_of` names the holder that
+nominated the director, and a holder of a forest company is part of the
+ownership record, so a nominating holder with no page gets an Organization page
+(name, `seat`, one cited sentence) whatever its industry.
 
 `nominee_of` only where the source says the shareholder nominated the
 director; sharing a surname or sitting for the same company is not enough. A
