@@ -186,17 +186,40 @@ at this date; it does not say when the seat began or ended. Write no start or
 end, and in prose say "seen", never "served" or "from … to". The analysis
 reads the sightings together and does not infer a term from them.
 
-Other directorships. When a source gives a director's other boards, each is a
-row on the other company's board page, with that source and its date, not a
-list on this page. A company outside the round, which the bot
-will not research, is not collected for its own roster. An outside company's
-rows go on `<Outside company>/Board`, which has the lead line, `== Rosters ==`
-with the rows and `{{Board chart}}`, and `{{Entity footer}}` only; its own page
-gets `{{Board summary}}` in a `== Board ==` section before its
-`{{Relationship}}` rows (adding a `== Board ==` section if it has none) and nothing else changes on it. A
-new outside company page is created as before (its name, its `seat` infobox
-field where it is managed from, an `{{Organization}}` infobox and one cited
-lead sentence), plus `{{Board summary}}` in `== Board ==`.
+Other directorships. When a source gives a director's other boards, each is
+recorded by the industry of the other company, with that source and its date,
+not as a list on this page. The industries the wiki covers are forestry, taken
+broadly: timber, lumber, pulp, paper, panels and wood products; non-timber
+forest products; companies built on forest products or supplying the forest
+industry (pulp-mill chemicals, pulp-based products); and forestry industry
+bodies (associations, councils, research institutes, lumber trade bodies). A
+company of a covered industry that the bot will not research is not collected
+for its own roster, but its rows go on `<Company>/Board`, which has the lead
+line, `== Rosters ==` with the rows and `{{Board chart}}`, and
+`{{Entity footer}}` only; its own page gets `{{Board summary}}` in a
+`== Board ==` section before its `{{Relationship}}` rows (adding a
+`== Board ==` section if it has none) and nothing else changes on it. If it has
+no page, one is created as before (its name, its `seat` infobox field where it
+is managed from, an `{{Organization}}` infobox and one cited lead sentence),
+plus `{{Board summary}}` in `== Board ==`.
+
+Any other company gets no page. The row is
+`{{Other board|company=<usual name without legal suffix>|...}}` on the
+director's own page, immediately before `{{Entity footer}}`, with no heading
+and no `person` parameter (the page is the person). It takes the board seat
+fields (`as_of`, `precision`, `seat`, `office`, `independent`, `nominee_of`,
+`residence`, `shares`, `cite`, `p`, `quote`, `cite2`, `p2`, `quote2`) and is
+a sighting like any other. Name the company exactly as `Analysis:Other boards`
+names it if it is listed there, so the same company is one entry. When unsure
+whether a company is in a covered industry, write the other board and a line in
+the director's dossier `questions.md`: `Other board or page? <company>: <why
+unsure>`. Never create a page for a company outside the covered industries. The
+industries covered will grow (fisheries is expected); a promoted company's rows
+then move to its board page. A page that already exists stays. After writing
+other board rows, purge the person page and `Analysis:Other boards`, and run
+`python3 /tools/seatcheck.py --page "<person>"`: it reports NO-COMPANY (no
+company named), OTHER-HAS-PAGE (the company has a page, so the row belongs on
+its board page) and OTHER-ON-WRONG-PAGE (the row is not on a person's page).
 
 Director pages. A director, or a `nominee_of` company, with no page gets a
 Person page (an Organization page for a nominating company) made like a
