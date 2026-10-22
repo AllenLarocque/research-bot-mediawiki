@@ -237,6 +237,22 @@ nominated the director, and a holder of a forest company is part of the
 ownership record, so a nominating holder with no page gets an Organization page
 (name, `seat`, one cited sentence) whatever its industry.
 
+Same person, initials only (operator's ruling, 2026-10-22). Two board rows
+name one person when they are on the same company's board, the surname is
+the same, every initial matches the first letters of the fuller name's given
+names in order (T. and Takahiro; R. B. and Robert Blake), the two sightings
+are within ten years of each other, and no source tells them apart (two
+people with that initial on one roster, or different residences or employers
+stated for the same date). Then there is one Person page, titled with the
+fullest name a source gives; the initials-only page becomes a redirect to it,
+and every row's `person` names the full-name page. The page says so in one
+sentence, citing the roster that gives only the initials: "The 1989 roster
+gives only 'T. Watanabe'; the wiki takes him to be Takahiro Watanabe (same
+board, surname and initial within ten years)." A pair that fails any test
+stays two pages, with a line in the company's `questions.md` as before. A
+spelling that differs (Noboyuki and Nobuyuki) is not an initial and is not
+merged by this rule.
+
 `nominee_of` only where the source says the shareholder nominated the
 director; sharing a surname or sitting for the same company is not enough. A
 `{{Control claim|basis=board}}` only where a source says a shareholder's
