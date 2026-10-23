@@ -246,10 +246,9 @@ people with that initial on one roster, or different residences or employers
 stated for the same date). Then there is one Person page, titled with the
 fullest name a source gives; the initials-only page becomes a redirect to it,
 and every row's `person` names the full-name page. The page says so in one
-sentence, citing the roster that gives only the initials: "The 1989 roster
-gives only 'T. Watanabe'; the wiki takes him to be Takahiro Watanabe (same
-board, surname and initial within ten years)." A pair that fails any test
-stays two pages, with a line in the company's `questions.md` as before. A
+sentence, citing the roster that gives only the initials: "T. Endo is taken to
+be Tomoaki Endo because the board, surname and initial agree within ten years."
+A pair that fails any test stays two pages, with a line in the company's `questions.md` as before. A
 spelling that differs (Noboyuki and Nobuyuki) is not an initial and is not
 merged by this rule.
 
