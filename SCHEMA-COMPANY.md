@@ -215,7 +215,9 @@ with no board seat), `office` (an executive title, one of `ceo`, `president`,
 `vice-president`, `executive-vice-president`, `treasurer`, `secretary`,
 `general-manager`, `chairman`, `vice-chairman`; leave it out when the source
 gives none), `independent` (`yes` only when the source calls the director
-independent; otherwise leave it out), `nominee_of` (the page title of the
+independent, by name or by a count that names its exceptions: "9 Directors,
+7 of whom are independent", naming the two who are not, calls the other
+seven independent; otherwise leave it out), `nominee_of` (the page title of the
 holder or company that nominated the director), `residence` (as printed in
 the source, `Vancouver, B.C.`), `shares` (digits, the director's holding where
 the source gives it), `cite` (the exact title of the Source page; required),
@@ -248,8 +250,12 @@ cell). Then `== Composition ==` with
 Chair and chairman. `chair`, as `seat`, is a board seat a source
 establishes; `chairman`, as `office`, is a title a source uses without
 establishing a seat. A roster that lists the board under its chairman
-establishes `seat=chair`. A source that calls someone chairman with no
-roster gives `office=chairman` and a `seat` only if it shows one.
+establishes `seat=chair`. A source that calls someone chairman of a
+company or of its board with no roster ("He stepped down as chairman of the
+board in 2009"; "Chairman, Petro-Canada Inc."; "the present Chairman of
+Western") establishes the seat too: `seat=chair|office=chairman`, and a
+vice-chairman's `seat=vice-chair|office=vice-chairman` (operator's ruling,
+2026-10-23). An association's or council's chairman is the same.
 
 A row is a sighting, never a term. The source saw this person on this board
 at this date; it does not say when the seat began or ended. Write no start or
@@ -313,8 +319,13 @@ the same, every initial matches the first letters of the fuller name's given
 names in order (T. and Takahiro; R. B. and Robert Blake), the two sightings
 are within ten years of each other, and no source tells them apart (two
 people with that initial on one roster, or different residences or employers
-stated for the same date). Then there is one Person page, titled with the
-fullest name a source gives; the initials-only page becomes a redirect to it,
+stated for the same date). A printed "Jr." tells two people with the same
+initials apart, so one roster's "H. H. Ketcham, Jr., chm." and "H. H.
+Ketcham, pres." do not block a merge: the second is matched to its own full
+name (Henry Holman Ketcham III). A source dating the full-name director's seat
+("Director Since 27 July 1977") on or before a sighting of the initials page
+on the same board settles the pair beyond ten years (operator's rulings,
+2026-10-23). Then there is one Person page, titled with the fullest name a source gives; the initials-only page becomes a redirect to it,
 and every row's `person` names the full-name page. The page says so in one
 sentence, citing the roster that gives only the initials: "T. Endo is taken to
 be Tomoaki Endo because the board, surname and initial agree within ten years."
