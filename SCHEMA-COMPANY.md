@@ -41,19 +41,17 @@ Body, with these exact headings:
    no percentage the Ownership tables carry. Subsections by era are allowed;
    headings name the era or the event, never the source. Era subsection titles are not repeated between History and Financial history; each section opens with prose before its first subsection. A conclusion is a
    source's, attributed (STYLE rule 7).
-3. `== Financial history ==` The money behind the story, in prose, by era,
-   every sentence cited: how the company was financed and capitalised, its
-   share issues, listings and delistings, debt, recapitalisations,
-   insolvencies and restructurings, takeovers and the stakes that decided
-   them, and what each meant for the company, as a source says. A figure
-   belongs here when it explains an event; the Ownership tables hold every
-   observation, so do not restate them one row to a sentence. Control is
-   told only as a source tells it, attributed. Where an official
-   compilation's classification of the company's control differs from a large
-   holding on the page, or from what other sources say, Financial history
-   tells both, each attributed to its source, and does not choose between
-   them; the analysis follows the classification by its stated rule. Era
-   subsections follow the same rule as History's.
+3. `== Financial history ==` Three to five paragraphs in broad strokes,
+   every sentence cited: the turning points in money, such as public
+   listings, takeovers, the largest gains and losses, and the periods of
+   heavy investment or retreat. The detail goes on the Financial history
+   page (below). Control is told only as a source tells it, attributed.
+   Where an official compilation's classification of the company's control
+   differs from a large holding on the page, or from what other sources
+   say, Financial history tells both, each attributed to its source, and
+   does not choose between them; the analysis follows the classification by
+   its stated rule. The section ends with the line `Year by year:
+   [[<Company>/Financial history]].`
    History and Financial history are done when every era of the company's life (from its founding to its dissolution, or to 2025) is told by at least one cited source, or the company's `questions.md` has a line `History thin: <era>` saying what was tried. A `History thin` line is only for an era whose sources were tried and could not be reached or held nothing on it: a source you can name and reach is read and cited, not listed; the line names each source tried and why it failed. Then move on.
 4. `== Ownership and control ==`
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
@@ -108,9 +106,70 @@ Body, with these exact headings:
    then at most a few sentences. To change the table, correct the rows.
 7. `== Mills and operations ==` `{{Facilities owned}}`, generated from the
    facilities' `owned_by` rows, then prose on what they made.
-8. `== Controversies ==` as on tenure pages.
+8. `== Disputes ==` Optional; see Disputes below.
 9. `== Recent developments ==` as on tenure pages.
 10. `{{Relationship}}` rows, then `{{Entity footer}}`.
+
+The Financial history page. `<Company>/Financial history`
+(`Canfor/Financial history`) carries the detail the company page's Financial history leaves
+out. It opens with a lead line naming the company and linking its page.
+Then it gives the play-by-play by era, in short paragraphs, every sentence
+cited: how the company was financed and capitalised, its share issues,
+listings and delistings, debt, recapitalisations, insolvencies and
+restructurings, takeovers and the stakes that decided them, and what each
+meant for the company, as a source says. Headings name the era, never the
+source. Each era is followed by tables of the yearly series its sources
+give: sales, earnings, long-term debt, capital spending, duties, employees,
+production. A table is one row per year, with a citation per row
+(`<ref>{{Cite|…|quote=…}}</ref>` in its source cell), and holds only the
+figures the sources state: nothing computed is added, and a year no source
+gives a figure for is left blank, never filled from a neighbouring year.
+The figures written in sentences move into those tables, and the sentences
+left say what the figures show, under STYLE rule 13. The Ownership tables
+hold every stake observation, so the page does not restate them. The page
+ends with `{{Entity footer}}`.
+
+Interpretation. A company page tells the company's story as a coherent
+narrative without inventing one. STYLE rule 13 says what that allows:
+saying what the cited figures show, an explanation a source gives,
+attributed to it, and ordering events so they read as a sequence. It never
+allows a cause, motive or consequence no source states, a "because", "so",
+"led to" or "in response to" joining two facts no source joins, or a
+characterisation no source makes. Before publishing, reread every
+sentence that links two events and confirm that a cited source makes the
+link.
+
+Disputes. `== Disputes ==` is optional, never required. It is used where
+the record holds a dispute worth telling, and left out where it does not,
+with no note of its absence. It covers labour disputes, land and title
+disputes, court cases, blockades, protests, regulatory hearings and
+environmental findings: one or two sentences each, linking to where History
+tells it. The section is historical, and it neither takes sides nor avoids
+the events. Each position is attributed to whoever held it (the company, a
+union, a Nation, a court, protesters, the Province), the events are told
+plainly, and no outcome is called right or wrong in the wiki's voice.
+MacMillan Bloedel's would tell Clayoquot Sound. Tenure pages use the same
+section under the same rule.
+
+Mills by name. Every mill or plant History or Mills and operations mentions
+is named as its sources name it (the Quesnel sawmill, Eburne sawmill) and
+linked when it has a page. A mill in British Columbia that the company
+owned and that has no page gets a facility page: the `{{Facility}}`
+infobox, one cited lead sentence and its `owned_by` row naming the company.
+A mill outside British Columbia is named but gets no page.
+
+Relationships named in the text. Every relationship between two entities
+that History or Financial history states (a joint venture, a partner, a
+parent, an acquisition, a supplier contract) is also a cited
+`{{Relationship}}` row where a predicate covers it. Otherwise it is a line
+in the company's `questions.md`.
+
+No talk of sources. A page never describes its own sources or its method
+("as its sources saw it", "the sources record"). It states what is known
+and cites it.
+
+Paragraphs. Short ones. A paragraph with more than about five figures
+belongs in a table.
 
 Research for History. History is researched like ownership: fetching is
 allowed for it, under the research rules. Look, in this order: company
@@ -165,13 +224,19 @@ second document giving the same roster at the same date is `cite2`, `p2` and
 `quote2`, rarely needed.
 
 The board page. In order: the lead line `The board of directors of
-[[<Company>]], as its sources saw it.`; `== Board structure ==`, cited prose
-on how the board is set up as the sources state it (committees, the number of
-seats the articles allow, nomination rights such as a shareholder agreement
-giving a holder seats, classes of directors, staggered terms, changes to any
-of these), every sentence cited and nothing inferred from the rows, and left
-out when no source describes it, with a line in `questions.md` naming what
-would (`Board structure: <document that would say>`); `== Composition ==` with
+[[<Company>]].`; `== Board structure ==`, a narrative of how the board was
+set up and changed: its size and the number of seats the articles allow,
+nomination rights (a shareholder agreement giving a holder seats), classes
+of directors, staggered terms, independence, the chair and the CEO. Each
+turn of the story is its own short paragraph, every sentence cited, under
+STYLE rule 13, nothing inferred from the rows; the section is left out when
+no source describes the board, with a line in `questions.md` naming what
+would (`Board structure: <document that would say>`). Inside it,
+`=== Committees ===` has one subsection per committee (Audit, Governance,
+Compensation and so on). Each says what the committee is for and when it
+was seen, and has a table of members by year: `! Year !! Members !! Source`,
+one row per year a source lists them, with a citation per row (`<ref>{{Cite|…|quote=…}}</ref>` in the source
+cell). Then `== Composition ==` with
 `{{Board composition}}` (added before `== Rosters ==` if the board page lacks it, a company stamped after the move); `== Rosters ==` with the rows and `{{Board chart}}`;
 `{{Entity footer}}`. Nothing else goes on it.
 

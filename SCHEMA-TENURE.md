@@ -20,7 +20,7 @@ Body, with these exact headings:
 5. `== Allowable annual cut ==` one `{{Cut row|effective=|precision=|m3=|event=|source=}}` per determination, then `{{Cut chart}}`, then why the cut moved. A figure is digits only (`150179`); an approximate or interim figure keeps the digits and sets `approx=yes`. The precision is on the date, and `source` carries no `<ref>` tag.
 6. `== Instruments ==` `! No. !! Date !! What it did !! Source`; one row per instrument; no prose.
 7. `== Overlapping territories ==` the First Nations named by the determinations, as a list, each linked.
-8. `== Controversies ==` disputes on the record, one sentence each, attributed, linking to where History tells it.
+8. `== Disputes ==` Optional, never required: used where the record holds a dispute worth telling (a labour dispute, a land or title dispute, a court case, a blockade, a protest, a regulatory hearing, an environmental finding) and left out, with no note of its absence, where it does not. One or two sentences each, linking to where History tells it. The section is historical and neither takes sides nor avoids the events: each position is attributed to whoever held it (the company, a union, a Nation, a court, protesters, the Province), the events are told plainly, and no outcome is called right or wrong in the wiki's voice. Company pages use the same section under the same rule (`SCHEMA-COMPANY.md`).
 9. `== Recent developments ==` dated items only, newest first; an item older than a year moves into History.
 10. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
