@@ -28,14 +28,14 @@ typed into the infobox: the infobox reads it from the analysis.
 Body, with these exact headings:
 
 1. (no heading) Lead: one paragraph — what the company is or was, where,
-   who controlled it as the sources say, and its scale.
+   who controlled it (cited, under STYLE rule 7), and its scale.
 2. `== History ==` The company's story for a general reader, by era, in
    time order, every sentence cited: what it made and where it logged,
    milled and sold; the licences it worked; the people who led it; its
    workers, unions, strikes, accidents and closures; the communities and
    First Nations its operations touched;
    environmental disputes and regulation; markets and the turning points of
-   its business, as the sources name them. Ownership appears only at the
+   its business. Ownership appears only at the
    moments that changed the company — its founding, a takeover or merger, a
    reorganisation, becoming public or private — in a sentence or two, with
    no percentage the Ownership tables carry. Subsections by era are allowed;
@@ -154,7 +154,7 @@ MacMillan Bloedel's would tell Clayoquot Sound. Tenure pages use the same
 section under the same rule.
 
 Mills by name. Every mill or plant History or Mills and operations mentions
-is named as its sources name it (the Quesnel sawmill, Eburne sawmill) and
+is named by the name its cited sources use (the Quesnel sawmill, Eburne sawmill) and
 linked when it has a page. A mill in British Columbia that the company
 owned and that has no page gets a facility page in the page shape of
 `RULES-FORESTRY-WIKI.md`: the `{{Facility}}` infobox with `facility_type`
