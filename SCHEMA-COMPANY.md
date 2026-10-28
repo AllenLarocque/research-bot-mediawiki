@@ -107,7 +107,7 @@ Body, with these exact headings:
    then at most a few sentences. To change the table, correct the rows.
 7. `== Mills and operations ==` `{{Facilities owned}}`, generated from the
    facilities' `owned_by` rows, then prose on what they made.
-8. `== Disputes ==` Optional; see Disputes below.
+8. `== Disputes ==` Optional; see Disputes below. It goes after whichever of Tenures or Mills and operations comes last on the page (operator, 2026-10-28).
 9. `== Recent developments ==` as on tenure pages.
 10. `{{Relationship}}` rows, then `{{Entity footer}}`.
 
@@ -162,6 +162,16 @@ and any other field a source gives, one cited lead sentence, its `owned_by`
 row naming the company, dated and cited as the source gives it, and a
 `located_in` row where a source names the place.
 A mill outside British Columbia is named but gets no page.
+
+A company and its mill (operator, 2026-10-28). A company that ran a single
+mill, and the mill itself, are two pages even when the sources call both by
+one name (Skeena Sawmills, North Central Plywoods). The company keeps its
+Organization page with its own rows: tenures, stakes, receivership,
+lineage. The physical mill gets a facility page, titled by place and kind
+("Terrace sawmill", "Prince George plywood mill", with the operator in
+brackets when that title is taken), and it carries the `owned_by` and
+`operated_by` rows. The two pages link to each other. Never put `owned_by`
+on an Organization page.
 
 Relationships named in the text. Every relationship between two entities
 that History or Financial history states (a joint venture, a partner, a
