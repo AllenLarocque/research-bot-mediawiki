@@ -3,8 +3,8 @@
 This file holds the controlled vocabularies every organisation, event and
 document page takes, and the page shapes of offices, documents, events and
 organisations that are not companies. A forest-industry company is written
-to `SCHEMA-COMPANY.md`, a tenure to `SCHEMA-TENURE.md`; both take `sector`
-and `kind` from the lists here. A page of these kinds is written only when
+to `SCHEMA-COMPANY.md` and takes `sector` and `kind` from the lists here; a
+tenure is written to `SCHEMA-TENURE.md` and takes neither. A page of these kinds is written only when
 a brief asks for one. Time order holds inside every section, and a page
 leaves out a section it has nothing for. These infoboxes carry no `schema=`
 stamp.
@@ -17,7 +17,8 @@ in the stack's `Module:ForestWiki-config` together, never written ad hoc.
 A subject no value fits leaves the field blank and gets a line in its
 `questions.md`: `Unlisted <field>: <subject>: <what the sources call it>`.
 The infobox files a value off the list in `Category:Pages with an unlisted
-type`; it is repaired, not left.
+type`; it is repaired, not left, except a legacy event type, which the
+deploy's backfill repairs (below).
 
 `sector`, where an organisation sits: `forest industry` (taken broadly, as
 `SCHEMA-COMPANY.md` defines the covered industries), `government`,
@@ -55,8 +56,9 @@ organisation leaves it blank once `sector` and `kind` are filled.
 ## Organisation (not a company)
 
 Infobox (`{{Organization}}`): `name`, `sector`, `kind`, `jurisdiction` (a
-government body only: the level of government, `British Columbia`,
-`Canada` or the municipality), `seat`, `founded_date` and `dissolved_date`
+government body only: the level of government it belongs to, a province or
+country by its full name, `British Columbia` or `Canada`, never `BC` or
+`B.C.`, and a municipality by its page's exact title), `seat`, `founded_date` and `dissolved_date`
 (+precision), `status`. No `org_type`.
 
 Body, with these exact headings:
@@ -114,8 +116,8 @@ The office's own rows: a dated `part_of` row for each parent, through each
 renaming of the parent; `created_by` and `abolished_by` the Document that
 made or ended it; `empowered_by` each Document that gave it powers, dated
 as the source dates the power. A document that matters and has no page is
-named in History and gets a line in `questions.md` until a brief reaches
-it.
+still the row's object, as a red link in the title formats under Document,
+with no page created for it, as for an amending act below.
 
 ## Document
 
@@ -126,7 +128,7 @@ decision, a report, an agreement or a work. Titles:
   (1978)`, `Forest Practices Code of British Columbia Act (1994)`, `Forest
   and Range Practices Act (2002)`. Each enactment is its own page; an
   amendment is a row, not a page, unless the amending act is itself a
-  subject;
+  subject (below for an amending act with no page);
 - a decision by its style of cause and neutral citation: `Haida Nation v.
   British Columbia (Minister of Forests), 2004 SCC 73`.
 
@@ -155,7 +157,11 @@ row.
 Rows on the document's page: `amended_by` for each amendment that matters,
 dated, its object the amending act's Document page or the Event that made
 the change, with what it changed in `note` (the 1947 amendment that
-created forest management licences is one). A decision has a `decided_in`
+created forest management licences is one). An amending act with neither
+a Document page nor an Event is still the row's object, as a red link: its
+title in the act format above, the act's short title as its citation gives
+it and its year, with no page created for it. `RULES-FORESTRY-WIKI.md` leaves genuine red links, and this one is
+genuine, so the row needs no `questions.md` line. A decision has a `decided_in`
 row naming its case, and an `established` row for each duty, test or
 principle it set, as the reasons state it: the row's object is the
 decision's own page, and the duty, test or principle is quoted in `note`,
