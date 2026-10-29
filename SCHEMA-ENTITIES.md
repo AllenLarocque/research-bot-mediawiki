@@ -116,7 +116,8 @@ The office's own rows: a dated `part_of` row for each parent, through each
 renaming of the parent; `created_by` and `abolished_by` the Document that
 made or ended it; `empowered_by` each Document that gave it powers, dated
 as the source dates the power. A document that matters and has no page is
-still the row's object, as a red link in the title formats under Document,
+still the row's object, as a red link in the title formats under Document
+(an act, a decision, or any other document as its citation gives it),
 with no page created for it, as for an amending act below.
 
 ## Document
@@ -130,7 +131,10 @@ decision, a report, an agreement or a work. Titles:
   amendment is a row, not a page, unless the amending act is itself a
   subject (below for an amending act with no page);
 - a decision by its style of cause and neutral citation: `Haida Nation v.
-  British Columbia (Minister of Forests), 2004 SCC 73`.
+  British Columbia (Minister of Forests), 2004 SCC 73`;
+- any other document (a regulation, an order in council, a report) by the
+  title its citation gives it, after checking that no existing page
+  already carries it under another title.
 
 Infobox (`{{Document}}`): `doc_kind`, `citation` (the statute chapter or
 neutral citation), `issuer` (an exact page title: the legislature, court,
