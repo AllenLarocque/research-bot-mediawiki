@@ -3,7 +3,10 @@
 Rules for writing to ForestWiki. The first section would hold for any
 MediaWiki; the rest is this wiki's schema, versioned in the stack repo's
 `wiki-content/`. How a page is written is in the style file imported here;
-how a tenure page is laid out is in `SCHEMA-TENURE.md`.
+how a tenure page is laid out is in `SCHEMA-TENURE.md`. When a brief asks
+for an office, document, event or non-company organisation page, read
+`SCHEMA-ENTITIES.md` first: it gives that page's layout and the lists its
+`sector`, `kind`, `event_type` and `doc_kind` take.
 
 @STYLE.md
 

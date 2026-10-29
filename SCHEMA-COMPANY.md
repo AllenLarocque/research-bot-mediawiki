@@ -22,7 +22,9 @@ seat),
 this entity: family, individual, private equity fund, pension fund,
 sovereign fund, state, co-operative, First Nation, other; never `widely held`: the analysis decides whether a company is widely held year by year), `founded_date`
 and `dissolved_date` (+precision), `status`, `schema=company-2026`. Leave
-`jurisdiction` as it is; do not add one. Who controls the company is never
+`jurisdiction` as it is; do not add one. Leave `sector` and `kind` as
+they are unless the brief asks for them; their lists are in
+`SCHEMA-ENTITIES.md`. Who controls the company is never
 typed into the infobox: the infobox reads it from the analysis.
 
 Body, with these exact headings:
