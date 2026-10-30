@@ -46,9 +46,10 @@ that industry's sector.
 
 `event_type`: `strike`, `lockout`, `blockade`, `protest`, `court case`,
 `inquiry`, `commission`, `election`, `fire`, `disaster`, `closure`,
-`curtailment`, `scandal`, `forced removal`, `land grant`, `outbreak`, `campaign` (an organised labour or political
-mobilisation, e.g. Operation Solidarity), `split` (a union or organisation
-dividing, e.g. the 1948 IWA split).
+`curtailment`, `scandal`, `forced removal`, `land grant`, `outbreak`,
+`campaign` (an organised labour or political mobilisation, e.g. Operation
+Solidarity), `split` (a union or organisation dividing, e.g. the 1948 IWA
+split).
 The older capitalised types ("Strike", "Forest fire", "Royal commission")
 are mapped to these by the stack's backfill; an event page still carrying
 one is left for it.
