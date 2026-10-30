@@ -23,23 +23,32 @@ deploy's backfill repairs (below).
 `sector`, where an organisation sits: `forest industry` (taken broadly, as
 `SCHEMA-COMPANY.md` defines the covered industries), `government`,
 `labour`, `NGO`, `media`, `industry association`, `First Nation`,
-`finance`, `education and research`, `other industry`.
+`finance`, `education and research`, `diversified`, `other industry`.
+`diversified` is a company or holder spanning several unrelated industries
+(conglomerates such as Argus, Brascan, Jim Pattison Group); `finance` stays
+banks, funds, pension funds, asset and investment managers, custodians and
+nominees; a holding company or trust whose holdings are in one industry takes
+that industry's sector.
 
 `kind`, what an organisation is:
 
 - companies and finance: `company`, `subsidiary`, `partnership`, `fund`,
-  `holding company`, `Crown corporation`;
+  `holding company`, `Crown corporation`, `trust`, `joint venture`,
+  `co-operative` (families and estates are given no kind; they carry
+  `controller_type`);
 - government: `ministry`, `department`, `branch`, `agency`, `commission`,
   `tribunal`, `board`, `court`, `legislature`, `municipality`;
-- labour: `union`, `union local`, `federation`;
-- associations: `association`, `council`;
+- labour: `union`, `union local`, `federation`, `union auxiliary`;
+- associations: `association`, `council`, `advocacy group`, `coalition`;
 - media and others: `newspaper`, `broadcaster`, `publisher`, `foundation`,
   `research institute`, `university`;
 - Nations: `Nation`, `tribal council`.
 
 `event_type`: `strike`, `lockout`, `blockade`, `protest`, `court case`,
 `inquiry`, `commission`, `election`, `fire`, `disaster`, `closure`,
-`curtailment`, `scandal`, `forced removal`, `land grant`, `outbreak`.
+`curtailment`, `scandal`, `forced removal`, `land grant`, `outbreak`, `campaign` (an organised labour or political
+mobilisation, e.g. Operation Solidarity), `split` (a union or organisation
+dividing, e.g. the 1948 IWA split).
 The older capitalised types ("Strike", "Forest fire", "Royal commission")
 are mapped to these by the stack's backfill; an event page still carrying
 one is left for it.
