@@ -433,9 +433,13 @@ objects. Every row carries `sources=` and follows `RULES-FORESTRY-WIKI.md`.
 - First Nations. `sector=First Nation` and `kind=Nation` or `tribal
   council`, with treaties as `agreement` documents. These values are
   defined but not yet used: until `ForestWiki:First Nations and Indigenous
-  knowledge` is settled with the operator, create and edit no First Nation
-  page, and set no `sector` or `kind` on a Nation's page or on a company a
-  Nation owns or runs. A Nation is named, and an event involving it told,
+  knowledge` is settled with the operator in a session of its own, write
+  no content on a First Nation's page or on a company a Nation owns or
+  runs: no prose, no `sector` or `kind`, no infobox value, no new such
+  page, and no move of one. Mechanical bookkeeping is allowed there: a
+  title-only rewrite (a row, a parameter or a link naming a page that was
+  renamed, changed to its new title and nothing else), a redirect, and a
+  date precision set to what the stored date already says. A Nation is named, and an event involving it told,
   only as a cited source records it, the sentence or citation making clear
   whose record it is (Crown, company, court, the Nation's own); no
   statement about title, territory or consent except quoted and

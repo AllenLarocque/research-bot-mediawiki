@@ -217,7 +217,7 @@ Marchak, Drushka, Mackay, theses); the press (the BC newspapers the corpus
 already uses, trade press such as the *Truck Logger* and *BC Lumberman*);
 union and labour records; government reports and royal commissions; BC
 Archives and university special collections finding aids, where they can be
-reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). A Nation is named, and an event involving it told, only as a cited source records it, the sentence or citation making clear whose record it is (Crown, company, court, the Nation's own); no statement about title, territory or consent except quoted and attributed; link a Nation's existing page, and create or edit no First Nation page. Follow
+reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). A Nation is named, and an event involving it told, only as a cited source records it, the sentence or citation making clear whose record it is (Crown, company, court, the Nation's own); no statement about title, territory or consent except quoted and attributed; link a Nation's existing page, and write no content on a First Nation's page or on a company a Nation owns or runs (no prose, no `sector` or `kind`, no infobox value, no new such page, no move of one) until `ForestWiki:First Nations and Indigenous knowledge` is settled in a session of its own; mechanical bookkeeping there (a title-only rewrite of a renamed page's title, a redirect) is allowed. Follow
 `ForestWiki:First Nations and Indigenous knowledge`.
 
 No "Open questions" section: what is not known goes in the dossier's
