@@ -104,8 +104,8 @@ council that constituted it; the name an act continues is a separate fact,
 told in History. A name page that continues an earlier body (a renaming)
 leaves `founded_date` blank: the `renamed_to` row dates it. Two legal bodies
 of the same name are two pages, the earlier with its years: the old forests
-ministry (1976-2006, then Forests and Range, then Forests, Mines and Lands,
-disestablished on 14 March 2011) is `Ministry of Forests (British Columbia,
+ministry (1976–2006, then Forests and Range, then Forests, Mines and Lands,
+abolished on 14 March 2011) is `Ministry of Forests (British Columbia,
 1976–2006)`, and the current one, which descends from the Ministry of
 Natural Resource Operations (2010) through Forests, Lands and Natural
 Resource Operations and Forests, Lands, Natural Resource Operations and
@@ -135,7 +135,8 @@ by the governance widening.
 Names outside government. A company, union, association, NGO or newspaper
 has one page, whatever names it has borne, titled by its official legal
 name with its legal suffix (`Canfor Corporation`, `Celgar Limited`, `Westar
-Timber Ltd.`): the current name if it still operates, its last name if it
+Timber Ltd.`, if their sources confirm those names; these are examples of
+the form, not confirmed titles): the current name if it still operates, its last name if it
 closed. Which name is official is a sourced fact, from a register record,
 an annual report, the *Gazette*, a statute or order, or a licence document;
 with no source for it the page keeps its title and a `questions.md` line
@@ -145,9 +146,11 @@ each with its dates at the precision the source gives, `Name (start–end)`,
 separated by semicolons (`Canadian Cellulose Company Limited (1973–1981)`);
 `also_known_as` lists the names in common use, separated by semicolons
 (`Canfor; Cancel`). Each of those names has a redirect to the page, except
-one whose title another subject holds: that gets no redirect and a
-`questions.md` line (`Name taken: <name>: <the page that holds it>`), and
-the operator decides. A merger is `merged_into`. Pages are moved to their
+one whose title another subject holds: that gets no redirect and a line in
+the page's `questions.md` (`Name taken: <name>: <the page that holds it>`),
+and the operator decides. The bot creates a redirect for an earlier or
+common name only when a brief tells it to; the stack's rename pass at the
+deploy creates the rest. A merger is `merged_into`. Pages are moved to their
 official names by the stack's rename pass, never by a brief.
 
 A newspaper's page is the organisation; its articles stay Source pages.

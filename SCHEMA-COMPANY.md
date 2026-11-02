@@ -36,11 +36,14 @@ or order, a licence document); with none, the page keeps its title and
 `questions.md` gets `Official name unknown: <title>: <what was tried>`.
 `name` is the official name. Every other name is kept: `former_names` lists
 earlier official names with their dates at the precision the source gives,
-`Name (start–end)` separated by
-semicolons, and `also_known_as` the names in common use, separated by
-semicolons. A company's earlier name lives in `former_names`, never on a
-page of its own. Each name has a redirect to the page unless another
-subject holds that title (`Name taken: <name>: <the page that holds it>`).
+`Name (start–end)` separated by semicolons, and `also_known_as` the names
+in common use, separated by semicolons. A company's earlier name lives in
+`former_names`, never on a page of its own. Each name has a redirect to the
+page unless another subject holds that title: that name gets no redirect, a
+line in the page's `questions.md` (`Name taken: <name>: <the page that holds
+it>`), and the operator decides. The bot creates a redirect for an earlier
+or common name only when a brief tells it to; the stack's rename pass at
+the deploy creates the rest.
 The lead gives the official name in bold, then the other names; prose
 elsewhere uses the everyday name through a piped link (`STYLE.md` rule 12).
 Pages are moved to their official names by the stack's rename pass, never
