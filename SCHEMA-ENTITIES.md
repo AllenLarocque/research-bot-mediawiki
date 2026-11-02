@@ -131,7 +131,7 @@ too.
 The office's own rows: a dated `part_of` row for each parent, through each
 renaming of the parent; `created_by` and `abolished_by` the Document that
 made or ended it; `empowered_by` each Document that gave it powers, dated
-as the source dates the power. A document that matters and has no page is
+as the source dates the power. An office's `created_by` is the first act that provides for appointing to it, so [[Chief Forester of British Columbia]] is `created_by` [[Forest Act (1912)]]; each later act under which its holders are appointed is an `appointed_under` row, dated, never a second `created_by`. A document that matters and has no page is
 still the row's object, as a red link in the title formats under Document
 (an act, a decision, or any other document as its citation gives it),
 with no page created for it, as for an amending act below.
@@ -277,6 +277,9 @@ A row lives on its subject's page, with the object as `object=`.
 | `established` | document (decision or act) → the same document, the duty, test or principle quoted in `note` | the decision's date |
 | `decided_in` | document (decision) → event (court case) | the decision's date |
 | `affiliated_with` | union local → union; union → federation | dated |
+| `appointed_under` | office → document | its own dates: the act under which a holder is appointed |
+| `succeeded_by` | organisation → organisation | the date the duties passed; a body whose duties pass to another that is not its renaming |
+| `submitted_to` | any entity → organisation (a commission or inquiry) | the submission's date; the exhibit or brief in `note` |
 
 The older predicates widen where needed: `participated_in` takes every kind
 of organisation, and `lobbied` and `funded` take government bodies as
