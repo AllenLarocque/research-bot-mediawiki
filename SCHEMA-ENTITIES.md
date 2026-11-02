@@ -439,7 +439,8 @@ objects. Every row carries `sources=` and follows `RULES-FORESTRY-WIKI.md`.
   page, and no move of one. Mechanical bookkeeping is allowed there: a
   title-only rewrite (a row, a parameter or a link naming a page that was
   renamed, changed to its new title and nothing else), a redirect, and a
-  date precision set to what the stored date already says. A Nation is named, and an event involving it told,
+  date precision set to what the date as written already says. A Nation
+  is named, and an event involving it told,
   only as a cited source records it, the sentence or citation making clear
   whose record it is (Crown, company, court, the Nation's own); no
   statement about title, territory or consent except quoted and
