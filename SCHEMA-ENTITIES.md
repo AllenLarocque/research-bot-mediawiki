@@ -36,13 +36,19 @@ that industry's sector.
   `holding company`, `Crown corporation`, `trust`, `joint venture`,
   `co-operative` (families and estates are given no kind; they carry
   `controller_type`);
-- government: `ministry`, `department`, `branch`, `agency`, `commission`,
-  `tribunal`, `board`, `court`, `legislature`, `municipality`;
+- government: `ministry`, `department`, `branch`, `division`, `agency`,
+  `commission`, `tribunal`, `board`, `court`, `legislature`,
+  `municipality`;
 - labour: `union`, `union local`, `federation`, `union auxiliary`;
 - associations: `association`, `council`, `advocacy group`, `coalition`;
 - media and others: `newspaper`, `broadcaster`, `publisher`, `foundation`,
   `research institute`, `university`;
 - Nations: `Nation`, `tribal council`.
+
+`division` is a ministry division headed by an assistant deputy minister (the
+Office of the Chief Forester). An assistant deputy minister's title held with
+an office is one `held_office` row to the office, the title in its `note`; the
+division is not a second office.
 
 `event_type`: `strike`, `lockout`, `blockade`, `protest`, `court case`,
 `inquiry`, `commission`, `election`, `fire`, `disaster`, `closure`,
@@ -227,9 +233,12 @@ Body, with these exact headings:
 
 Each party is a `participated_in` row on the party's own page, with the
 event as object and `role` one of `union`, `employer`, `Crown`, `court`,
-`protesters`, `Nation`, `commission`, `witness`, written as the sources
-assign it and never as the wiki judges it. The party's page then lists the
-event, and the event's page lists the party. A party that organised the
+`protesters`, `Nation`, `commission`, `witness`, `litigant`, `intervener`,
+`mediator`, written as the sources assign it and never as the wiki judges
+it. A litigant's side at each court (petitioner, respondent, appellant) goes
+in the row's `note`. A party with no page, in a case or a strike, is named
+in Parties with a `questions.md` line and has no row. The party's page then
+lists the event, and the event's page lists the party. A party that organised the
 event, as a source says, is `organized_by` on the event's page as well.
 
 Disputes' tone rule applies to event pages in full. The page is
