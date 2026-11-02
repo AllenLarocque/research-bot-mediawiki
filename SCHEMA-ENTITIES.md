@@ -97,7 +97,12 @@ Body, with these exact headings:
 Titles of government bodies. A government body keeps one page per name,
 joined by dated `renamed_to` rows. It is titled by its name as printed, with
 its jurisdiction in brackets: `Ministry of Forests and Range (British
-Columbia)`. A body with no page is still a row's object, a document's
+Columbia)`. The bracket is added only where the name as printed does
+not say where the body is (operator, 2026-11-02): `Forest Practices Board
+(British Columbia)` takes it, and `Supreme Court of British Columbia`,
+`Court of Appeal for British Columbia`, `Supreme Court of Canada`, `BC Timber
+Sales` and `Legislative Assembly of British Columbia` (the legislature's
+current official name, its one title in every row and `issuer`) take none. A body with no page is still a row's object, a document's
 `issuer` or an office's `organisation`, as a red link in that form:
 `Department of Lands (British Columbia)`. A name is dated by the order in
 council that constituted it; the name an act continues is a separate fact,
@@ -153,7 +158,15 @@ common name only when a brief tells it to; the stack's rename pass at the
 deploy creates the rest. A merger is `merged_into`. Pages are moved to their
 official names by the stack's rename pass, never by a brief.
 
-A newspaper's page is the organisation; its articles stay Source pages.
+A publication is the exception (operator, 2026-11-02). A newspaper, journal
+or magazine is titled by its masthead name, the name it is published under
+as its masthead prints it, with no legal suffix; its earlier mastheads go in
+`former_names` with their dates, each with its redirect as above. The
+company that publishes it is its owner, an `owned_by` row on the
+publication's page where a source names a sole or majority owner over
+stated dates, and has a page of its own, under its legal name, only where
+one is needed. A newspaper's page is the organisation; its articles stay
+Source pages.
 
 ## Office
 

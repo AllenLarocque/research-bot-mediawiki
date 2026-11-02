@@ -47,7 +47,9 @@ the deploy creates the rest.
 The lead gives the official name in bold, then the other names; prose
 elsewhere uses the everyday name through a piped link (`STYLE.md` rule 12).
 Pages are moved to their official names by the stack's rename pass, never
-by a brief.
+by a brief. A newspaper or journal a company publishes is titled by its
+masthead, not by the company's legal name, and the company is its owner
+(`SCHEMA-ENTITIES.md`, "Names outside government"; operator, 2026-11-02).
 
 Body, with these exact headings:
 
@@ -194,8 +196,11 @@ Organization page with its own rows: tenures, stakes, receivership,
 lineage. The physical mill gets a facility page, titled by place and kind
 ("Terrace sawmill", "Prince George plywood mill", with the operator in
 brackets when that title is taken), and it carries the `owned_by` and
-`operated_by` rows. The two pages link to each other. Never put `owned_by`
-on an Organization page.
+`operated_by` rows. The two pages link to each other. Never put the mill's
+`owned_by` row on the company's Organization page. The rule is about a
+company and its mill: a newspaper's page carries `owned_by` its publishing
+company (operator, 2026-11-02), and a company's sole owner over stated
+dates stays an `owned_by` row ("Relationship rows that are spans").
 
 Relationships named in the text. Every relationship between two entities
 that History or Financial history states (a joint venture, a partner, a
