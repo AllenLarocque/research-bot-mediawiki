@@ -5,7 +5,8 @@ for. Time order holds inside every section. The infobox sets
 `schema=company-2026`. Companies only: First Nations, unions, Crown
 agencies and advocacy bodies are not written to this schema.
 
-Infobox (`{{Organization}}`): `name`, `org_type` (one of: integrated forest
+Infobox (`{{Organization}}`): `name` (the official legal name, below),
+`former_names`, `also_known_as`, `org_type` (one of: integrated forest
 products, lumber, pulp and paper, panels, logging, holding company, private
 equity fund, pension fund, sovereign fund, state enterprise, co-operative,
 trading, other), `seat` and `incorporated_in` (`Country` or
@@ -26,6 +27,24 @@ and `dissolved_date` (+precision), `status`, `schema=company-2026`. Leave
 they are unless the brief asks for them; their lists are in
 `SCHEMA-ENTITIES.md`. Who controls the company is never
 typed into the infobox: the infobox reads it from the analysis.
+
+Title and names. A company's page is titled by its official legal name with
+its legal suffix ("Limited", "Ltd.", "Inc." and so on): the current name if
+it still operates, the last if it closed. Which name is official is a
+sourced fact (a register record, an annual report, the *Gazette*, a statute
+or order, a licence document); with none, the page keeps its title and
+`questions.md` gets `Official name unknown: <title>: <what was tried>`.
+`name` is the official name. Every other name is kept: `former_names` lists
+earlier official names with their dates at the precision the source gives,
+`Name (start–end)` separated by
+semicolons, and `also_known_as` the names in common use, separated by
+semicolons. A company's earlier name lives in `former_names`, never on a
+page of its own. Each name has a redirect to the page unless another
+subject holds that title (`Name taken: <name>: <the page that holds it>`).
+The lead gives the official name in bold, then the other names; prose
+elsewhere uses the everyday name through a piped link (`STYLE.md` rule 12).
+Pages are moved to their official names by the stack's rename pass, never
+by a brief.
 
 Body, with these exact headings:
 
@@ -267,7 +286,10 @@ company or of its board with no roster ("He stepped down as chairman of the
 board in 2009"; "Chairman, Petro-Canada Inc."; "the present Chairman of
 Western") establishes the seat too: `seat=chair|office=chairman`, and a
 vice-chairman's `seat=vice-chair|office=vice-chairman` (operator's ruling,
-2026-10-23). An association's or council's chairman is the same.
+2026-10-23). An association's or council's chairman is the same. An
+honorary chairman holds no board seat unless the source also lists the
+person as a director; the post is told in prose, and no `{{Board seat}}` row
+records it.
 
 A row is a sighting, never a term. The source saw this person on this board
 at this date; it does not say when the seat began or ended. Write no start or

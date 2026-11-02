@@ -26,7 +26,7 @@ for an office, document, event or non-company organisation page, read
 - A comma in a Source page title splits a `sources=` list; do not use one.
 - A redundant Source page is superseded, never deleted: say what replaced it, move its citations and ledger rows, and leave the duplication visible; the duplicate checker reads that sentence.
 - A fetch failure is a fact about the day; it lives in the sidecar, never on a page.
-- The verification badge sits on the citation and counts who confirmed that the source supports what it is cited for. Changing a citation's source, pinpoint or quote starts its count over; rewording the sentence does not.
+- The verification badge sits on the citation and counts who confirmed that the source supports what it is cited for. Changing a citation's source, pinpoint or quote starts its count over; rewording the sentence does not. A relationship row's badge works the same way over what the row asserts; which fields that covers, and why the precisions are outside it, is in `SCHEMA-ENTITIES.md`, "Verification of a row".
 - `{{Claim}}` and `{{Inference}}` are retired. Never write either. A page that still carries one is rewritten under the schema, and `unwrap` removes them.
 
 ## Page shape
@@ -41,7 +41,7 @@ for an office, document, event or non-company organisation page, read
 
 ## Relationship rows
 
-- Predicate from the vocabulary, dates with `date_precision`, `sources=` naming Source pages.
+- Predicate from the vocabulary, dates with `date_precision` (and `start_date_precision` or `end_date_precision` where the two dates are known to different precisions; `SCHEMA-ENTITIES.md`, "Dates on a row"), `sources=` naming Source pages.
 - `ai-verified` needs two publishers; the Source title names the host, not the author, so read the citation field before counting.
 - A row's source must say what the row says; when a row matters, open what it cites.
 - Read what a row renders as, not what it was meant to say.
