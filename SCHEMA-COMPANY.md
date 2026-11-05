@@ -28,27 +28,54 @@ they are unless the brief asks for them; their lists are in
 `SCHEMA-ENTITIES.md`. Who controls the company is never
 typed into the infobox: the infobox reads it from the analysis.
 
-Title and names. A company's page is titled by its official legal name with
-its legal suffix ("Limited", "Ltd.", "Inc." and so on): the current name if
-it still operates, the last if it closed. Which name is official is a
-sourced fact (a register record, an annual report, the *Gazette*, a statute
-or order, a licence document); with none, the page keeps its title and
-`questions.md` gets `Official name unknown: <title>: <what was tried>`.
-`name` is the official name. Every other name is kept: `former_names` lists
-earlier official names with their dates at the precision the source gives,
-`Name (start–end)` separated by semicolons, and `also_known_as` the names
-in common use, separated by semicolons. A company's earlier name lives in
-`former_names`, never on a page of its own. Each name has a redirect to the
-page unless another subject holds that title: that name gets no redirect, a
-line in the page's `questions.md` (`Name taken: <name>: <the page that holds
-it>`), and the operator decides. The bot creates a redirect for an earlier
-or common name only when a brief tells it to; the stack's rename pass at
-the deploy creates the rest.
-The lead gives the official name in bold, then the other names; prose
-elsewhere uses the everyday name through a piped link (`STYLE.md` rule 12).
-Pages are moved to their official names by the stack's rename pass, never
-by a brief. A newspaper or journal a company publishes is titled by its
-masthead, not by the company's legal name, and the company is its owner
+Title and names. A company's page is titled by its common name (operator,
+2026-11-05): the name the held sources use most for it in its British
+Columbia forestry role. It carries no legal suffix unless a tiebreak below
+adds one (`Doman-Western Lumber`, `Skeena Cellulose`, `Canfor`).
+
+- The count is made, not guessed. For each candidate name, count the held
+  sources that name the company by it while describing its forestry in the
+  province; names that differ only in a legal suffix, "&" against "and",
+  or a leading "The" are one name. Record the counts and the sources in
+  the dossier's `names.md`, one line per name: the name, the count, the
+  sources. A name clearly leads when its count is at least half again the
+  next one's (9 against 6 leads; 8 against 6 does not).
+- Tiebreak 1, the longest-borne name. When no name clearly leads, the
+  title is the name the company bore longest while it held tenure or ran
+  mills in British Columbia, measured from the dated names in
+  `former_names` and its tenure and facility rows. BC Timber was Canadian
+  Cellulose Company, Limited (1973 to 1980 or 1981), BC Timber Ltd. (to
+  1984) and Westar Timber Ltd. (from 1984) while it held TFL 1 and TFL 23,
+  so, absent a clear count, it is titled by the Canadian Cellulose name.
+- Tiebreak 2, collisions. When that title is held by another subject, add
+  the legal suffix (`Weyerhaeuser Canada Ltd.` if `Weyerhaeuser Canada`
+  were taken); when that is also taken, a year bracket (`Western Forest
+  Products (1980)`).
+
+`name` (Full name) is the official legal name, current if the company
+still operates and last if it closed, with its source, so `name` and the
+title usually differ. Which name is official is a sourced fact (a register
+record, an annual report, the *Gazette*, a statute or order, a licence
+document); with none, `name` stays as it is and `questions.md` gets
+`Official name unknown: <title>: <what was tried>`. Every other name is
+kept: `former_names` lists earlier official names with their dates at the
+precision the source gives, `Name (start–end)` separated by semicolons, and
+`also_known_as` the names in common use, separated by semicolons. A
+company's earlier name lives in `former_names`, never on a page of its own.
+Each name has a redirect to the page unless another subject holds that
+title: that name gets no redirect, a line in the page's `questions.md`
+(`Name taken: <name>: <the page that holds it>`), and the operator decides.
+The bot creates a redirect for an earlier or common name only when a brief
+tells it to; the dev side's names backfill creates the rest.
+The lead names the company in bold by its title's name, then gives its
+official name, then its earlier official names with their years, then any
+other names in common use: "'''Doman-Western Lumber''' (officially WFP
+Western Lumber Ltd. from 2005; earlier 472138 B.C. Ltd. and 4018982 Canada
+Inc.) was …". Prose then uses the title's name, so most links need no pipe
+(`STYLE.md` rule 12). A page is moved to the title its count gives only by
+the stack's rename pass, from a titles list the operator approves row by
+row, never by a brief. A newspaper or journal a company publishes is titled
+by its masthead, not by the company's name, and the company is its owner
 (`SCHEMA-ENTITIES.md`, "Names outside government"; operator, 2026-11-02).
 
 Body, with these exact headings:
@@ -197,10 +224,40 @@ lineage. The physical mill gets a facility page, titled by place and kind
 ("Terrace sawmill", "Prince George plywood mill", with the operator in
 brackets when that title is taken), and it carries the `owned_by` and
 `operated_by` rows. The two pages link to each other. Never put the mill's
-`owned_by` row on the company's Organization page. The rule is about a
-company and its mill: a newspaper's page carries `owned_by` its publishing
-company (operator, 2026-11-02), and a company's sole owner over stated
-dates stays an `owned_by` row ("Relationship rows that are spans").
+`owned_by` row on the company's Organization page.
+
+A company's owner is not an `owned_by` row either (operator, 2026-11-05).
+The Ownership and control rows carry who owned and controlled a company;
+the control analysis reads them and does not read `owned_by`, so an owner
+written only as `owned_by` is missing from it. An `owned_by` row found on a
+company's Organization page, sole owner or majority owner, is converted,
+then removed, in one save of that page:
+
+- Its facts become a `{{Control claim}}` from the same sources, naming the
+  owner as `controller` and keeping the row's dates (`start_date`,
+  `end_date` and their precisions, under the rules of "Ownership and
+  control"), with the `basis` its sources support (a government owner is
+  `state`; else `not stated` unless they give votes, a board or an
+  agreement).
+- And a `{{Stake}}` row from the same sources, `as_of` the date a source
+  observes the holding (the row's start date where the source dates the
+  holding from it), where a source gives a figure: all the shares is
+  `equity_pct=100`. A source that gives no figure gets no Stake row (a
+  Stake with no figure is a `stakecheck` finding); the Control claim
+  carries it alone.
+- The row's note keeps its qualification ("majority owner, not sole
+  owner"): in the rows where a field holds it (`equity_pct`, `approx`,
+  `basis`), and otherwise in a cited sentence of the section's short prose.
+- The end of the holding is carried by the row that records the change (a
+  sale's `subsidiary_of` on this page, or the buyer's `acquired`), or,
+  where no such row exists, by that cited sentence. No row is written on
+  another page to carry it.
+- Then the `owned_by` row is removed.
+
+A publication's page is the exception: it carries `owned_by` its
+publishing company (operator, 2026-11-02; `SCHEMA-ENTITIES.md`, "Names
+outside government"). A First Nation's page, or a company a Nation owns or
+runs, is not converted while the First Nations hold stands.
 
 Relationships named in the text. Every relationship between two entities
 that History or Financial history states (a joint venture, a partner, a
@@ -297,7 +354,15 @@ vice-chairman's `seat=vice-chair|office=vice-chairman` (operator's ruling,
 2026-10-23). An association's or council's chairman is the same. An
 honorary chairman holds no board seat unless the source also lists the
 person as a director; the post is told in prose, and no `{{Board seat}}` row
-records it.
+records it. A list headed "Directors" lists a director (operator,
+2026-11-05): a person in a roster the company heads "Directors" is listed
+as a director, whatever title the roster gives beside the name, so George
+A. Pope, Jr., "Honorary Chairman of the Board" in Pope & Talbot's 1974
+directors list, gets a `{{Board seat}}` row with `seat=director`, and the
+honorary post is told in prose. An honorary title the person holds
+elsewhere (J. A. Taylor's "Honorary Chairman, Canada Trust" in MacMillan
+Bloedel's 1979 report) is the person's other post, not a seat on this
+company's board.
 
 A row is a sighting, never a term. The source saw this person on this board
 at this date; it does not say when the seat began or ended. Write no start or
@@ -374,6 +439,22 @@ be Tomoaki Endo because the board, surname and initial agree within ten years."
 A pair that fails any test stays two pages, with a line in the company's `questions.md` as before. A
 spelling that differs (Noboyuki and Nobuyuki) is not an initial and is not
 merged by this rule.
+
+Same person, different boards (operator, 2026-11-05). The initials rule
+covers one company's board. Across boards, a matching name, full or
+initialled, is never enough: two sightings on different companies' boards
+are one person only when a source names the person with something that
+ties the two sightings together (an employer, an office, a residence or a
+career move). Then they merge as the initials rule merges: one Person page
+under the fullest name a source gives, the other page a redirect to it,
+every row's `person` naming the kept page, and one sentence on it citing
+the linking source. Otherwise they stay two pages, with a `questions.md`
+line naming the source that would settle it. A false merge pools two
+people's seats, and the boardroom network is drawn from exactly those rows.
+B. I. Howe and Bruce I. Howe are one person by BCRIC's Annual Report 1980
+(Bruce Howe came "from MacMillan Bloedel where he was President and Chief
+Operating Officer"); R. G. Williston and Ray Williston, and William Brown
+and William C. Brown, stay two pages until a source links them.
 
 `nominee_of` only where the source says the shareholder nominated the
 director; sharing a surname or sitting for the same company is not enough. A
@@ -460,9 +541,11 @@ honorific, a pronoun or a statement), never from a name: `woman`, `man`, or
 the source's own word, cited to the source whose words give it. Where no
 source says, leave it out.
 
-Relationship rows that are spans. An acquisition, a merger, a rename or a
-sole owner over stated dates stays a relationship row (`acquired`,
-`merged_into`, `renamed_to`, `owned_by`), because a source gives its span.
+Relationship rows that are spans. An acquisition, a merger or a rename
+stays a relationship row (`acquired`, `merged_into`, `renamed_to`), because
+a source gives its span. A company's owner, sole or not, is written as
+Stake and Control claim rows, and an `owned_by` row on its page is
+converted ("A company and its mill").
 A `holds_shares_in` row is converted to `{{Stake}}` rows on the company's
 page, one per date its sources observe, and the relationship row removed.
 

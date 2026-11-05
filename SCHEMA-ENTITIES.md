@@ -137,16 +137,34 @@ that made a submission to it is a `submitted_to` row, not
 `participated_in`. Court pages (`sector=government`, `kind=court`) are made
 by the governance widening.
 
-Names outside government. A company, union, association, NGO or newspaper
-has one page, whatever names it has borne, titled by its official legal
-name with its legal suffix (`Canfor Corporation`, `Celgar Limited`, `Westar
-Timber Ltd.`, if their sources confirm those names; these are examples of
-the form, not confirmed titles): the current name if it still operates, its last name if it
-closed. Which name is official is a sourced fact, from a register record,
-an annual report, the *Gazette*, a statute or order, or a licence document;
-with no source for it the page keeps its title and a `questions.md` line
-records the gap (`Official name unknown: <title>: <what was tried>`). `name`
-is that official name. `former_names` lists its earlier official names,
+Names outside government. A company, union, association or NGO has one
+page, whatever names it has borne, titled by its common name (operator,
+2026-11-05): the name the held sources use most for it in its British
+Columbia forestry role, with no legal suffix unless a tiebreak below adds
+one (`Doman-Western Lumber`, `Skeena Cellulose`, `Canfor`). The count is
+made, not guessed: for each candidate name, count the held sources that
+name the organisation by it while describing its forestry in the province;
+names that differ only in a legal suffix, "&" against "and", or a leading
+"The" are one name. The counts and the sources go in the dossier's
+`names.md`, one line per name: the name, the count, the sources. A name
+clearly leads when its count is at least half again the next one's. When
+none does, the title is the name the organisation bore longest while it
+held tenure or ran mills in British Columbia, measured from the dated names
+in `former_names` and its tenure and facility rows (tiebreak 1). When that
+title is held by another subject, the legal suffix is added (`Weyerhaeuser
+Canada Ltd.` if `Weyerhaeuser Canada` were taken), and when that is also
+taken, a year bracket (`Western Forest Products (1980)`) (tiebreak 2).
+`SCHEMA-COMPANY.md`, "Title and names", gives the worked example. A page
+is moved to that title only by the stack's rename pass, from a titles list
+the operator approves row by row, never by a brief.
+
+`name` (Full name) is the official legal name, current if the organisation
+still operates and last if it closed, with its source, so `name` and the
+title usually differ. Which name is official is a sourced fact, from a
+register record, an annual report, the *Gazette*, a statute or order, or a
+licence document; with no source for it `name` stays as it is and a
+`questions.md` line records the gap (`Official name unknown: <title>: <what
+was tried>`). `former_names` lists its earlier official names,
 each with its dates at the precision the source gives, `Name (start–end)`,
 separated by semicolons (`Canadian Cellulose Company Limited (1973–1981)`);
 `also_known_as` lists the names in common use, separated by semicolons
@@ -154,9 +172,13 @@ separated by semicolons (`Canadian Cellulose Company Limited (1973–1981)`);
 one whose title another subject holds: that gets no redirect and a line in
 the page's `questions.md` (`Name taken: <name>: <the page that holds it>`),
 and the operator decides. The bot creates a redirect for an earlier or
-common name only when a brief tells it to; the stack's rename pass at the
-deploy creates the rest. A merger is `merged_into`. Pages are moved to their
-official names by the stack's rename pass, never by a brief.
+common name only when a brief tells it to; the dev side's names backfill
+creates the rest. A merger is `merged_into`. The lead names the
+organisation in bold by its title's name, then gives its official name,
+then its earlier official names with their years, then any other names in
+common use (`STYLE.md` rule 12). An `owned_by` row on an Organization page
+other than a publication's is converted to Stake and Control claim rows and
+removed, as `SCHEMA-COMPANY.md` says ("A company and its mill").
 
 A publication is the exception (operator, 2026-11-02). A newspaper, journal
 or magazine is titled by its masthead name, the name it is published under
