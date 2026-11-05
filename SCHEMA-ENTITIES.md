@@ -186,8 +186,8 @@ as its masthead prints it, with no legal suffix; its earlier mastheads go in
 `former_names` with their dates, each with its redirect as above. The
 company that publishes it is its owner, an `owned_by` row on the
 publication's page where a source names a sole or majority owner over
-stated dates, and has a page of its own, under its legal name, only where
-one is needed. A newspaper's page is the organisation; its articles stay
+stated dates, and has a page of its own, titled by its common name as
+above, only where one is needed. A newspaper's page is the organisation; its articles stay
 Source pages.
 
 ## Office
