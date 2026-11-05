@@ -168,12 +168,13 @@ was tried>`). `former_names` lists its earlier official names,
 each with its dates at the precision the source gives, `Name (start–end)`,
 separated by semicolons (`Canadian Cellulose Company Limited (1973–1981)`);
 `also_known_as` lists the names in common use, separated by semicolons
-(`Canfor; Cancel`). Each of those names has a redirect to the page, except
-one whose title another subject holds: that gets no redirect and a line in
+(`Canfor; Cancel`). Each of those names, and the official name in `name`
+where it differs from the title (controller, 2026-11-05), has a redirect
+to the page, except one whose title another subject holds: that gets no redirect and a line in
 the page's `questions.md` (`Name taken: <name>: <the page that holds it>`),
-and the operator decides. The bot creates a redirect for an earlier or
-common name only when a brief tells it to; the dev side's names backfill
-creates the rest. A merger is `merged_into`. The lead names the
+and the operator decides. The bot creates a redirect for an earlier, common or official name only
+when a brief tells it to; the dev side creates the rest (its names
+backfill for `former_names` and `also_known_as`). A merger is `merged_into`. The lead names the
 organisation in bold by its title's name, then gives its official name,
 then its earlier official names with their years, then any other names in
 common use (`STYLE.md` rule 12). An `owned_by` row on an Organization page

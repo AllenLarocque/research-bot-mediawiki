@@ -62,11 +62,13 @@ kept: `former_names` lists earlier official names with their dates at the
 precision the source gives, `Name (start–end)` separated by semicolons, and
 `also_known_as` the names in common use, separated by semicolons. A
 company's earlier name lives in `former_names`, never on a page of its own.
-Each name has a redirect to the page unless another subject holds that
-title: that name gets no redirect, a line in the page's `questions.md`
+Each of those names, and the official name in `name` where it differs
+from the title (controller, 2026-11-05), has a redirect to the page unless
+another subject holds that title: that name gets no redirect, a line in the page's `questions.md`
 (`Name taken: <name>: <the page that holds it>`), and the operator decides.
-The bot creates a redirect for an earlier or common name only when a brief
-tells it to; the dev side's names backfill creates the rest.
+The bot creates a redirect for an earlier, common or official name only
+when a brief tells it to; the dev side creates the rest (its names
+backfill for `former_names` and `also_known_as`).
 The lead names the company in bold by its title's name, then gives its
 official name, then its earlier official names with their years, then any
 other names in common use: "'''Doman-Western Lumber''' (officially WFP
@@ -252,6 +254,11 @@ then removed, in one save of that page:
   sale's `subsidiary_of` on this page, or the buyer's `acquired`), or,
   where no such row exists, by that cited sentence. No row is written on
   another page to carry it.
+- A Relationship row may carry `sources=` with no quote; the Control
+  claim and the Stake row each cite with a quote, found in the source's
+  capture (`quotegate` checks it). The converted rows carry no
+  verification, so the brief that converts a row lists its verification
+  state before, for it to be verified again.
 - Then the `owned_by` row is removed.
 
 A publication's page is the exception: it carries `owned_by` its
