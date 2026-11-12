@@ -30,8 +30,18 @@ typed into the infobox: the infobox reads it from the analysis.
 
 Title and names. A company's page is titled by its common name (operator,
 2026-11-05): the name the held sources use most for it in its British
-Columbia forestry role. It carries no legal suffix unless a tiebreak below
-adds one (`Doman-Western Lumber`, `Skeena Cellulose`, `Canfor`).
+Columbia forestry role. Its ending is written by three rules (operator,
+2026-11-12). A word that is part of the name stays: "Company",
+"Corporation", "& Co." (`Elk River Timber Company`, `Mead Corporation`,
+`British Columbia Resources Investment Corporation`). A legal-form tag
+comes off: "Ltd.", "Limited", "Inc.", "LLC" (`Doman-Western Lumber`,
+`Tolko Forest Products`, `Skeena Cellulose`). The tag stays where the name
+without it would be a number (`351399 B.C. Ltd`), a bare word that does
+not identify the company alone (`Fraser Inc.`, `FIL Limited`), or a title
+another page holds or wants (`Brascan Limited`, beside `Brascan
+Corporation`). For the count below, names that differ only in such an
+ending are still one name; these rules say only how the winning name is
+written as a title.
 
 - The count is made, not guessed. For each candidate name, count the held
   sources that name the company by it while describing its forestry in the
