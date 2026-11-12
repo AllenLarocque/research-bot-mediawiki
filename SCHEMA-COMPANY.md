@@ -36,14 +36,36 @@ adds one (`Doman-Western Lumber`, `Skeena Cellulose`, `Canfor`).
 - The count is made, not guessed. For each candidate name, count the held
   sources that name the company by it while describing its forestry in the
   province; names that differ only in a legal suffix, "&" against "and",
-  or a leading "The" are one name. Record the counts and the sources in
+  a leading "The", or their punctuation (stops and commas: "BC Mills" and
+  "B.C. Mills", "Letko, Brosseau" and "Letko Brosseau") are one name. A
+  short form of a name counts as a name of its own when sources other than
+  the company's own use it ("Conifex" beside "Conifex Timber"; "BCFP");
+  it does not when only the company's own document defines it
+  ("Ainsworth" in one prospectus), and it is never the title when it does
+  not say alone which subject it means (`IWA Local 1-80`, not "Local
+  1-80"; `Nanaimo Forest Products`, not "Harmac Pacific", which is also
+  the mill and an earlier company) (operator, 2026-11-12). A page with no
+  held source naming it in a British Columbia forestry role (an investor,
+  an out-of-province company, a national association) is not counted on
+  its business elsewhere: its title stays, `kept`. Record the counts and the sources in
   the dossier's `names.md`, one line per name: the name, the count, the
   sources. A name clearly leads when its count is at least half again the
   next one's (9 against 6 leads; 8 against 6 does not).
 - Tiebreak 1, the longest-borne name. When no name clearly leads, the
   title is the name the company bore longest while it held tenure or ran
   mills in British Columbia, measured from the dated names in
-  `former_names` and its tenure and facility rows. BC Timber was Canadian
+  `former_names` and its tenure and facility rows, and counting a trade
+  name the company used for itself from the date the sources show it
+  adopted it, not only the names on its certificate (operator,
+  2026-11-12: Interfor adopted INTERFOR in 1988, so `Interfor`, 38 years,
+  and not International Forest Products Limited's 26). Where the names ran
+  over the same years and the dates cannot separate them, the page keeps
+  the title it has: a move needs a reason (`TimberWest`, with TimberWest
+  Forest 47 against TimberWest 44; `Triangle Pacific`, an exact tie).
+  `Canfor` is the operator's exception (2026-11-12): the count is 94
+  against Canadian Forest Products' 93 and the tiebreak gives the
+  operating company's name, but the page is the group, and stays `Canfor`
+  until the holding and the operating company are split. BC Timber was Canadian
   Cellulose Company, Limited (1973 to 1980 or 1981), BC Timber Ltd. (to
   1984) and Westar Timber Ltd. (from 1984) while it held TFL 1 and TFL 23,
   so, absent a clear count, it is titled by the Canadian Cellulose name.
