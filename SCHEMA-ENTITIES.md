@@ -36,16 +36,18 @@ that industry's sector.
   `holding company`, `Crown corporation`, `trust`, `joint venture`,
   `co-operative` (families and estates are given no kind; they carry
   `controller_type`);
-- government: `ministry`, `department`, `branch`, `division`, `agency`,
-  `commission`, `tribunal`, `board`, `court`, `legislature`,
-  `municipality`;
+- government: `government`, `ministry`, `department`, `branch`,
+  `division`, `agency`, `commission`, `tribunal`, `board`, `court`,
+  `legislature`, `municipality`;
 - labour: `union`, `union local`, `federation`, `union auxiliary`;
 - associations: `association`, `council`, `advocacy group`, `coalition`;
 - media and others: `newspaper`, `broadcaster`, `publisher`, `foundation`,
   `research institute`, `university`;
 - Nations: `Nation`, `tribal council`.
 
-`division` is a ministry division headed by an assistant deputy minister (the
+`government` is a government as a whole (the Government of British
+Columbia), which no ministry, agency or legislature is (operator,
+2026-11-12). `division` is a ministry division headed by an assistant deputy minister (the
 Office of the Chief Forester). An assistant deputy minister's title held with
 an office is one `held_office` row to the office, the title in its `note`; the
 division is not a second office.
@@ -60,8 +62,9 @@ The older capitalised types ("Strike", "Forest fire", "Royal commission")
 are mapped to these by the stack's backfill; an event page still carrying
 one is left for it.
 
-`doc_kind`: `act`, `regulation`, `decision`, `report`, `agreement`, `work`.
-A `report` includes a royal commission's report; an `agreement` covers
+`doc_kind`: `act`, `regulation`, `order`, `decision`, `report`, `agreement`, `work`.
+An `order` is an order in council or a minister's order (operator,
+2026-11-12); a `report` includes a royal commission's report; an `agreement` covers
 collective agreements, treaties and memoranda; a `work` is a book or
 article.
 
@@ -241,8 +244,8 @@ government bodies" says.
 
 ## Document
 
-One page per governing or landmark text: an act, a regulation, a landmark
-decision, a report, an agreement or a work. Titles:
+One page per governing or landmark text: an act, a regulation, an order, a
+landmark decision, a report, an agreement or a work. Titles:
 
 - an act as enacted, with its year: `Forest Act (1912)`, `Forest Act
   (1978)`, `Forest Practices Code of British Columbia Act (1994)`, `Forest
@@ -253,7 +256,13 @@ decision, a report, an agreement or a work. Titles:
   subject (below for an amending act with no page). A statute revision
   (R.S.B.C. 1936, 1960, 1996) is not a Document: its text is a Source page
   `text_of=` the act as enacted, and an act repealed under a later name or
-  a revision's chapter is still the enacted act's repeal;
+  a revision's chapter is still the enacted act's repeal. A reference to an
+  act in a later revision therefore links to the enacted act's page (the
+  Forest Act, R.S.B.C. 1996, c. 157, is `Forest Act (1978)`), and a source's
+  bare "the Forest Act" links to the act in force on the date the source
+  speaks of, `Forest Act (1912)` or `Forest Act (1978)`; where that date
+  does not settle which act is meant, it is left unlinked and a
+  `questions.md` line says so (operator, 2026-11-12);
 - an order in council: numbered, `Order in Council 62 (2011)`, the form the
   corpus's Source pages use (never a slash or a hyphen for the year); known
   only by its date, `Order in Council of 31 December 1943`;
