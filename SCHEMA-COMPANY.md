@@ -37,11 +37,17 @@ Columbia forestry role. Its ending is written by three rules (operator,
 comes off: "Ltd.", "Limited", "Inc.", "LLC" (`Doman-Western Lumber`,
 `Tolko Forest Products`, `Skeena Cellulose`). The tag stays where the name
 without it would be a number (`351399 B.C. Ltd`), a bare word that does
-not identify the company alone (`Fraser Inc.`, `FIL Limited`), or a title
-another page holds or wants (`Brascan Limited`, beside `Brascan
-Corporation`). For the count below, names that differ only in such an
-ending are still one name; these rules say only how the winning name is
-written as a title.
+not identify the company alone (`Fraser Inc.`, `FIL Limited`), a name that
+could be a person's (`S. M. Simpson Ltd.`), or a title another page holds
+or wants (`Brascan Limited`, beside `Brascan Corporation`). For the count
+below, names that differ only in such an ending are still one name; these
+rules say only how the winning name is written as a title. They are for a
+new page's title: a page that exists is not moved only to change its
+ending, since most titles read well enough with their suffix. And a page
+that exists is retitled by the count only when the leading name is in at
+least five held sources; with fewer, the count is recorded in `names.md`
+and the title waits for more (operator, 2026-11-12). The infobox `name`
+keeps the full legal name in every case.
 
 - The count is made, not guessed. For each candidate name, count the held
   sources that name the company by it while describing its forestry in the
