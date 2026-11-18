@@ -122,7 +122,7 @@ A licence held by a company for a limited partnership (its general partner
 or nominee) is one page, the partnership's (operator, 2026-11-17): it
 carries the licence's `holds_tenure` row and the partnership's Stake rows,
 names the company in its lead, and the company's name is a redirect to it
-(as [[Northwest Squamish Forestry Limited Partnership]] already is). A
+(as for [[Northwest Squamish Forestry Limited Partnership]]). A
 company that does business of its own beside holding the licence keeps its
 own page.
 
