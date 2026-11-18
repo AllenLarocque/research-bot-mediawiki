@@ -318,7 +318,11 @@ stated dates (operator, 2026-11-02, widened to broadcasters 2026-11-17;
 `SCHEMA-ENTITIES.md`, "Names outside government"). Stake and Control claim
 rows are written one level up, on the owning company's own page, which is
 where the control analysis follows its owners; an outlet's own page carries
-no Stake or Control claim row.
+no Stake or Control claim row. The owner may be a person, where a source
+says the person owned the outlet in their own name, or a government, for an
+outlet that is a Crown corporation (the CBC's owner is the Government of
+Canada); the row names the outlet's direct owner, never that owner's parent
+or controller.
 
 Relationships named in the text. Every relationship between two entities
 that History or Financial history states (a joint venture, a partner, a

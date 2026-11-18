@@ -208,7 +208,7 @@ broadcaster is titled by the rule above. A media outlet's page (a
 newspaper, journal, magazine or broadcaster, the CBC and Global News
 included) carries its ownership as dated `owned_by` rows naming the company
 that owns it, where a source names a sole or majority owner over stated
-dates (operator, 2026-11-02, widened to broadcasters 2026-11-17). Stake and
+dates (operator, 2026-11-02, widened to broadcasters 2026-11-17). The owner may be a person, where a source says the person owned the outlet in their own name, or a government, for an outlet that is a Crown corporation (the CBC's owner is the Government of Canada); the row names the outlet's direct owner, never that owner's parent or controller. Stake and
 Control claim rows are written one level up, on the owning company's own
 page, which is where the control analysis follows its owners; an outlet's
 own page carries no Stake or Control claim row. The owning company has a
