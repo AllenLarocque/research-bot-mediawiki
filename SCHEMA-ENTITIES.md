@@ -68,6 +68,17 @@ An `order` is an order in council or a minister's order (operator,
 collective agreements, treaties and memoranda; a `work` is a book or
 article.
 
+A licence recorded as a row. A licence with no page of its own is one
+`{{Licence row}}` in the table of a list page (`First Nations woodland
+licences`), not a page: `licence` (the number as printed), `licence_kind`,
+`page` (the licence's own page, only where it has one), `holder_page` (the
+holder's page, where the wiki has one) or `holder` (the name as printed,
+where it has none), `unit`, `aac_m3`, `area_ha`, `as_of`, `precision`, and
+`source` as a `{{Cite}}` with no `<ref>` tag. `Template:Licence row` gives
+the table's header line. A changed figure is a second row with its own
+date, never an edit of the first. `licence_kind`: `First Nations woodland
+licence`.
+
 `org_type` stays, with a narrower meaning: on a forest-industry company it
 is the industry sub-type `SCHEMA-COMPANY.md` lists. Any other kind of
 organisation leaves it blank once `sector` and `kind` are filled.
