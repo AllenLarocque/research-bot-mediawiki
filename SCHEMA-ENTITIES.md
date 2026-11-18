@@ -41,8 +41,8 @@ that industry's sector.
   `legislature`, `municipality`;
 - labour: `union`, `union local`, `federation`, `union auxiliary`;
 - associations: `association`, `council`, `advocacy group`, `coalition`;
-- media and others: `newspaper`, `broadcaster`, `publisher`, `foundation`,
-  `research institute`, `university`;
+- media and others: `newspaper`, `magazine`, `broadcaster`, `publisher`,
+  `foundation`, `land trust`, `research institute`, `university`;
 - Nations: `Nation`, `tribal council`.
 
 `government` is a government as a whole (the Government of British
@@ -51,6 +51,11 @@ Columbia), which no ministry, agency or legislature is (operator,
 Office of the Chief Forester). An assistant deputy minister's title held with
 an office is one `held_office` row to the office, the title in its `note`; the
 division is not a second office.
+
+`kind` is the wiki's classification, not a quotation (operator,
+2026-11-16): the sources must describe what the body does, and need not
+use the list's word. A trade journal is a `magazine`; a body that holds
+land or covenants to conserve it is a `land trust`.
 
 `event_type`: `strike`, `lockout`, `blockade`, `protest`, `court case`,
 `inquiry`, `commission`, `election`, `fire`, `disaster`, `closure`,
@@ -192,18 +197,30 @@ backfill for `former_names` and `also_known_as`). A merger is `merged_into`. The
 organisation in bold by its title's name, then gives its official name,
 then its earlier official names with their years, then any other names in
 common use (`STYLE.md` rule 12). An `owned_by` row on an Organization page
-other than a publication's is converted to Stake and Control claim rows and
+other than a media outlet's is converted to Stake and Control claim rows and
 removed, as `SCHEMA-COMPANY.md` says ("A company and its mill").
 
-A publication is the exception (operator, 2026-11-02). A newspaper, journal
-or magazine is titled by its masthead name, the name it is published under
+A media outlet is the exception. A newspaper, journal or magazine is titled
+by its masthead name (operator, 2026-11-02), the name it is published under
 as its masthead prints it, with no legal suffix; its earlier mastheads go in
-`former_names` with their dates, each with its redirect as above. The
-company that publishes it is its owner, an `owned_by` row on the
-publication's page where a source names a sole or majority owner over
-stated dates, and has a page of its own, titled by its common name as
-above, only where one is needed. A newspaper's page is the organisation; its articles stay
-Source pages.
+`former_names` with their dates, each with its redirect as above. A
+broadcaster is titled by the rule above. A media outlet's page (a
+newspaper, journal, magazine or broadcaster, the CBC and Global News
+included) carries its ownership as dated `owned_by` rows naming the company
+that owns it, where a source names a sole or majority owner over stated
+dates (operator, 2026-11-02, widened to broadcasters 2026-11-17). Stake and
+Control claim rows are written one level up, on the owning company's own
+page, which is where the control analysis follows its owners; an outlet's
+own page carries no Stake or Control claim row. The owning company has a
+page of its own, titled by its common name as above, only where one is
+needed. A newspaper's page is the organisation; its articles stay Source
+pages.
+
+A media outlet's History is its own (operator, 2026-11-16): its founding,
+its mastheads or names, its owners and their dates, mergers and closures,
+its publishers and editors, its format and frequency. What it reported is
+not its history: a forestry event or company the outlet covered is told on
+that event's or company's page, the outlet's article cited there.
 
 ## Office
 
@@ -487,22 +504,26 @@ objects. Every row carries `sources=` and follows `RULES-FORESTRY-WIKI.md`.
   document, its `issuer` the writer, linked to the Source pages that
   capture it by their `text_of`.
 - First Nations. `sector=First Nation` and `kind=Nation` or `tribal
-  council`, with treaties as `agreement` documents. These values are
-  defined but not yet used: until `ForestWiki:First Nations and Indigenous
-  knowledge` is settled with the operator in a session of its own, write
-  no content on a First Nation's page or on a company a Nation owns or
-  runs: no prose, no `sector` or `kind`, no infobox value, no new such
-  page, and no move of one. Mechanical bookkeeping is allowed there: a
-  title-only rewrite (a row, a parameter or a link naming a page that was
-  renamed, changed to its new title and nothing else), a redirect, and a
-  date precision set to what the date as written already says. A Nation
-  is named, and an event involving it told,
+  council`, with treaties as `agreement` documents. The hold on them is
+  not a ban (operator, 2026-11-16). Until `ForestWiki:First Nations and
+  Indigenous knowledge` is settled with the operator in a session of its
+  own, write no new prose about a Nation itself (its governance, territory
+  or history) on its own page. A company or partnership a Nation owns is
+  written like any company. A Nation's own page gets upkeep: a citation
+  found for a sentence or an uncited sentence removed, `sector`, `kind` and
+  `controller_type` set, a redirect, a title-only rewrite (a row, a
+  parameter or a link naming a page that was renamed, changed to its new
+  title and nothing else), a date precision set to what the date as
+  written already says; and a placeholder Nation page (infobox and one
+  cited lead sentence) may be made where a row needs one as its object.
+  A Nation is named, and an event involving it told,
   only as a cited source records it, the sentence or citation making clear
   whose record it is (Crown, company, court, the Nation's own); no
   statement about title, territory or consent except quoted and
   attributed; link a Nation's existing page. A treaty, a court's decision
   or a Nation's role in an event is written on the document's or event's
-  page under that rule, and the Nation's own page is left as it is.
+  page under that rule, and the Nation's own page gets no new prose about
+  the Nation.
 
 No "Open questions" section and no "No source found gives X" sentence: what
 is not known goes in the dossier's `questions.md` (STYLE rule 8).

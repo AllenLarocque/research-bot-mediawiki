@@ -19,7 +19,7 @@ before the slash; the country is its common short name with no commas:
 recognises are TSX, TSXV, VSE, ME, CSE, NYSE, NASDAQ, AMEX, TSE, LSE, SGX
 and HKEX; a widely held company listed only elsewhere is placed by its
 seat),
-`controller_type` (only when control ends at
+`controller_type` (only when ownership or control ends at
 this entity: family, individual, private equity fund, pension fund,
 sovereign fund, state, co-operative, First Nation, other; never `widely held`: the analysis decides whether a company is widely held year by year), `founded_date`
 and `dissolved_date` (+precision), `status`, `schema=company-2026`. Leave
@@ -118,6 +118,14 @@ row, never by a brief. A newspaper or journal a company publishes is titled
 by its masthead, not by the company's name, and the company is its owner
 (`SCHEMA-ENTITIES.md`, "Names outside government"; operator, 2026-11-02).
 
+A licence held by a company for a limited partnership (its general partner
+or nominee) is one page, the partnership's (operator, 2026-11-17): it
+carries the licence's `holds_tenure` row and the partnership's Stake rows,
+names the company in its lead, and the company's name is a redirect to it
+(as [[Northwest Squamish Forestry Limited Partnership]] already is). A
+company that does business of its own beside holding the licence keeps its
+own page.
+
 Body, with these exact headings:
 
 1. (no heading) Lead: one paragraph — what the company is or was, where,
@@ -150,7 +158,11 @@ Body, with these exact headings:
    - One `{{Stake|holder=|as_of=|precision=|equity_pct=|voting_pct=|share_class=|shares=|approx=|source=}}`
      per holder per source observation, then `{{Stake chart}}`. A stake is
      an observation at a date: a proxy circular listing three holders is
-     three rows with its date. Never a span. Every row has `as_of`.
+     three rows with its date. Never a span. Every row has `as_of`. A
+     statement on a web page that carries no date of its own is dated by
+     the page's capture: `as_of` is the capture date, at `precision=day`
+     (operator, 2026-11-17); a Control claim from such a page takes the
+     same `as_of`, at `as_of_precision=day`.
      `equity_pct` and `voting_pct`
      are digits (`18.4`); give `voting_pct` only when the source gives
      votes. `source` holds `{{Cite|…|quote=…}}` with no `<ref>`.
@@ -299,10 +311,14 @@ then removed, in one save of that page:
   state before, for it to be verified again.
 - Then the `owned_by` row is removed.
 
-A publication's page is the exception: it carries `owned_by` its
-publishing company (operator, 2026-11-02; `SCHEMA-ENTITIES.md`, "Names
-outside government"). A First Nation's page, or a company a Nation owns or
-runs, is not converted while the First Nations hold stands.
+A media outlet's page (a newspaper, journal, magazine or broadcaster) is
+the exception: it carries its ownership as dated `owned_by` rows naming the
+company that owns it, where a source names a sole or majority owner over
+stated dates (operator, 2026-11-02, widened to broadcasters 2026-11-17;
+`SCHEMA-ENTITIES.md`, "Names outside government"). Stake and Control claim
+rows are written one level up, on the owning company's own page, which is
+where the control analysis follows its owners; an outlet's own page carries
+no Stake or Control claim row.
 
 Relationships named in the text. Every relationship between two entities
 that History or Financial history states (a joint venture, a partner, a
@@ -324,7 +340,7 @@ Marchak, Drushka, Mackay, theses); the press (the BC newspapers the corpus
 already uses, trade press such as the *Truck Logger* and *BC Lumberman*);
 union and labour records; government reports and royal commissions; BC
 Archives and university special collections finding aids, where they can be
-reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). A Nation is named, and an event involving it told, only as a cited source records it, the sentence or citation making clear whose record it is (Crown, company, court, the Nation's own); no statement about title, territory or consent except quoted and attributed; link a Nation's existing page, and write no content on a First Nation's page or on a company a Nation owns or runs (no prose, no `sector` or `kind`, no infobox value, no new such page, no move of one) until `ForestWiki:First Nations and Indigenous knowledge` is settled in a session of its own; mechanical bookkeeping there (a title-only rewrite of a renamed page's title, a redirect, a date precision set to what the date as written already says) is allowed. Follow
+reached (`SOURCES-FORESTRY.md` lists the hosts that cannot). A Nation is named, and an event involving it told, only as a cited source records it, the sentence or citation making clear whose record it is (Crown, company, court, the Nation's own); no statement about title, territory or consent except quoted and attributed; link a Nation's existing page. Until `ForestWiki:First Nations and Indigenous knowledge` is settled with the operator in a session of its own, write no new prose about a Nation itself (its governance, territory or history) on its own page (operator, 2026-11-16: the hold is not a ban). A company or partnership a Nation owns is written like any company. A Nation's own page gets upkeep: a citation found for a sentence or an uncited sentence removed, `sector`, `kind` and `controller_type` set, a redirect, a title-only rewrite; and a placeholder Nation page (infobox and one cited lead sentence) may be made where a row needs one as its object. Follow
 `ForestWiki:First Nations and Indigenous knowledge`.
 
 No "Open questions" section: what is not known goes in the dossier's
@@ -521,7 +537,9 @@ rows, so a wrong date gives a controller cut it never held. A row belongs to
 the licensee the licence documents name, never to its parent: the parent is
 reached through control rows, and a parent's row for a subsidiary's licence
 counts the cut twice. A row now on a parent's page for a subsidiary's licence
-moves to the subsidiary's page when the company is worked. For every
+moves to the subsidiary's page when the company is worked. A licence a
+company holds for a limited partnership is on the partnership's page
+("Title and names"). For every
 tenure the company held, check its row against the tenure page's Holders
 table and the licence documents and instruments already captured: correct
 the start and end dates, add a missing row, and move a row held by a
@@ -574,13 +592,18 @@ so, `controller_type`; a Person page carries `residence` (and `nationality`
 when given). A person always ends a chain of control, so a Person page
 needs no controller type. A family that controls a company as a group is an
 organization page with `controller_type=family`, linked to its members.
-On that holder's own page, fill `seat`, `incorporated_in`, `listings`,
-`controller_type` and a stake or control row only for holders the analysis
-can name as controller: 20 per cent or more at some observation, or named
-in a control claim; except that a sponsor's fund always carries the Control
-claim naming its sponsor (see `for_clients`). Any other holder's page gets
-`seat` only for an organization and `residence` only for a person, when its
-source gives it.
+On that holder's own page, fill `seat`, `incorporated_in`, `listings`
+and a stake or control row only for holders the analysis can name as
+controller: 20 per cent or more at some observation, or named in a control
+claim; except that a sponsor's fund always carries the Control claim naming
+its sponsor (see `for_clients`). Any other holder's page gets `seat` only
+for an organization and `residence` only for a person, when its source
+gives it. `controller_type` is filled on any holder whose chain of
+ownership ends at it, when its sources say what it is, whatever its stake
+(spec 2026-11-16): the share of the cut by owner type counts a Nation's 9
+per cent like a majority. A holding corporation, a partnership or a general
+partner never takes `controller_type`: it is owned, and the chain goes on
+to its owners.
 A Person page may carry `gender`, recorded only from a source's own words (an
 honorific, a pronoun or a statement), never from a name: `woman`, `man`, or
 the source's own word, cited to the source whose words give it. Where no
