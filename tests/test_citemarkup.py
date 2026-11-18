@@ -38,6 +38,16 @@ class TestParseCites(unittest.TestCase):
         result = parse_cites(raw)
         self.assertEqual(result, [("S1", "q1"), ("S2", "q2")])
 
+    def test_bare_cite_in_a_licence_rows_source_is_found(self):
+        # A row template's source= carries {{Cite}} with no <ref> (the
+        # template adds the footnote); Licence row is read like Area row.
+        raw = ('{{Licence row|licence=N1A|licence_kind=First Nations woodland licence'
+               '|holder=Example Nation Forestry Ltd.|aac_m3=20000|as_of=2024-03-31'
+               '|source={{Cite|Apportionment 2024|quote=N1A 20,000}}}}\n'
+               '{{Area row|date=1957-01-01|hectares=95903|source={{Cite|Src A|quote=opened in 1957}}}}')
+        self.assertEqual(parse_cites(raw), [("Apportionment 2024", "N1A 20,000"),
+                                            ("Src A", "opened in 1957")])
+
     def test_no_cites_returns_empty(self):
         self.assertEqual(parse_cites("plain prose with no citation"), [])
 
