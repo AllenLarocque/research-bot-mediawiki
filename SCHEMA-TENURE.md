@@ -49,6 +49,23 @@ one phrase, and is left empty when the source does not say. A row's date is
 the date the figure took effect or was measured, not the date of the
 document that reports it.
 
+Timber supply area pages. A timber supply area's page uses `{{Tenure}}` with
+`tenure_type=Timber Supply Area`, the area's number as `tenure_id`, the
+natural resource district or districts in `district` only where a cited
+source prints them, and no `holder`: an area is not held. The lead says
+which region the area lies in and gives the allowable annual cut in effect
+as the ministry's report gives it, with its effective date, each sourced; a
+figure is called a determination only where its source calls it one. The
+page gives the area's allowable cut as dated `{{Cut row}}` lines (the cut in
+effect, and earlier ones only where the page's sources give them), then a
+Licences section: the `{{Licence row}}` table, one row per forest file (a
+file held jointly is one row per holder, each giving the file's whole cut)
+and one for BC Timber Sales' apportionment, each with `unit` set to the page's
+title. Where a row records a licence's allowable cut without a lump sum its
+source prints, one cited sentence before the table gives the source's
+figures. A supply area page has no Holders table and no `holds_tenure` row,
+and the analysis never reads its cut as a holder's.
+
 The Holders table and the relationship rows agree: every holder in the
 table has a `holds_tenure` row, which lives on the holder's page with the
 tenure as its object. Adding or correcting that row on the holder's page
