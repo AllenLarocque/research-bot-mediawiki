@@ -360,7 +360,14 @@ benchmark years are every fifth year from 1950 to 2025 (1950, 1955, … 2025).
 For each benchmark year a company was alive, look for a roster from a source
 dated within a year either side (Y-1 to Y+1); a source further off does not
 stand in for the benchmark. Rows are dated by what the source gives, never
-moved to the benchmark year. A roster on a document or page a tick reads
+moved to the benchmark year.
+A roster that carries no date of its own (a company's board or leadership
+web page) is dated by its capture, as a board row is a sighting: `as_of` is
+the Wayback timestamp of the copy read, or the fetch date of the live page,
+at `precision=day` (operator, 2026-11-20). A page headed leadership,
+management or executives gives `seat=none` rows, with `office` where its
+title is one of the vocabulary's, unless it says who sits on the board.
+A roster on a document or page a tick reads
 anyway is written too, at its own date. Any other roster seen in a held
 source and not written is a line in the company's `questions.md`: `Held, not
 written: <document>, roster at <date>.` Do not search for rosters outside the
@@ -370,7 +377,7 @@ would give it.
 
 The parameters, exactly: `person` (the director's page, an exact title),
 `as_of` (`YYYY-MM-DD` or the shorter forms, the date the source gives the
-roster at), `precision` (day, month, year or circa; day if left out), `seat`
+roster at, or for an undated roster its capture date (see above)), `precision` (day, month, year or circa; day if left out), `seat`
 (`chair`, `vice-chair`, `director`, or `none` for an officer the source shows
 with no board seat), `office` (an executive title, one of `ceo`, `president`,
 `vice-president`, `executive-vice-president`, `treasurer`, `secretary`,
@@ -620,6 +627,17 @@ Stake and Control claim rows, and an `owned_by` row on its page is
 converted ("A company and its mill").
 A `holds_shares_in` row is converted to `{{Stake}}` rows on the company's
 page, one per date its sources observe, and the relationship row removed.
+
+A company whose lands or operations another organization manages under
+agreement, while it stays a company in its own right, carries a dated
+`managed_by` row naming the manager (operator, 2026-11-20): TimberWest and
+Island Timberlands are each `managed_by` [[Mosaic Forest Management]] from
+2018, which their sources describe as stand-alone companies with no change
+in control. Subject and object are both organizations: the managed company
+is the subject, the manager the object. The row records management only. It
+is never written in place of a Stake row or a Control claim, the control
+analysis does not read it, and a manager that also owns or controls the
+company still gets those rows on the company's page.
 
 The wiki page `ForestWiki:Company page` carries this for human editors;
 when this file changes, that page changes in the same commit.
